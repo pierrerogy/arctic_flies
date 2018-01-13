@@ -17,7 +17,7 @@ library(sp)
 flies <- flies %>% 
   select(-Genus, -Province.Territory, -Trapping_Method, -Date) %>% 
 ##Remove Mcgill Station
-  filter(Moisture_Regime != "McGill Subarctic Research Station")
+  filter(Moisture_Regime != "McGill_Subarctic_Research_Station")
 ##Make sure it workes
 str(flies)
 
@@ -59,7 +59,7 @@ library(tidyr)
 
 # Worldclim_per_Ecozone ---------------------------------------------------
 ##Isolating vaiables of interest
-ecoclim <- anaflies %>% select(-Locality,-Side, -Family, -Species, -Number.of.Specimens, -Moisture_Regime, -Replicate)
+ecoclim <- anaflies %>% select(-Locality,-Side, -Family, -Species, -Abundance, -Moisture_Regime, -Replicate)
 ##Extracting unique combinations of site, coordinates, and corresponding variables
 ##Checking if no mess up
 variaecoclim <- unique(ecoclim)
@@ -72,7 +72,7 @@ View(averaged_ecoclim)
 
 # Wordlclim_per_Ecozone_Moisture -------------------------------------------
 ##Isolating vaiables of interest
-ecomoistclim <- anaflies %>% select(-Locality,-Side, -Family, -Species, -Number.of.Specimens, -Replicate)
+ecomoistclim <- anaflies %>% select(-Locality,-Side, -Family, -Species, -Abundance, -Replicate)
 ##Extracting unique combinations of site, coordinates, and corresponding variables
 ##Checking if no mess up
 variaecomoistclim <- unique(ecomoistclim)
@@ -86,7 +86,7 @@ View(averaged_ecomoistclim)
 # Worldclim_per_Locality --------------------------------------------------
 ##Isolating vaiables of interest
 ###NOTE that maybe worldclim factors are different in wet vs mesic areas? What about sides?
-locaclim <- anaflies %>% select(-Family, -Species, -Number.of.Specimens, -Moisture_Regime, -Replicate)
+locaclim <- anaflies %>% select(-Family, -Species, -Abundance, -Moisture_Regime, -Replicate)
 ##Extracting unique combinations of site, coordinates, and corresponding variables
 ##Checking if no mess up
 varialocaclim <- unique(locaclim)
@@ -104,7 +104,7 @@ View(averaged_localim)
 # Wordlicm_per_Locality_Moisture ------------------------------------------
 ##Isolating vaiables of interest
 ###NOTE that maybe worldclim factors are different in wet vs mesic areas? What about sides?
-moistclim <- anaflies %>% select(-Family, -Species, -Number.of.Specimens, -Replicate)
+moistclim <- anaflies %>% select(-Family, -Species, -Abundance, -Replicate)
 ##Extracting unique combinations of site, coordinates, and corresponding variables
 ##Checking if no mess up
 variamoistclim <- unique(moistclim)
@@ -119,11 +119,11 @@ View(averaged_moistclim)
 # Diversity_Indices_per_Ecozone ---------------------------------------------------
 ##First goup everything per site
 ecoflies <- flies %>% 
-  select(Ecozone, Species, Number.of.Specimens) %>% 
+  select(Ecozone, Species, Abundance) %>% 
   group_by(Ecozone, Species) %>%
   summarise_each(funs(sum)) %>%
   ###fill=0 means that 0 will be put instead of default NAs if the cell is to be empty
-  spread(key = Species, Number.of.Specimens, fill = 0)
+  spread(key = Species, Abundance, fill = 0)
 ##checking
 View(ecoflies)
 str(ecoflies)
@@ -147,7 +147,7 @@ ecorichness <- specnumber(ecoflies, MARGIN = 1)
 ecofrequency <- specnumber(ecoflies, MARGIN = 2)
 ###Abundance
 ecoabundance <- flies %>% 
-  select(Ecozone, Number.of.Specimens) %>% 
+  select(Ecozone, Abundance) %>% 
   group_by(Ecozone) %>%
   summarise_each(funs(sum))
 ####Remove first column with locality list, always alphabetical so all G
@@ -162,12 +162,12 @@ View(ecoanalysis)
 
 # Diversity_Indices_per_Ecozone_Moisture ----------------------------------
 ecomoistflies <- flies %>% 
-  select(Ecozone, Moisture_Regime, Species, Number.of.Specimens) %>% 
+  select(Ecozone, Moisture_Regime, Species, Abundance) %>% 
   unite(Ecomoist, Ecozone:Moisture_Regime, sep= "_") %>% 
   group_by(Ecomoist, Species) %>%
   summarise_each(funs(sum)) %>%
   ###fill=0 means that 0 will be put instead of default NAs if the cell is to be empty
-  spread(key = Species, Number.of.Specimens, fill = 0)
+  spread(key = Species, Abundance, fill = 0)
 ##checking
 View(ecomoistflies)
 str(ecomoistflies)
@@ -191,7 +191,7 @@ ecomoistrichness <- specnumber(ecomoistflies, MARGIN = 1)
 ecomoistfrequency <- specnumber(ecomoistflies, MARGIN = 2)
 ###Abundance
 ecomoistabundance <- flies %>% 
-  select(Ecozone, Moisture_Regime, Number.of.Specimens) %>% 
+  select(Ecozone, Moisture_Regime, Abundance) %>% 
   unite(Ecomoist, Ecozone:Moisture_Regime, sep= "_") %>% 
   group_by(Ecomoist) %>%
   summarise_each(funs(sum))
@@ -209,11 +209,11 @@ ecomoistanalysis <- cbind.data.frame(averaged_ecomoistclim[,1:2], ecomoistrichne
 # Diversity_Indices_per_Locality -------------------------------------------------------
 ##First goup everything per site
 siteflies <- flies %>% 
-  select(Locality, Species, Number.of.Specimens) %>% 
+  select(Locality, Species, Abundance) %>% 
   group_by(Locality, Species) %>%
   summarise_each(funs(sum)) %>%
   ###fill=0 means that 0 will be put instead of default NAs if the cell is to be empty
-  spread(key = Species, Number.of.Specimens, fill = 0)
+  spread(key = Species, Abundance, fill = 0)
 ##checking
 View(siteflies)
 str(siteflies)
@@ -237,7 +237,7 @@ siterichness <- specnumber(siteflies, MARGIN = 1)
 sitefrequency <- specnumber(siteflies, MARGIN = 2)
 ###Abundance
 siteabundance <- flies %>% 
-  select(Locality, Number.of.Specimens) %>% 
+  select(Locality, Abundance) %>% 
   group_by(Locality) %>%
   summarise_each(funs(sum))
 ####Remove first column with locality list, always alphabetical so all G
@@ -255,12 +255,12 @@ siteanalysis <- cbind.data.frame(averaged_localim[,2:3], siterichness, siteabund
 # Diversity_Indices_per_Locality_Moisture ---------------------------------
 ##First goup everything per site
 moistflies <- flies %>% 
-  select(Locality, Moisture_Regime, Species, Number.of.Specimens) %>% 
+  select(Locality, Moisture_Regime, Species, Abundance) %>% 
   unite(Site, Locality:Moisture_Regime, sep= "_") %>% 
   group_by(Site, Species) %>%
   summarise_each(funs(sum)) %>%
   ###fill=0 means that 0 will be put instead of default NAs if the cell is to be empty
-  spread(key = Species, Number.of.Specimens, fill = 0)
+  spread(key = Species, Abundance, fill = 0)
 ##checking
 View(moistflies)
 str(moistflies)
@@ -284,7 +284,7 @@ moistrichness <- specnumber(moistflies, MARGIN = 1)
 moistfrequency <- specnumber(moistflies, MARGIN = 2)
 ###Abundance
 moistabundance <- flies %>% 
-  select(Locality, Moisture_Regime, Number.of.Specimens) %>% 
+  select(Locality, Moisture_Regime, Abundance) %>% 
   unite(Site, Locality:Moisture_Regime, sep= "_") %>% 
   group_by(Site) %>%
   summarise_each(funs(sum))

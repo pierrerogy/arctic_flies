@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eml:dataset xmlns:eml="eml://ecoinformatics.org/eml-2.1.1" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" system="uuid">
+  <title>Spatial Diversity of Acalyptrate Flies in the Northern Nearctic</title>
+  <creator>
+    <individualName>
+      <givenName>Pierre</givenName>
+      <surName>Rogy</surName>
+    </individualName>
+    <electronicMailAddress>rogy@zoology.ubc.ca</electronicMailAddress>
+  </creator>
+  <abstract>Solving the riddle of Arctic Diptera dominance requires a comprehensive framework of diversity patterns, and is especially important as this taxon can be used to assess shifts in rapidly-changing Arctic ecosystems. Thus, this paper aims at unraveling the spatial component of this framework for Acalyptratae. Acalyptrate diversity should decrease with increasing latitude for most groups, while abundance per species should increase. On the same gradient, the moisture regime should influence diversity in northern, resource-scarce environments. To study those patterns, the Northern Biodiversity Program (2010-2011) collected arthropods at 12 sites across the Northern Boreal, Subarctic and High Arctic zones. This yielded 4486 acalyptrate specimens, whose biodiversity patterns are compared here across different spatial scales. The latitudinal richness gradient was followed by 22 of the 25 families, but abundance patterns remained similar across zones. Subarctic sites showed most variability, which may result from geographical and glacial legacies. Finally, wet sites harbored more diversity and abundance with increasing latitude, except in the High Arctic, likely due to mating and dispersal behaviors. In conclusion, acalyptrate diversity in the Arctic generally follows patterns seen in other animal groups. These results can be used as bases for further temporal and ecological studies to understand Arctic shifts. </abstract>
+  <dataTable>
+    <entityName>ArcticFlies.csv</entityName>
+    <entityDescription>Arctic Fly Project</entityDescription>
+    <physical>
+      <objectName>ArcticFlies.csv</objectName>
+      <size unit="bytes"/>
+      <dataFormat>
+        <textFormat>
+          <recordDelimiter>\n\r</recordDelimiter>
+          <attributeOrientation>column</attributeOrientation>
+          <simpleDelimited>
+            <fieldDelimiter>,</fieldDelimiter>
+          </simpleDelimited>
+        </textFormat>
+      </dataFormat>
+    </physical>
+    <attributeList>
+      <attribute>
+        <attributeName>Family</attributeName>
+        <attributeDefinition>Linnaean family of the specimen</attributeDefinition>
+        <storageType>string</storageType>
+        <measurementScale>
+          <nominal>
+            <nonNumericDomain>
+              <enumeratedDomain>
+                <codeDefinition>
+                  <code>NA</code>
+                  <definition>NA</definition>
+                </codeDefinition>
+              </enumeratedDomain>
+            </nonNumericDomain>
+          </nominal>
+        </measurementScale>
+      </attribute>
+      <attribute>
+        <attributeName>Genus</attributeName>
+        <attributeDefinition>Linnaean genus of the specimen</attributeDefinition>
+        <storageType>string</storageType>
+        <measurementScale>
+          <nominal>
+            <nonNumericDomain>
+              <enumeratedDomain>
+                <codeDefinition>
+                  <code>NA</code>
+                  <definition>NA</definition>
+                </codeDefinition>
+              </enumeratedDomain>
+            </nonNumericDomain>
+          </nominal>
+        </measurementScale>
+      </attribute>
+      <attribute>
+        <attributeName>Species</attributeName>
+        <attributeDefinition>Linnaean binomial species name or morphospecies, may include original taxonomist name</attributeDefinition>
+        <storageType>string</storageType>
+        <measurementScale>
+          <nominal>
+            <nonNumericDomain>
+              <enumeratedDomain>
+                <codeDefinition>
+                  <code>NA</code>
+                  <definition>NA</definition>
+                </codeDefinition>
+              </enumeratedDomain>
+            </nonNumericDomain>
+          </nominal>
+        </measurementScale>
+      </attribute>
+      <attribute>
+        <attributeName>Abundance</attributeName>
+        <attributeDefinition>Number of specimens collected</attributeDefinition>
+        <storageType>float</storageType>
+        <measurementScale>
+          <ratio>
+            <unit>
+              <standardUnit>dimensionless</standardUnit>
+            </unit>
+            <numericDomain>
+              <numberType>integer</numberType>
+            </numericDomain>
+          </ratio>
+        </measurementScale>
+      </attribute>
+      <attribute>
+        <attributeName>Locality</attributeName>
+        <attributeDefinition>Where the sampling was done</attributeDefinition>
+        <storageType>string</storageType>
+        <measurementScale>
+          <nominal>
+            <nonNumericDomain>
+              <enumeratedDomain>
+                <codeDefinition>
+                  <code>Moosonee</code>
+                  <definition>Moosonee, ON</definition>
+                </codeDefinition>
+                <codeDefinition>
+                  <code>Goose_Bay</code>
+                  <definition>Goose Bay, NL</definition>
+                </codeDefinition>
+                <codeDefinition>
+                  <code>Yellowknife</code>
+                  <definition>Yellowknife, NT</definition>
+                </codeDefinition>
+                <codeDefinition>
+                  <code>Norman_Wells</code>
+                  <definition>Norman Weels, NT</definition>
+                </codeDefinition>
+                <codeDefinition>
+                  <code>Churchill</code>
+                  <definition>Churchill, MB</definition>
+                </codeDefinition>
+                <codeDefinition>
+                  <code>Kugluktuk</code>
+                  <definition>Kugluktuk, NU</definition>
+                </codeDefinition>
+                <codeDefinition>
+                  <code>Schefferville</code>
+                  <definition>Schefferville, QC</definition>
+                </codeDefinition>
+                <codeDefinition>
+                  <code>Tombstone_Mountains</code>
+                  <definition>Dempster Highway near North Fork Pass, YT</definition>
+                </codeDefinition>
+                <codeDefinition>
+                  <code>Iqaluit</code>
+                  <definition>Iqaluit, NU</definition>
+                </codeDefinition>
+                <codeDefinition>
+                  <code>Aulavik_National_Park</code>
+                  <definition>Aulavik National Park, NT</definition>
+                </codeDefinition>
+                <codeDefinition>
+                  <code>Cambridge_Bay</code>
+                  <definition>Cambridge Bay, NU</definition>
+                </codeDefinition>
+              </enumeratedDomain>
+            </nonNumericDomain>
+          </nominal>
+        </measurementScale>
+      </attribute>
+      <attribute>
+        <attributeName>Province/Territory</attributeName>
+        <attributeDefinition>Province/Territory of locality</attributeDefinition>
+        <storageType>string</storageType>
+        <measurementScale>
+          <nominal>
+            <nonNumericDomain>
+              <enumeratedDomain>
+                <codeDefinition>
+                  <code>NA</code>
+                  <definition>NA</definition>
+                </codeDefinition>
+              </enumeratedDomain>
+            </nonNumericDomain>
+          </nominal>
+        </measurementScale>
+      </attribute>
+      <attribute>
+        <attributeName>Ecozone</attributeName>
+        <attributeDefinition>Ecozone of locality</attributeDefinition>
+        <storageType>string</storageType>
+        <measurementScale>
+          <nominal>
+            <nonNumericDomain>
+              <enumeratedDomain>
+                <codeDefinition>
+                  <code>HA</code>
+                  <definition>High Arctic</definition>
+                </codeDefinition>
+                <codeDefinition>
+                  <code>NB</code>
+                  <definition>Northern Boreal</definition>
+                </codeDefinition>
+                <codeDefinition>
+                  <code>SA</code>
+                  <definition>Subarctic</definition>
+                </codeDefinition>
+              </enumeratedDomain>
+            </nonNumericDomain>
+          </nominal>
+        </measurementScale>
+      </attribute>
+      <attribute>
+        <attributeName>Side</attributeName>
+        <attributeDefinition>If the sampling was in eastern or western Canada</attributeDefinition>
+        <storageType>string</storageType>
+        <measurementScale>
+          <nominal>
+            <nonNumericDomain>
+              <enumeratedDomain>
+                <codeDefinition>
+                  <code>W</code>
+                  <definition>Western Canada</definition>
+                </codeDefinition>
+                <codeDefinition>
+                  <code>E</code>
+                  <definition>Eastern Canada</definition>
+                </codeDefinition>
+              </enumeratedDomain>
+            </nonNumericDomain>
+          </nominal>
+        </measurementScale>
+      </attribute>
+      <attribute>
+        <attributeName>Latitude</attributeName>
+        <attributeDefinition>Latitude of the replicate (WGS-84 datum)</attributeDefinition>
+        <storageType>float</storageType>
+        <measurementScale>
+          <ratio>
+            <unit>
+              <customUnit>Decimal WGS-84</customUnit>
+            </unit>
+            <numericDomain>
+              <numberType>coordinate</numberType>
+            </numericDomain>
+          </ratio>
+        </measurementScale>
+      </attribute>
+      <attribute>
+        <attributeName>Longitude</attributeName>
+        <attributeDefinition>Longitude of the replicate (WGS-84 datum)</attributeDefinition>
+        <storageType>float</storageType>
+        <measurementScale>
+          <ratio>
+            <unit>
+              <customUnit>Decimal WGS-84</customUnit>
+            </unit>
+            <numericDomain>
+              <numberType>coordinate</numberType>
+            </numericDomain>
+          </ratio>
+        </measurementScale>
+      </attribute>
+      <attribute>
+        <attributeName>Moisture_Regime</attributeName>
+        <attributeDefinition>Moisture regime of the replicate</attributeDefinition>
+        <storageType>string</storageType>
+        <measurementScale>
+          <nominal>
+            <nonNumericDomain>
+              <enumeratedDomain>
+                <codeDefinition>
+                  <code>Mesic</code>
+                  <definition>Mesic sites</definition>
+                </codeDefinition>
+                <codeDefinition>
+                  <code>Wet</code>
+                  <definition>Wet sites</definition>
+                </codeDefinition>
+                <codeDefinition>
+                  <code>McGill_Subarctic_Research_Station</code>
+                  <definition>Malaise Trap left at research station</definition>
+                </codeDefinition>
+              </enumeratedDomain>
+            </nonNumericDomain>
+          </nominal>
+        </measurementScale>
+      </attribute>
+      <attribute>
+        <attributeName>Replicate</attributeName>
+        <attributeDefinition>Replicate number</attributeDefinition>
+        <storageType>string</storageType>
+        <measurementScale>
+          <nominal>
+            <nonNumericDomain>
+              <enumeratedDomain>
+                <codeDefinition>
+                  <code>NA</code>
+                  <definition>NA</definition>
+                </codeDefinition>
+              </enumeratedDomain>
+            </nonNumericDomain>
+          </nominal>
+        </measurementScale>
+      </attribute>
+      <attribute>
+        <attributeName>Date</attributeName>
+        <attributeDefinition>Date of collection</attributeDefinition>
+        <storageType>string</storageType>
+        <measurementScale>
+          <nominal>
+            <nonNumericDomain>
+              <enumeratedDomain>
+                <codeDefinition>
+                  <code>NA</code>
+                  <definition>NA</definition>
+                </codeDefinition>
+              </enumeratedDomain>
+            </nonNumericDomain>
+          </nominal>
+        </measurementScale>
+      </attribute>
+      <attribute>
+        <attributeName>Trapping Method</attributeName>
+        <attributeDefinition>Trapping Method</attributeDefinition>
+        <storageType>string</storageType>
+        <measurementScale>
+          <nominal>
+            <nonNumericDomain>
+              <enumeratedDomain>
+                <codeDefinition>
+                  <code>NA</code>
+                  <definition>NA</definition>
+                </codeDefinition>
+              </enumeratedDomain>
+            </nonNumericDomain>
+          </nominal>
+        </measurementScale>
+      </attribute>
+    </attributeList>
+  </dataTable>
+</eml:dataset>
