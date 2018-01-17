@@ -6,8 +6,8 @@ Piophilidae;Lasiopiophila;Lasiopiophila pilosa;2;Aulavik_National_Park;NT;HA;W;7
 Piophilidae;Lasiopiophila;Lasiopiophila pilosa;1;Aulavik_National_Park;NT;HA;W;73.22181;-119.56059;Mesic;1;11-15.vii.2011;Pan Traps
 Piophilidae;Lasiopiophila;Lasiopiophila pilosa;6;Aulavik_National_Park;NT;HA;W;73.22181;-119.56059;Mesic;1;15-19.vii.2011;Pan Traps
 Heleomyzidae;Neoleria;Neoleria ruficauda;1;Aulavik_National_Park;NT;HA;W;73.22181;-119.56059;Mesic;1;19.vii.2011;Sweep
-Heleomyzidae;Neoleria;Neoleria ruficauda;1;Aulavik_National_Park;NT;HA;W;73.22855; -119.58662;Mesic;2;11-15.vii.2011;Malaise Trap
-Piophilidae;Lasiopiophila;Lasiopiophila pilosa;1;Aulavik_National_Park;NT;HA;W;73.22656; -119.57728;Mesic;2;11-15.vii.2011;Malaise Trap 
+Heleomyzidae;Neoleria;Neoleria ruficauda;1;Aulavik_National_Park;NT;HA;W;73.22656;-119.57728;Mesic;2;11-15.vii.2011;Malaise Trap
+Piophilidae;Lasiopiophila;Lasiopiophila pilosa;1;Aulavik_National_Park;NT;HA;W;73.22656;-119.57728;Mesic;2;11-15.vii.2011;Malaise Trap 
 Heleomyzidae;Aecothea;Aecothea specus OR A. fenestralis;3;Aulavik_National_Park;NT;HA;W;73.22855; -119.58662;Mesic;3;15-19.vii.2011;Malaise Trap
 Piophilidae;Lasiopiophila;Lasiopiophila pilosa;1;Aulavik_National_Park;NT;HA;W;73.22855; -119.58662;Mesic;3;15-19.vii.2011;Malaise Trap 
 Piophilidae;Liopiophila;Liopiophila varipes;1;Aulavik_National_Park;NT;HA;W;73.22855; -119.58662;Mesic;3;15-19.vii.2011;Malaise Trap 
@@ -58,32 +58,32 @@ Piophilidae;Neopiophila;Neopiophila setaluna;2;Cambridge_Bay;NU;HA;W;69.12366; -
 Ephydridae;Axysta;Axysta sp. A;1;Cambridge_Bay;NU;HA;W;69.12366; -105.42531;Wet;3;07-11.vii.2011;Pan Traps
 Ephydridae;Parydra;Parydra sp.A;1;Cambridge_Bay;NU;HA;W;69.12366; -105.42531;Wet;3;07-11.vii.2011;Pan Traps
 Sphaeroceridae;Leptocera;Leptocera sp. A;2;Cambridge_Bay;NU;HA;W;69.12366;-105.42531;Wet;3;;
-Lonchaeidae;Lonchaea;Lonchaea sp. F;2;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;05-09.vi.2010;Malaise Trap
-Lonchaeidae;Lonchaea;Lonchaea sp. Y;1;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;05-09.vii.2010;Malaise Trap
-Sciomyzidae;Pherbellia;Pherbellia sp. A;1;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;05-09.vii.2010;Malaise Trap
-Sciomyzidae;Tetanocera;Tetanocera fuscinervis (Zett);1;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;05-09.vii.2010;Malaise Trap
-Sciomyzidae;Tetanocera;Tetanocera loewi;1;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;05-09.vii.2010;Malaise Trap
-Sciomyzidae;Tentanocera;Tetanocera robusta (Loew);4;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;05-09.vii.2010;Malaise Trap
-Sciomyzidae;Tentanocera;Tetanocera silvatica ;3;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;05-09.vii.2010;Malaise Trap
-Sciomyzidae;Tentanocera;Tetanocera sp. B;1;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;05-09.vii.2010;Malaise Trap
-Sepsidae;Themira;Themira maculatarsis (Curran);1;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;05-09.vii.2010;Malaise Trap
-Ephydridae;Scatophila;Scatophila nsp. A;1;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;05-09.vii.2010;Malaise Trap
-Sciomyzidae;Dictya;Dictya umbroides (Curran);1;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;5-9.vii.2010;Malaise Trap
-Sciomyzidae;Pteromicra;Pteromicra augustipennis (Staeger);2;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;01-05.vii.2010;Pan Traps
-Sciomyzidae;Tetanocera;Tetanocera lafibula (Frey);1;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;08-13.vii.2011;Pan Traps
-Piophilidae;Neopiophila;Neopiophila setaluna;1;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;04.vii.2010;Sweep
-Chamaemyiidae;Leucopis;Leucopis sp. D;1;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;04.vii.2010;Sweep
-Sciomyzidae;Tentanocera;Tetanocera silvatica ;2;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;04.vii.2010;Sweep
-Piophilidae;Neopiophila;Neopiophila setaluna;1;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;08.vii.2010;Sweep
-Sciomyzidae;Tentanocera;Tetanocera robusta (Loew);1;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;13.vii.2010;Sweep
-Chloropidae;Siphonella;Siphonella osanina (Fallén);1;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;;
-Chloropidae;Gaurax;Gaurax sp. D;1;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;;
-Chloropidae;Elachiptera;Elachipter sp. B;2;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;;
-Chloropidae;Thaumatomyia;Thaumatomyia trifasciata (Zett);6;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;;
-Chloropidae;Conioscinella ;Conioscinella sp. A;1;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;;
-Chloropidae;Tricimba;Tricimba melamonolica;3;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;;
-Chloropidae;Tricimba;Tricimba brunnicolis;1;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;;
-Chloropidae;Oscinella;Oscinella sp. D;1;Churchill;MB;SA;E;69.12366;-105.42531;Mesic;1;;
+Lonchaeidae;Lonchaea;Lonchaea sp. F;2;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;05-09.vi.2010;Malaise Trap
+Lonchaeidae;Lonchaea;Lonchaea sp. Y;1;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;05-09.vii.2010;Malaise Trap
+Sciomyzidae;Pherbellia;Pherbellia sp. A;1;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;05-09.vii.2010;Malaise Trap
+Sciomyzidae;Tetanocera;Tetanocera fuscinervis (Zett);1;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;05-09.vii.2010;Malaise Trap
+Sciomyzidae;Tetanocera;Tetanocera loewi;1;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;05-09.vii.2010;Malaise Trap
+Sciomyzidae;Tentanocera;Tetanocera robusta (Loew);4;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;05-09.vii.2010;Malaise Trap
+Sciomyzidae;Tentanocera;Tetanocera silvatica ;3;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;05-09.vii.2010;Malaise Trap
+Sciomyzidae;Tentanocera;Tetanocera sp. B;1;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;05-09.vii.2010;Malaise Trap
+Sepsidae;Themira;Themira maculatarsis (Curran);1;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;05-09.vii.2010;Malaise Trap
+Ephydridae;Scatophila;Scatophila nsp. A;1;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;05-09.vii.2010;Malaise Trap
+Sciomyzidae;Dictya;Dictya umbroides (Curran);1;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;5-9.vii.2010;Malaise Trap
+Sciomyzidae;Pteromicra;Pteromicra augustipennis (Staeger);2;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;01-05.vii.2010;Pan Traps
+Sciomyzidae;Tetanocera;Tetanocera lafibula (Frey);1;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;08-13.vii.2011;Pan Traps
+Piophilidae;Neopiophila;Neopiophila setaluna;1;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;04.vii.2010;Sweep
+Chamaemyiidae;Leucopis;Leucopis sp. D;1;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;04.vii.2010;Sweep
+Sciomyzidae;Tentanocera;Tetanocera silvatica ;2;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;04.vii.2010;Sweep
+Piophilidae;Neopiophila;Neopiophila setaluna;1;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;08.vii.2010;Sweep
+Sciomyzidae;Tentanocera;Tetanocera robusta (Loew);1;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;13.vii.2010;Sweep
+Chloropidae;Siphonella;Siphonella osanina (Fallén);1;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;;
+Chloropidae;Gaurax;Gaurax sp. D;1;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;;
+Chloropidae;Elachiptera;Elachipter sp. B;2;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;;
+Chloropidae;Thaumatomyia;Thaumatomyia trifasciata (Zett);6;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;;
+Chloropidae;Conioscinella ;Conioscinella sp. A;1;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;;
+Chloropidae;Tricimba;Tricimba melamonolica;3;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;;
+Chloropidae;Tricimba;Tricimba brunnicolis;1;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;;
+Chloropidae;Oscinella;Oscinella sp. D;1;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;;
 Lonchaeidae;Lonchaea;Lonchaea sp. Z;1;Churchill;MB;SA;E;58.73235;-93.79028;Mesic;2;01-05.vii.2010;Malaise Trap
 Chamaemyiidae;Leucopis;Leucopis sp. C;1;Churchill;MB;SA;E;58.73235;-93.79028;Mesic;2;01-05.vii.2010;Malaise Trap
 Chamaemyiidae;Leucopis;Leucopis sp. D;1;Churchill;MB;SA;E;58.73235;-93.79028;Mesic;2;01-05.vii.2010;Malaise Trap
@@ -250,18 +250,18 @@ Chloropidae;Tricimba;Tricimba melamonolica;1;Goose_Bay;NL;NB;E;53.31890; -60.295
 Chloropidae;Tricimba;Tricimba cincta;10;Goose_Bay;NL;NB;E;53.31890; -60.29594;Mesic;1;;
 Sphaeroceridae;Limosininae ;Limosininae sp. A;1;Goose_Bay;NL;NB;E;53.31890; -60.29594;Mesic;1;;
 Sphaeroceridae;Limosininae ;Limosininae sp. F;1;Goose_Bay;NL;NB;E;53.31890; -60.29594;Mesic;1;;
-Lonchaeidae;Lonchaea;Lonchaea sp. F;2;Goose_Bay;NL;NB;E;53.21199;-60.45062;Mesic;2;15-18.vi.2010;Malaise Trap
-Lonchaeidae;Lonchaea;Lonchaea sp. J;2;Goose_Bay;NL;NB;E;53.21199;-60.45062;Mesic;2;15-18.vi.2010;Malaise Trap
-Lonchaeidae;Lonchaea;Lonchaea sp. M;1;Goose_Bay;NL;NB;E;53.21199;-60.45062;Mesic;2;15-18.vi.2010;Malaise Trap
-Lonchaeidae;Lonchaea;Lonchaea sp. N;2;Goose_Bay;NL;NB;E;53.21199;-60.45062;Mesic;2;15-18.vi.2010;Malaise Trap
-Heleomyzidae;Scoliocentra;Scoliocentra fraterna;1;Goose_Bay;NL;NB;E;53.21199;-60.45062;Mesic;2;15-18.vi.2010;Malaise Trap
-Ephydridae;Ochtheria;Ochtheria mantis complex;1;Goose_Bay;NL;NB;E;53.21199;-60.45062;Mesic;2;15-18.vi.2010;Malaise Trap
-Drosophilidae;Drosophila;Drosophila sp. G;1;Goose_Bay;NL;NB;E;53.21199;-60.45062;Mesic;2;18-21.vi.2010;Pan Traps
-Heleomyzidae;Suillia;Suillia barberi;2;Goose_Bay;NL;NB;E;53.21199;-60.45062;Mesic;2;21-24.vi.2010;Pan Traps
-Drosophilidae;Drosophila;Drosophila sp. N;1;Goose_Bay;NL;NB;E;53.21199;-60.45062;Mesic;2;21-24.vi.2010;Pan Traps
-Chloropidae;Conioscinella ;Conioscinella sp. A;7;Goose_Bay;NL;NB;E;53.21199;-60.45062;Mesic;2;;
-Chloropidae;Tricimba;Tricimba cincta;6;Goose_Bay;NL;NB;E;53.21199;-60.45062;Mesic;2;;
-Chloropidae;Tricimba;Tricimba brunnicolis;1;Goose_Bay;NL;NB;E;53.21199;-60.45062;Mesic;2;;
+Lonchaeidae;Lonchaea;Lonchaea sp. F;2;Goose_Bay;NL;NB;E;53.32036;-60.29691;Mesic;2;15-18.vi.2010;Malaise Trap
+Lonchaeidae;Lonchaea;Lonchaea sp. J;2;Goose_Bay;NL;NB;E;53.32036;-60.29691;Mesic;2;15-18.vi.2010;Malaise Trap
+Lonchaeidae;Lonchaea;Lonchaea sp. M;1;Goose_Bay;NL;NB;E;53.32036;-60.29691;Mesic;2;15-18.vi.2010;Malaise Trap
+Lonchaeidae;Lonchaea;Lonchaea sp. N;2;Goose_Bay;NL;NB;E;53.32036;-60.29691;Mesic;2;15-18.vi.2010;Malaise Trap
+Heleomyzidae;Scoliocentra;Scoliocentra fraterna;1;Goose_Bay;NL;NB;E;53.32036;-60.29691;Mesic;2;15-18.vi.2010;Malaise Trap
+Ephydridae;Ochtheria;Ochtheria mantis complex;1;Goose_Bay;NL;NB;E;53.32036;-60.29691;Mesic;2;15-18.vi.2010;Malaise Trap
+Drosophilidae;Drosophila;Drosophila sp. G;1;Goose_Bay;NL;NB;E;53.32036;-60.29691;Mesic;2;18-21.vi.2010;Pan Traps
+Heleomyzidae;Suillia;Suillia barberi;2;Goose_Bay;NL;NB;E;53.32036;-60.29691;Mesic;2;21-24.vi.2010;Pan Traps
+Drosophilidae;Drosophila;Drosophila sp. N;1;Goose_Bay;NL;NB;E;53.32036;-60.29691;Mesic;2;21-24.vi.2010;Pan Traps
+Chloropidae;Conioscinella ;Conioscinella sp. A;7;Goose_Bay;NL;NB;E;53.32036;-60.29691;Mesic;2;;
+Chloropidae;Tricimba;Tricimba cincta;6;Goose_Bay;NL;NB;E;53.32036;-60.29691;Mesic;2;;
+Chloropidae;Tricimba;Tricimba brunnicolis;1;Goose_Bay;NL;NB;E;53.32036;-60.29691;Mesic;2;;
 Lonchaeidae;Lonchaea;Lonchaea sp. F;2;Goose_Bay;NL;NB;E;53.32035; -60.29268;Mesic;3;21-24.vi.2010;Malaise Trap
 Heleomyzidae;Heteromyza;Heteromyza oculata ;1;Goose_Bay;NL;NB;E;53.32035; -60.29268;Mesic;3;21-24.vi.2010;Malaise Trap
 Heleomyzidae;Tephroclamys;Tephroclamys rufiventris;2;Goose_Bay;NL;NB;E;53.32035; -60.29268;Mesic;3;21-24.vi.2010;Malaise Trap
@@ -274,41 +274,41 @@ Chloropidae;Conioscinella ;Conioscinella sp. A;17;Goose_Bay;NL;NB;E;53.32035; -6
 Chloropidae;Tricimba;Tricimba melamonolica;1;Goose_Bay;NL;NB;E;53.32035; -60.29268;Mesic;3;;
 Chloropidae;Tricimba;Tricimba cincta;4;Goose_Bay;NL;NB;E;53.32035; -60.29268;Mesic;3;;
 Milichiidae;Neophyllomyza;Neophyllomyza gaulti ;1;Goose_Bay;NL;NB;E;53.32035; -60.29268;Mesic;3;21-24.vi.2010;Malaise Trap
-Lonchaeidae;Earomyia;Earomyia sp. A;2;Goose_Bay;NL;NB;E;53.32036;-60.29691;Wet;1;21-24.vi.2010;Malaise Trap
-Lonchaeidae;Lonchaea;Lonchaea sp. B ;1;Goose_Bay;NL;NB;E;53.32036;-60.29691;Wet;1;21-24.vi.2010;Malaise Trap
-Lonchaeidae;Lonchaea;Lonchaea sp. F;9;Goose_Bay;NL;NB;E;53.32036;-60.29691;Wet;1;21-24.vi.2010;Malaise Trap
-Heleomyzidae;Heteromyza;Heteromyza oculata ;2;Goose_Bay;NL;NB;E;53.32036;-60.29691;Wet;1;21-24.vi.2010;Malaise Trap
-Heleomyzidae;Tephroclamys;Tephroclamys rufiventris;1;Goose_Bay;NL;NB;E;53.32036;-60.29691;Wet;1;21-24.vi.2010;Malaise Trap
-Lonchaeidae;Earomyia;Earomyia sp. B;1;Goose_Bay;NL;NB;E;53.32036;-60.29691;Wet;1;16.vi.2010;Sweep
-Lonchaeidae;Lonchaea;Lonchaea sp. F;2;Goose_Bay;NL;NB;E;53.32036;-60.29691;Wet;1;16.vi.2010;Sweep
-Lonchaeidae;Lonchaea;Lonchaea sp. F;1;Goose_Bay;NL;NB;E;53.32036;-60.29691;Wet;1;20.vi.2010;Sweep
-Chloropidae;Thaumatomyia;Thaumatomyia pulla (Adams);3;Goose_Bay;NL;NB;E;53.32036;-60.29691;Wet;1;;
-Chloropidae;Conioscinella ;Conioscinella sp. A;1;Goose_Bay;NL;NB;E;53.32036;-60.29691;Wet;1;;
-Sphaeroceridae;Dahlimosina ;Dahlimosina dahli;2;Goose_Bay;NL;NB;E;53.32036;-60.29691;Wet;1;;
-Sphaeroceridae;Spelobia;Spelobia sp. E;1;Goose_Bay;NL;NB;E;53.32036;-60.29691;Wet;1;;
-Lonchaeidae;Earomyia;Earomyia sp. B;4;Goose_Bay;NL;NB;E;53.21408;-40.45044;Wet;2;18-21.vi.2010;Malaise Trap
-Lonchaeidae;Lonchaea;Lonchaea sp. E;1;Goose_Bay;NL;NB;E;53.21408;-40.45044;Wet;2;18-21.vi.2010;Malaise Trap
-Lonchaeidae;Lonchaea;Lonchaea sp. F;16;Goose_Bay;NL;NB;E;53.21408;-40.45044;Wet;2;18-21.vi.2010;Malaise Trap
-Lonchaeidae;Lonchaea;Lonchaea sp. I;1;Goose_Bay;NL;NB;E;53.21408;-40.45044;Wet;2;18-21.vi.2010;Malaise Trap
-Lonchaeidae;Lonchaea;Lonchaea sp. J;7;Goose_Bay;NL;NB;E;53.21408;-40.45044;Wet;2;18-21.vi.2010;Malaise Trap
-Lonchaeidae;Lonchaea;Lonchaea sp. AA;1;Goose_Bay;NL;NB;E;53.21408;-40.45044;Wet;2;18-21.vi.2010;Malaise Trap
-Lonchaeidae;Lonchaea;Lonchaea sp. F;1;Goose_Bay;NL;NB;E;53.21408;-40.45044;Wet;2;20.vi.2010;Sweep
-Lonchaeidae;Lonchaea;Lonchaea sp. E;3;Goose_Bay;NL;NB;E;53.21408;-40.45044;Wet;3;15-18.vi.2010;Malaise Trap
-Lonchaeidae;Lonchaea;Lonchaea sp. F;5;Goose_Bay;NL;NB;E;53.21408;-40.45044;Wet;3;15-18.vi.2010;Malaise Trap
-Lonchaeidae;Lonchaea;Lonchaea sp. K;1;Goose_Bay;NL;NB;E;53.21408;-40.45044;Wet;3;15-18.vi.2010;Malaise Trap
-Lonchaeidae;Lonchaea;Lonchaea sp. P;1;Goose_Bay;NL;NB;E;53.21408;-40.45044;Wet;3;15-18.vi.2010;Malaise Trap
-Sciomyzidae;Tentanocera;Tetanocera sp. A;1;Goose_Bay;NL;NB;E;53.21408;-40.45044;Wet;3;15-18.vi.2010;Malaise Trap
-Lonchaeidae;Lonchaea;Lonchaea sp. F;1;Goose_Bay;NL;NB;E;53.21408;-40.45044;Wet;3;18-21.vi.2010;Pan Traps
-Chloropidae;Pseudopachyceata;Pseudopachyceata ruficeps;1;Goose_Bay;NL;NB;E;53.21408;-40.45044;Wet;3;;
-Sphaeroceridae;Spelobia;Spelobia sp. E;1;Goose_Bay;NL;NB;E;53.21408;-40.45044;Wet;3;;
+Lonchaeidae;Earomyia;Earomyia sp. A;2;Goose_Bay;NL;NB;E;53.21199;-60.45062;Wet;1;21-24.vi.2010;Malaise Trap
+Lonchaeidae;Lonchaea;Lonchaea sp. B ;1;Goose_Bay;NL;NB;E;53.21199;-60.45062;Wet;1;21-24.vi.2010;Malaise Trap
+Lonchaeidae;Lonchaea;Lonchaea sp. F;9;Goose_Bay;NL;NB;E;53.21199;-60.45062;Wet;1;21-24.vi.2010;Malaise Trap
+Heleomyzidae;Heteromyza;Heteromyza oculata ;2;Goose_Bay;NL;NB;E;53.21199;-60.45062;Wet;1;21-24.vi.2010;Malaise Trap
+Heleomyzidae;Tephroclamys;Tephroclamys rufiventris;1;Goose_Bay;NL;NB;E;53.21199;-60.45062;Wet;1;21-24.vi.2010;Malaise Trap
+Lonchaeidae;Earomyia;Earomyia sp. B;1;Goose_Bay;NL;NB;E;53.21199;-60.45062;Wet;1;16.vi.2010;Sweep
+Lonchaeidae;Lonchaea;Lonchaea sp. F;2;Goose_Bay;NL;NB;E;53.21199;-60.45062;Wet;1;16.vi.2010;Sweep
+Lonchaeidae;Lonchaea;Lonchaea sp. F;1;Goose_Bay;NL;NB;E;53.21199;-60.45062;Wet;1;20.vi.2010;Sweep
+Chloropidae;Thaumatomyia;Thaumatomyia pulla (Adams);3;Goose_Bay;NL;NB;E;53.21199;-60.45062;Wet;1;;
+Chloropidae;Conioscinella ;Conioscinella sp. A;1;Goose_Bay;NL;NB;E;53.21199;-60.45062;Wet;1;;
+Sphaeroceridae;Dahlimosina ;Dahlimosina dahli;2;Goose_Bay;NL;NB;E;53.21199;-60.45062;Wet;1;;
+Sphaeroceridae;Spelobia;Spelobia sp. E;1;Goose_Bay;NL;NB;E;53.21199;-60.45062;Wet;1;;
+Lonchaeidae;Earomyia;Earomyia sp. B;4;Goose_Bay;NL;NB;E;53.21408;-60.45044;Wet;2;18-21.vi.2010;Malaise Trap
+Lonchaeidae;Lonchaea;Lonchaea sp. E;1;Goose_Bay;NL;NB;E;53.21408;-60.45044;Wet;2;18-21.vi.2010;Malaise Trap
+Lonchaeidae;Lonchaea;Lonchaea sp. F;16;Goose_Bay;NL;NB;E;53.21408;-60.45044;Wet;2;18-21.vi.2010;Malaise Trap
+Lonchaeidae;Lonchaea;Lonchaea sp. I;1;Goose_Bay;NL;NB;E;53.21408;-60.45044;Wet;2;18-21.vi.2010;Malaise Trap
+Lonchaeidae;Lonchaea;Lonchaea sp. J;7;Goose_Bay;NL;NB;E;53.21408;-60.45044;Wet;2;18-21.vi.2010;Malaise Trap
+Lonchaeidae;Lonchaea;Lonchaea sp. AA;1;Goose_Bay;NL;NB;E;53.21408;-60.45044;Wet;2;18-21.vi.2010;Malaise Trap
+Lonchaeidae;Lonchaea;Lonchaea sp. F;1;Goose_Bay;NL;NB;E;53.21408;-60.45044;Wet;2;20.vi.2010;Sweep
+Lonchaeidae;Lonchaea;Lonchaea sp. E;3;Goose_Bay;NL;NB;E;53.2162;-60.45001;Wet;3;15-18.vi.2010;Malaise Trap
+Lonchaeidae;Lonchaea;Lonchaea sp. F;5;Goose_Bay;NL;NB;E;53.2162;-60.45001;Wet;3;15-18.vi.2010;Malaise Trap
+Lonchaeidae;Lonchaea;Lonchaea sp. K;1;Goose_Bay;NL;NB;E;53.2162;-60.45001;Wet;3;15-18.vi.2010;Malaise Trap
+Lonchaeidae;Lonchaea;Lonchaea sp. P;1;Goose_Bay;NL;NB;E;53.2162;-60.45001;Wet;3;15-18.vi.2010;Malaise Trap
+Sciomyzidae;Tentanocera;Tetanocera sp. A;1;Goose_Bay;NL;NB;E;53.2162;-60.45001;Wet;3;15-18.vi.2010;Malaise Trap
+Lonchaeidae;Lonchaea;Lonchaea sp. F;1;Goose_Bay;NL;NB;E;53.2162;-60.45001;Wet;3;18-21.vi.2010;Pan Traps
+Chloropidae;Pseudopachyceata;Pseudopachyceata ruficeps;1;Goose_Bay;NL;NB;E;53.2162;-60.45001;Wet;3;;
+Sphaeroceridae;Spelobia;Spelobia sp. E;1;Goose_Bay;NL;NB;E;53.2162;-60.45001;Wet;3;;
 Piophilidae;Parapiophila;Parapiophila fulviceps;4;Iqaluit;NU;HA;E;63.79113; -68.57375;Mesic;1;17-21.vii.2010;Pan Traps
 Piophilidae;Parapiophila;Parapiophila fulviceps;5;Iqaluit;NU;HA;E;63.79113; -68.57375;Mesic;1;21-25.vii.2010;Pan Traps
 Carnidae;Meonura;Meonura flavifacies (Collin);1;Iqaluit;NU;HA;E;63.7783;-68.54961;Mesic;2;21.vii.2010;Sweep
-Heleomyzidae;Neoleria;Neoleria fuscolinea;1;Iqaluit;NU;HA;E;63.75117; -68.35898;Mesic;3;17-21.vii.2010;Malaise Trap
-Heleomyzidae;Neoleria;Neoleria prominens;1;Iqaluit;NU;HA;E;63.75117; -68.35898;Mesic;3;17-21.vii.2010;Malaise Trap
-Carnidae;Meonura;Meonura flavifacies (Collin);1;Iqaluit;NU;HA;E;63.75117; -68.35898;Mesic;3;17-21.vii.2010;Malaise Trap 
-Piophilidae;Parapiophila;Parapiophila fulviceps;2;Iqaluit;NU;HA;E;63.75117; -68.35898;Mesic;3;17-21.vii.2010;Malaise Trap 
-Piophilidae;Parapiophila;Parapiophila fulviceps;1;Iqaluit;NU;HA;E;63.75117; -68.35898;Mesic;3;21-25.vii.2010;Pan Traps
+Heleomyzidae;Neoleria;Neoleria fuscolinea;1;Iqaluit;NU;HA;E;63.75117;-68.45898;Mesic;3;17-21.vii.2010;Malaise Trap
+Heleomyzidae;Neoleria;Neoleria prominens;1;Iqaluit;NU;HA;E;63.75117;-68.45898;Mesic;3;17-21.vii.2010;Malaise Trap
+Carnidae;Meonura;Meonura flavifacies (Collin);1;Iqaluit;NU;HA;E;63.75117;-68.45898;Mesic;3;17-21.vii.2010;Malaise Trap 
+Piophilidae;Parapiophila;Parapiophila fulviceps;2;Iqaluit;NU;HA;E;63.75117;-68.45898;Mesic;3;17-21.vii.2010;Malaise Trap 
+Piophilidae;Parapiophila;Parapiophila fulviceps;1;Iqaluit;NU;HA;E;63.75117;-68.45898;Mesic;3;21-25.vii.2010;Pan Traps
 Heleomyzidae;Neoleria;Neoleria prominens;1;Iqaluit;NU;HA;E;63.79144; -68.57352;Wet;1;17-21.vii.2010;Malaise Trap
 Heleomyzidae;Neoleria;Neoleria tibialis;1;Iqaluit;NU;HA;E;63.79144; -68.57352;Wet;1;17-21.vii.2010;Malaise Trap
 Piophilidae;Parapiophila;Parapiophila fulviceps;1;Iqaluit;NU;HA;E;63.79144; -68.57352;Wet;1;17-21.vii.2010;Pan Traps
@@ -371,35 +371,35 @@ Chloropidae;Conioscinella ;Conioscinella sp. A;1;Kugluktuk;NU;SA;W;67.78508;-115
 Sphaeroceridae;Norrbomia;Norrbomia fumipennis;3;Kugluktuk;NU;SA;W;67.78508;-115.27573;Wet;1;;
 Sphaeroceridae;Copromyza;Copromyza sp. A;2;Kugluktuk;NU;SA;W;67.78508;-115.27573;Wet;1;;
 Sphaeroceridae;Limosininae ;Limosininae sp. G;1;Kugluktuk;NU;SA;W;67.78508;-115.27573;Wet;1;;
-Piophilidae;Parapiophila;Parapiophila fulviceps;1;Kugluktuk;NU;SA;W;67.83396;-115.2137;Wet;2;03-07.vii.2010;Malaise Trap 
-Piophilidae;Parapiophila;Parapiophila fulviceps;2;Kugluktuk;NU;SA;W;67.83396;-115.2137;Wet;2;19-26.vii.2010;Malaise Trap 
-Piophilidae;Parapiophila;Parapiophila kugluktuk;1;Kugluktuk;NU;SA;W;67.83396;-115.2137;Wet;2;23-26.vi.2010;Pan Traps
-Sciomyzidae;Elgiva;Elgiva divisa (Loew);1;Kugluktuk;NU;SA;W;67.83396;-115.2137;Wet;2;26-29.vi.2011;Pan Traps
-Sciomyzidae;Pherbellia;Pherbellia sp. A;1;Kugluktuk;NU;SA;W;67.83396;-115.2137;Wet;2;03.vii.2011;Sweep
-Sciomyzidae;Pteromicra;Pteromicra augustipennis (Staeger);1;Kugluktuk;NU;SA;W;67.83396;-115.2137;Wet;2;03.vii.2011;Sweep
-Sepsidae;Themira;Themira maculatarsis (Curran);1;Kugluktuk;NU;SA;W;67.83396;-115.2137;Wet;2;03.vii.2011;Sweep
-Ephydridae;Lamproscatella;Lamproscatella occidentalis;1;Kugluktuk;NU;SA;W;67.83396;-115.2137;Wet;2;03.vii.2011;Sweep
-Ephydridae;Rhinohapasa;Rhinohapasa metallica;2;Kugluktuk;NU;SA;W;67.83396;-115.2137;Wet;2;03.vii.2011;Sweep
-Ephydridae;Scatella;Scatella stagnalis (Fallén);2;Kugluktuk;NU;SA;W;67.83396;-115.2137;Wet;2;03.vii.2011;Sweep
-Sciomyzidae;Elgiva;Elgiva connexa (Steyskal);1;Kugluktuk;NU;SA;W;67.83396;-115.2137;Wet;2;30.vi.2011;Sweep
-Chloropidae;Pseudopachyceata;Pseudopachyceata ruficeps;6;Kugluktuk;NU;SA;W;67.83396;-115.2137;Wet;2;;
-Sphaeroceridae;Norrbomia;Norrbomia fumipennis;3;Kugluktuk;NU;SA;W;67.83396;-115.2137;Wet;2;;
-Piophilidae;Parapiophila;Parapiophila fulviceps;2;Kugluktuk;NU;SA;W;67.83427;-115.20895;Wet;3;07-12.vii.2010;Malaise Trap 
-Piophilidae;Parapiophila;Parapiophila fulviceps;7;Kugluktuk;NU;SA;W;67.83427;-115.20895;Wet;3;26.vii-02.viii.2010;Malaise Trap 
-Piophilidae;Parapiophila;Parapiophila kugluktuk;1;Kugluktuk;NU;SA;W;67.83427;-115.20895;Wet;3;03-07.vii.2011;Pan Traps
-Sciomyzidae;Pherbellia;Pherbellia sp. A;1;Kugluktuk;NU;SA;W;67.83427;-115.20895;Wet;3;03.vii.2011;Sweep
-Sciomyzidae;Pteromicra;Pteromicra augustipennis (Staeger);2;Kugluktuk;NU;SA;W;67.83427;-115.20895;Wet;3;03.vii.2011;Sweep
-Sepsidae;Themira;Themira maculatarsis (Curran);1;Kugluktuk;NU;SA;W;67.83427;-115.20895;Wet;3;03.vii.2011;Sweep
-Sepsidae;Themira;Themira sp. A;1;Kugluktuk;NU;SA;W;67.83427;-115.20895;Wet;3;03.vii.2011;Sweep
-Ephydridae;Rhinohapasa;Rhinohapasa metallica;2;Kugluktuk;NU;SA;W;67.83427;-115.20895;Wet;3;03.vii.2011;Sweep
-Ephydridae;Scatophila;Scatophila mesogramna?;2;Kugluktuk;NU;SA;W;67.83427;-115.20895;Wet;3;03.vii.2011;Sweep
-Ephydridae;Scatella;Scatella stagnalis (Fallén);6;Kugluktuk;NU;SA;W;67.83427;-115.20895;Wet;3;03.vii.2011;Sweep
-Ephydridae;Parydra;Parydra sp.A;2;Kugluktuk;NU;SA;W;67.83427;-115.20895;Wet;3;03.vii.2011;Sweep
-Sciomyzidae;Elgiva;Elgiva connexa (Steyskal);1;Kugluktuk;NU;SA;W;67.83427;-115.20895;Wet;3;3.vii.2011;Sweep
-Sepsidae;Themira;Themira sp. A;1;Kugluktuk;NU;SA;W;67.83427;-115.20895;Wet;3;30.vi.2011;Sweep
-Chloropidae;Elachiptera;Elachiptera decipens;1;Kugluktuk;NU;SA;W;67.83427;-115.20895;Wet;3;;
-Chloropidae;Pseudopachyceata;Pseudopachyceata ruficeps;5;Kugluktuk;NU;SA;W;67.83427;-115.20895;Wet;3;;
-Sphaeroceridae;Norrbomia;Norrbomia fumipennis;2;Kugluktuk;NU;SA;W;67.83427;-115.20895;Wet;3;;
+Piophilidae;Parapiophila;Parapiophila fulviceps;1;Kugluktuk;NU;SA;W;67.83391;-115.2141;Wet;2;03-07.vii.2010;Malaise Trap 
+Piophilidae;Parapiophila;Parapiophila fulviceps;2;Kugluktuk;NU;SA;W;67.83391;-115.2141;Wet;2;19-26.vii.2010;Malaise Trap 
+Piophilidae;Parapiophila;Parapiophila kugluktuk;1;Kugluktuk;NU;SA;W;67.83391;-115.2141;Wet;2;23-26.vi.2010;Pan Traps
+Sciomyzidae;Elgiva;Elgiva divisa (Loew);1;Kugluktuk;NU;SA;W;67.83391;-115.2141;Wet;2;26-29.vi.2011;Pan Traps
+Sciomyzidae;Pherbellia;Pherbellia sp. A;1;Kugluktuk;NU;SA;W;67.83391;-115.2141;Wet;2;03.vii.2011;Sweep
+Sciomyzidae;Pteromicra;Pteromicra augustipennis (Staeger);1;Kugluktuk;NU;SA;W;67.83391;-115.2141;Wet;2;03.vii.2011;Sweep
+Sepsidae;Themira;Themira maculatarsis (Curran);1;Kugluktuk;NU;SA;W;67.83391;-115.2141;Wet;2;03.vii.2011;Sweep
+Ephydridae;Lamproscatella;Lamproscatella occidentalis;1;Kugluktuk;NU;SA;W;67.83391;-115.2141;Wet;2;03.vii.2011;Sweep
+Ephydridae;Rhinohapasa;Rhinohapasa metallica;2;Kugluktuk;NU;SA;W;67.83391;-115.2141;Wet;2;03.vii.2011;Sweep
+Ephydridae;Scatella;Scatella stagnalis (Fallén);2;Kugluktuk;NU;SA;W;67.83391;-115.2141;Wet;2;03.vii.2011;Sweep
+Sciomyzidae;Elgiva;Elgiva connexa (Steyskal);1;Kugluktuk;NU;SA;W;67.83391;-115.2141;Wet;2;30.vi.2011;Sweep
+Chloropidae;Pseudopachyceata;Pseudopachyceata ruficeps;6;Kugluktuk;NU;SA;W;67.83391;-115.2141;Wet;2;;
+Sphaeroceridae;Norrbomia;Norrbomia fumipennis;3;Kugluktuk;NU;SA;W;67.83391;-115.2141;Wet;2;;
+Piophilidae;Parapiophila;Parapiophila fulviceps;2;Kugluktuk;NU;SA;W;67.77639;-115.30882;Wet;3;07-12.vii.2010;Malaise Trap 
+Piophilidae;Parapiophila;Parapiophila fulviceps;7;Kugluktuk;NU;SA;W;67.77639;-115.30882;Wet;3;26.vii-02.viii.2010;Malaise Trap 
+Piophilidae;Parapiophila;Parapiophila kugluktuk;1;Kugluktuk;NU;SA;W;67.77639;-115.30882;Wet;3;03-07.vii.2011;Pan Traps
+Sciomyzidae;Pherbellia;Pherbellia sp. A;1;Kugluktuk;NU;SA;W;67.77639;-115.30882;Wet;3;03.vii.2011;Sweep
+Sciomyzidae;Pteromicra;Pteromicra augustipennis (Staeger);2;Kugluktuk;NU;SA;W;67.77639;-115.30882;Wet;3;03.vii.2011;Sweep
+Sepsidae;Themira;Themira maculatarsis (Curran);1;Kugluktuk;NU;SA;W;67.77639;-115.30882;Wet;3;03.vii.2011;Sweep
+Sepsidae;Themira;Themira sp. A;1;Kugluktuk;NU;SA;W;67.77639;-115.30882;Wet;3;03.vii.2011;Sweep
+Ephydridae;Rhinohapasa;Rhinohapasa metallica;2;Kugluktuk;NU;SA;W;67.77639;-115.30882;Wet;3;03.vii.2011;Sweep
+Ephydridae;Scatophila;Scatophila mesogramna?;2;Kugluktuk;NU;SA;W;67.77639;-115.30882;Wet;3;03.vii.2011;Sweep
+Ephydridae;Scatella;Scatella stagnalis (Fallén);6;Kugluktuk;NU;SA;W;67.77639;-115.30882;Wet;3;03.vii.2011;Sweep
+Ephydridae;Parydra;Parydra sp.A;2;Kugluktuk;NU;SA;W;67.77639;-115.30882;Wet;3;03.vii.2011;Sweep
+Sciomyzidae;Elgiva;Elgiva connexa (Steyskal);1;Kugluktuk;NU;SA;W;67.77639;-115.30882;Wet;3;3.vii.2011;Sweep
+Sepsidae;Themira;Themira sp. A;1;Kugluktuk;NU;SA;W;67.77639;-115.30882;Wet;3;30.vi.2011;Sweep
+Chloropidae;Elachiptera;Elachiptera decipens;1;Kugluktuk;NU;SA;W;67.77639;-115.30882;Wet;3;;
+Chloropidae;Pseudopachyceata;Pseudopachyceata ruficeps;5;Kugluktuk;NU;SA;W;67.77639;-115.30882;Wet;3;;
+Sphaeroceridae;Norrbomia;Norrbomia fumipennis;2;Kugluktuk;NU;SA;W;67.77639;-115.30882;Wet;3;;
 Drosophilidae;Scaptomyza;Scaptomyza sp. E;2;Moosonee;ON;NB;E;51.24622;-80.67281;Mesic;1;17-20.vi.2010;Malaise Trap
 Micropezidae;Cnodocophora;Cnodocophora nasoni (Cresson);7;Moosonee;ON;NB;E;51.24622;-80.67281;Mesic;1;18-21.vi.2010;Malaise Trap
 Micropezidae;Compsobata;Compsobata univitta (Walker);5;Moosonee;ON;NB;E;51.24622;-80.67281;Mesic;1;18-21.vi.2010;Malaise Trap
@@ -560,58 +560,58 @@ Sphaeroceridae;Leptocera;Leptocera erythrocera;5;Moosonee;ON;NB;E;51.24466;-80.6
 Sphaeroceridae;Leptocera;Leptocera sp. A;1;Moosonee;ON;NB;E;51.24466;-80.67767;Mesic;2;;
 Sphaeroceridae;Pseudocollinella;Pseudocollinella sp. B;1;Moosonee;ON;NB;E;51.24466;-80.67767;Mesic;2;;
 Sphaeroceridae;Spelobia;Spelobia sp. H;1;Moosonee;ON;NB;E;51.24466;-80.67767;Mesic;2;;
-Lonchaeidae;Lonchaea;Lonchaea sp. F;5;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;19-22.vi.2010;Malaise Trap
-Lonchaeidae;Lonchaea;Lonchaea sp. J;1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;19-22.vi.2010;Malaise Trap
-Clusiidae;Clusiodes;Clusiodes ater;2;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;19-22.vi.2010;Malaise Trap
-Milichiidae;Neophyllomyza;Neophyllomyza gaulti ;3;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;19-22.vi.2010;Malaise Trap
-Drosophilidae;Scaptomyza;Scaptomyza sp. E;1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;20-23.vi.2010;Malaise Trap
-Drosophilidae;Drosophila;Drosophila sp. S;1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;20-23.vi.2010;Malaise Trap
-Lonchaeidae;Lonchaea;Lonchaea sp. F;5;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;23-26.vi.2010;Malaise Trap
-Sciomyzidae;Anticheta;Anticheta melanosoma(Melande);2;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;23-26.vi.2010;Malaise Trap
-Sciomyzidae;Sepedon;Sepedon pusilla;1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;23-26.vi.2010;Malaise Trap
-Sciomyzidae;Tetanocera;Tetanocera fuscinervis (Zett);1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;23-26.vi.2010;Malaise Trap
-Sciomyzidae;Tetanocera;Tetanocera phyllophora(Melander);1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;23-26.vi.2010;Malaise Trap
-Sciomyzidae;Tentanocera;Tetanocera silvatica ;1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;23-26.vi.2010;Malaise Trap
-Sciomyzidae;Tentanocera;Tetanocera sp. E;1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;23-26.vi.2010;Malaise Trap
-Sepsidae;Nemapoda;Nemapoda nitidula (Fallén);1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;23-26.vi.2010;Malaise Trap
-Milichiidae;Neophyllomyza;Neophyllomyza quadricornis;1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;23-26.vi.2010;Malaise Trap
-Milichiidae;Paramyia;Paramyia nitens;1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;23-26.vi.2010;Malaise Trap
-Heleomyzidae;Heteromyza;Heteromyza oculata ;1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;23-26.vi.2010;Malaise Trap
-Ephydridae;Scatella;Scatella stagnalis (Fallén);2;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;23-26.vi.2010;Malaise Trap
-Ephydridae;Scatella;Scatella sp. A;1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;23-26.vi.2010;Malaise Trap
-Sciomyzidae;Tetanocera;Tetanocera phyllophora(Melander);1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;17-20.vi.2010;Pan Traps
-Heleomyzidae;Heleomyza;Heleomyza bisetata;1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;17-20.vi.2010;Pan Traps
-Drosophilidae;Scaptomyza;Scaptomyza sp. E;1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;17-20.vi.2010;Pan Traps
-Drosophilidae;Drosophila;Drosophila sp. F;1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;17-20.vi.2010;Pan Traps
-Sciomyzidae;Tetanocera;Tetanocera phyllophora(Melander);5;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;20-23.vi.2010;Pan Traps
-Drosophilidae;Scaptomyza;Scaptomyza sp.C;1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;20-23.vi.2010;Pan Traps
-Drosophilidae;Scaptomyza;Scaptomyza sp.L;1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;20-23.vi.2010;Pan Traps
-Sciomyzidae;Tetanocera;Tetanocera phyllophora(Melander);1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;23-26.vi.2010;Pan Traps
-Drosophilidae;Scaptomyza;Scaptomyza sp. E;1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;23-26.vi.2010;Pan Traps
-Drosophilidae;Scaptomyza;Scaptomyza sp. H;1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;23-26.vi.2010;Pan Traps
-Drosophilidae;Scaptomyza;Scaptomyza sp.L;5;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;23-26.vi.2010;Pan Traps
-Lauxaniidae;Lauxania ;Lauxania shewelli;1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;17-20.vi.2010;Pan Traps
-Lauxaniidae;Lauxania ;Lauxania shewelli;4;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;20-23.vi.2010;Pan Traps
-Lauxaniidae;Lauxania ;Lauxania shewelli;2;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;23-26.vi.2010;Pan Traps
-Chloropidae;Siphonella;Siphonella osanina (Fallén);2;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;;
-Chloropidae;Elachiptera;Elachiptera decipens;3;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;;
-Chloropidae;Elachiptera;Elachipter sp. A;1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;;
-Chloropidae;Elachiptera;Elachiptera costata;28;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;;
-Chloropidae;Chlorops;Chlorops sp. A;2;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;;
-Chloropidae;Aphanotrigonum ;Aphanotrigonum scabrum;14;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;;
-Chloropidae;Conioscinella ;Conioscinella zetterstedti;15;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;;
-Chloropidae;Tricimba;Tricimba linealla;2;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;;
-Chloropidae;Tricimba;Tricimba melamonolica;1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;;
-Chloropidae;Rhopalopterum;Rhopalopterum soror;2;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;;
-Chloropidae;Rhopalopterum;Rhopalopterum umbrosum;7;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;;
-Chloropidae;Rhopalopterum;Rhopalopterum sp. D;1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;;
-Chloropidae;Oscinella;Oscinella sp. A;2;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;;
-Chloropidae;Oscinella;Oscinella sp. D;2;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;;
-Sphaeroceridae;Leptocera;Leptocera erythrocera;12;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;;
-Sphaeroceridae;Rachispoda;Rachispoda lutosa;2;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;;
-Sphaeroceridae;Rachispoda;Rachispoda sp. B;1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;;
-Sphaeroceridae;Copromyza;Copromyza sp. A;2;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;;
-Sphaeroceridae;Pseudocollinella;Pseudocollinella sp. A;1;Moosonee;ON;NB;E;51.2469;-80.69102;Mesic;3;;
+Lonchaeidae;Lonchaea;Lonchaea sp. F;5;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;19-22.vi.2010;Malaise Trap
+Lonchaeidae;Lonchaea;Lonchaea sp. J;1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;19-22.vi.2010;Malaise Trap
+Clusiidae;Clusiodes;Clusiodes ater;2;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;19-22.vi.2010;Malaise Trap
+Milichiidae;Neophyllomyza;Neophyllomyza gaulti ;3;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;19-22.vi.2010;Malaise Trap
+Drosophilidae;Scaptomyza;Scaptomyza sp. E;1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;20-23.vi.2010;Malaise Trap
+Drosophilidae;Drosophila;Drosophila sp. S;1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;20-23.vi.2010;Malaise Trap
+Lonchaeidae;Lonchaea;Lonchaea sp. F;5;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;23-26.vi.2010;Malaise Trap
+Sciomyzidae;Anticheta;Anticheta melanosoma(Melande);2;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;23-26.vi.2010;Malaise Trap
+Sciomyzidae;Sepedon;Sepedon pusilla;1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;23-26.vi.2010;Malaise Trap
+Sciomyzidae;Tetanocera;Tetanocera fuscinervis (Zett);1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;23-26.vi.2010;Malaise Trap
+Sciomyzidae;Tetanocera;Tetanocera phyllophora(Melander);1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;23-26.vi.2010;Malaise Trap
+Sciomyzidae;Tentanocera;Tetanocera silvatica ;1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;23-26.vi.2010;Malaise Trap
+Sciomyzidae;Tentanocera;Tetanocera sp. E;1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;23-26.vi.2010;Malaise Trap
+Sepsidae;Nemapoda;Nemapoda nitidula (Fallén);1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;23-26.vi.2010;Malaise Trap
+Milichiidae;Neophyllomyza;Neophyllomyza quadricornis;1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;23-26.vi.2010;Malaise Trap
+Milichiidae;Paramyia;Paramyia nitens;1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;23-26.vi.2010;Malaise Trap
+Heleomyzidae;Heteromyza;Heteromyza oculata ;1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;23-26.vi.2010;Malaise Trap
+Ephydridae;Scatella;Scatella stagnalis (Fallén);2;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;23-26.vi.2010;Malaise Trap
+Ephydridae;Scatella;Scatella sp. A;1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;23-26.vi.2010;Malaise Trap
+Sciomyzidae;Tetanocera;Tetanocera phyllophora(Melander);1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;17-20.vi.2010;Pan Traps
+Heleomyzidae;Heleomyza;Heleomyza bisetata;1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;17-20.vi.2010;Pan Traps
+Drosophilidae;Scaptomyza;Scaptomyza sp. E;1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;17-20.vi.2010;Pan Traps
+Drosophilidae;Drosophila;Drosophila sp. F;1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;17-20.vi.2010;Pan Traps
+Sciomyzidae;Tetanocera;Tetanocera phyllophora(Melander);5;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;20-23.vi.2010;Pan Traps
+Drosophilidae;Scaptomyza;Scaptomyza sp.C;1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;20-23.vi.2010;Pan Traps
+Drosophilidae;Scaptomyza;Scaptomyza sp.L;1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;20-23.vi.2010;Pan Traps
+Sciomyzidae;Tetanocera;Tetanocera phyllophora(Melander);1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;23-26.vi.2010;Pan Traps
+Drosophilidae;Scaptomyza;Scaptomyza sp. E;1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;23-26.vi.2010;Pan Traps
+Drosophilidae;Scaptomyza;Scaptomyza sp. H;1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;23-26.vi.2010;Pan Traps
+Drosophilidae;Scaptomyza;Scaptomyza sp.L;5;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;23-26.vi.2010;Pan Traps
+Lauxaniidae;Lauxania ;Lauxania shewelli;1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;17-20.vi.2010;Pan Traps
+Lauxaniidae;Lauxania ;Lauxania shewelli;4;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;20-23.vi.2010;Pan Traps
+Lauxaniidae;Lauxania ;Lauxania shewelli;2;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;23-26.vi.2010;Pan Traps
+Chloropidae;Siphonella;Siphonella osanina (Fallén);2;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;;
+Chloropidae;Elachiptera;Elachiptera decipens;3;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;;
+Chloropidae;Elachiptera;Elachipter sp. A;1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;;
+Chloropidae;Elachiptera;Elachiptera costata;28;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;;
+Chloropidae;Chlorops;Chlorops sp. A;2;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;;
+Chloropidae;Aphanotrigonum ;Aphanotrigonum scabrum;14;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;;
+Chloropidae;Conioscinella ;Conioscinella zetterstedti;15;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;;
+Chloropidae;Tricimba;Tricimba linealla;2;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;;
+Chloropidae;Tricimba;Tricimba melamonolica;1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;;
+Chloropidae;Rhopalopterum;Rhopalopterum soror;2;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;;
+Chloropidae;Rhopalopterum;Rhopalopterum umbrosum;7;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;;
+Chloropidae;Rhopalopterum;Rhopalopterum sp. D;1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;;
+Chloropidae;Oscinella;Oscinella sp. A;2;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;;
+Chloropidae;Oscinella;Oscinella sp. D;2;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;;
+Sphaeroceridae;Leptocera;Leptocera erythrocera;12;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;;
+Sphaeroceridae;Rachispoda;Rachispoda lutosa;2;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;;
+Sphaeroceridae;Rachispoda;Rachispoda sp. B;1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;;
+Sphaeroceridae;Copromyza;Copromyza sp. A;2;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;;
+Sphaeroceridae;Pseudocollinella;Pseudocollinella sp. A;1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;;
 Chloropidae;Conioscinella ;Conioscinella zetterstedti;8;Moosonee;ON;NB;E;51.24622;-80.67281;Mesic;1;;
 Micropezidae;Cnodocophora;Cnodocophora nasoni (Cresson);1;Moosonee;ON;NB;E;51.28034;-80.64252;Wet;1;15-18.vi.2010;Malaise Trap
 Micropezidae;Compsobata;Compsobata pallipes (Say);1;Moosonee;ON;NB;E;51.28034;-80.64252;Wet;1;15-18.vi.2010;Malaise Trap
@@ -1397,53 +1397,53 @@ Sphaeroceridae;Pteremis;Pteremis wirthi;4;Yellowknife;NT;NB;W;62.51923;-113.3849
 Sphaeroceridae;Rachispoda;Rachispoda sp. D;1;Yellowknife;NT;NB;W;62.51923;-113.38494;Wet;2;;
 Sphaeroceridae;Pullimosina;Pullimosina pullula;2;Yellowknife;NT;NB;W;62.51923;-113.38494;Wet;2;;
 Sphaeroceridae;Spelobia;Spelobia sp. B;1;Yellowknife;NT;NB;W;62.51923;-113.38494;Wet;2;;
-Drosophilidae;Drosophila;Drosophila sp. G;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;15-18.vi.2010;Malaise Trap
-Lonchaeidae;Lonchaea;Lonchaea sp. F;2;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;15-18.vi.2011;Malaise Trap
-Lonchaeidae;Lonchaea;Lonchaea sp. I;3;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;15-18.vi.2011;Malaise Trap
-Lonchaeidae;Lonchaea;Lonchaea sp. AG;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;15-18.vi.2011;Malaise Trap
-Sciomyzidae;Pteromicra;Pteromicra sp. A;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;15-18.vi.2011;Malaise Trap
-Sciomyzidae;Sepedon;Sepedon pusilla;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;15-18.vi.2011;Malaise Trap
-Milichiidae;Phyllomyza;Phyllomyza sp. D;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;15-18.vi.2011;Malaise Trap
-Drosophilidae;Scaptomyza;Scaptomyza sp.C;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;15-18.vi.2011;Malaise Trap
-Drosophilidae;Scaptomyza;Scaptomyza sp. I;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;15-18.vi.2011;Malaise Trap
-Drosophilidae;Scaptomyza;Scaptomyza sp. K;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;15-18.vi.2011;Malaise Trap
-Drosophilidae;Drosophila;Drosophila sp. O;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;21-24.vi.2010;Malaise Trap
-Lonchaeidae;Lonchaea;Lonchaea sp. E;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;15-18.vi.2011;Malaise Trap
-Diastatidae;Diastata;Diastata sp. C;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;07-11.vi.2011;Pan Traps
-Drosophilidae;Scaptomyza;Scaptomyza sp.C;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;07-11.vi.2011;Pan Traps
-Ephydridae;Scatophila;Scatophila exilis (Cresson);1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;07-11.vi.2011;Pan Traps
-Ephydridae;Scatophila;Scatophila hirtirostris (Sturt & Wheeler);1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;07-11.vi.2011;Pan Traps
-Opomyzidae;Geomyza;Geomyza apicalis (Meigen);3;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;11-15.vi.2011;Pan Traps
-Opomyzidae;Geomyza;Geomyza apicalis (Meigen);2;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;15-18.vi.2011;Pan Traps
-Ephydridae;Scatophila;Scatophila exilis (Cresson);1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;15-18.vi.2011;Pan Traps
-Sciomyzidae;Pherbellia;Pherbellia griseola (Fallén);1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;10.vi.2011;Sweep
-Sciomyzidae;Pherbellia;Pherbellia sp. B;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;10.vi.2011;Sweep
-Lonchaeidae;Lonchaea;Lonchaea sp. J;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;14.vi.2011;Sweep
-Chamaemyiidae;Leucopis;Leucopis sp. C;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;14.vi.2011;Sweep
-Ephydridae;Psilopa;Psilopa girschneri;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;14.vi.2011;Sweep
-Ephydridae;Philotelma;Philotelma defectum;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;14.vi.2011;Sweep
-Ephydridae;Psilopa;Psilopa obscuripes;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;18.vi.2011;Sweep
-Drosophilidae;Cladochaeta;Cladochaeta sp. A;31;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;;
-Chloropidae;Malloewia ;Malloewia sp. A;8;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;;
-Chloropidae;Lasiosina;Lasiosina canadensis;7;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;;
-Chloropidae;Thaumatomyia;Thaumatomyia glabra;3;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;;
-Chloropidae;Thaumatomyia;Thaumatomyia grata (Loew);1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;;
-Chloropidae;Thaumatomyia;Thaumatomyia pullipes;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;;
-Chloropidae;Pseudopachyceata;Pseudopachyceata ruficeps;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;;
-Chloropidae;Aphanotrigonum ;Aphanotrigonum scabrum;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;;
-Chloropidae;Conioscinella ;Conioscinella sp. A;6;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;;
-Chloropidae;Conioscinella ;Conioscinella sp. B;3;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;;
-Chloropidae;Dasyopa;Dasyopa sp. C;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;;
-Chloropidae;Tricimba;Tricimba melamonolica;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;;
-Chloropidae;Olcella;Olcella sp. A;2;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;;
-Chloropidae;Rhopalopterum;Rhopalopterum sp. D;2;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;;
-Sphaeroceridae;Pteremis;Pteremis wirthi;5;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;;
-Sphaeroceridae;Rachispoda;Rachispoda sp. A;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;;
-Sphaeroceridae;Copromyza;Copromyza sp. A;2;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;;
-Sphaeroceridae;Phthitia;Phtitia ovicercus;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;;
-Sphaeroceridae;Phthitia;Phtitia quadricercis;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;;
-Sphaeroceridae;Pullimosina;Pullimosina pullula;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;;
-Sphaeroceridae;Pseudocollinella;Pseudocollinella arctopellucida;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;;
-Sphaeroceridae;Limosininae ;Limosininae sp. D;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;;
-Sphaeroceridae;Spelobia;Spelobia sp. B;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;;
-Sphaeroceridae;Spelobia;Spelobia bispina;1;Yellowknife;NT;NB;W;62.51591;-113.38174;Wet;3;;
+Drosophilidae;Drosophila;Drosophila sp. G;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;15-18.vi.2010;Malaise Trap
+Lonchaeidae;Lonchaea;Lonchaea sp. F;2;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;15-18.vi.2011;Malaise Trap
+Lonchaeidae;Lonchaea;Lonchaea sp. I;3;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;15-18.vi.2011;Malaise Trap
+Lonchaeidae;Lonchaea;Lonchaea sp. AG;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;15-18.vi.2011;Malaise Trap
+Sciomyzidae;Pteromicra;Pteromicra sp. A;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;15-18.vi.2011;Malaise Trap
+Sciomyzidae;Sepedon;Sepedon pusilla;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;15-18.vi.2011;Malaise Trap
+Milichiidae;Phyllomyza;Phyllomyza sp. D;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;15-18.vi.2011;Malaise Trap
+Drosophilidae;Scaptomyza;Scaptomyza sp.C;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;15-18.vi.2011;Malaise Trap
+Drosophilidae;Scaptomyza;Scaptomyza sp. I;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;15-18.vi.2011;Malaise Trap
+Drosophilidae;Scaptomyza;Scaptomyza sp. K;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;15-18.vi.2011;Malaise Trap
+Drosophilidae;Drosophila;Drosophila sp. O;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;21-24.vi.2010;Malaise Trap
+Lonchaeidae;Lonchaea;Lonchaea sp. E;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;15-18.vi.2011;Malaise Trap
+Diastatidae;Diastata;Diastata sp. C;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;07-11.vi.2011;Pan Traps
+Drosophilidae;Scaptomyza;Scaptomyza sp.C;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;07-11.vi.2011;Pan Traps
+Ephydridae;Scatophila;Scatophila exilis (Cresson);1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;07-11.vi.2011;Pan Traps
+Ephydridae;Scatophila;Scatophila hirtirostris (Sturt & Wheeler);1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;07-11.vi.2011;Pan Traps
+Opomyzidae;Geomyza;Geomyza apicalis (Meigen);3;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;11-15.vi.2011;Pan Traps
+Opomyzidae;Geomyza;Geomyza apicalis (Meigen);2;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;15-18.vi.2011;Pan Traps
+Ephydridae;Scatophila;Scatophila exilis (Cresson);1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;15-18.vi.2011;Pan Traps
+Sciomyzidae;Pherbellia;Pherbellia griseola (Fallén);1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;10.vi.2011;Sweep
+Sciomyzidae;Pherbellia;Pherbellia sp. B;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;10.vi.2011;Sweep
+Lonchaeidae;Lonchaea;Lonchaea sp. J;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;14.vi.2011;Sweep
+Chamaemyiidae;Leucopis;Leucopis sp. C;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;14.vi.2011;Sweep
+Ephydridae;Psilopa;Psilopa girschneri;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;14.vi.2011;Sweep
+Ephydridae;Philotelma;Philotelma defectum;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;14.vi.2011;Sweep
+Ephydridae;Psilopa;Psilopa obscuripes;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;18.vi.2011;Sweep
+Drosophilidae;Cladochaeta;Cladochaeta sp. A;31;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;;
+Chloropidae;Malloewia ;Malloewia sp. A;8;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;;
+Chloropidae;Lasiosina;Lasiosina canadensis;7;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;;
+Chloropidae;Thaumatomyia;Thaumatomyia glabra;3;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;;
+Chloropidae;Thaumatomyia;Thaumatomyia grata (Loew);1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;;
+Chloropidae;Thaumatomyia;Thaumatomyia pullipes;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;;
+Chloropidae;Pseudopachyceata;Pseudopachyceata ruficeps;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;;
+Chloropidae;Aphanotrigonum ;Aphanotrigonum scabrum;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;;
+Chloropidae;Conioscinella ;Conioscinella sp. A;6;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;;
+Chloropidae;Conioscinella ;Conioscinella sp. B;3;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;;
+Chloropidae;Dasyopa;Dasyopa sp. C;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;;
+Chloropidae;Tricimba;Tricimba melamonolica;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;;
+Chloropidae;Olcella;Olcella sp. A;2;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;;
+Chloropidae;Rhopalopterum;Rhopalopterum sp. D;2;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;;
+Sphaeroceridae;Pteremis;Pteremis wirthi;5;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;;
+Sphaeroceridae;Rachispoda;Rachispoda sp. A;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;;
+Sphaeroceridae;Copromyza;Copromyza sp. A;2;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;;
+Sphaeroceridae;Phthitia;Phtitia ovicercus;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;;
+Sphaeroceridae;Phthitia;Phtitia quadricercis;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;;
+Sphaeroceridae;Pullimosina;Pullimosina pullula;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;;
+Sphaeroceridae;Pseudocollinella;Pseudocollinella arctopellucida;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;;
+Sphaeroceridae;Limosininae ;Limosininae sp. D;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;;
+Sphaeroceridae;Spelobia;Spelobia sp. B;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;;
+Sphaeroceridae;Spelobia;Spelobia bispina;1;Yellowknife;NT;NB;W;62.51591;-113.39146;Wet;3;;
