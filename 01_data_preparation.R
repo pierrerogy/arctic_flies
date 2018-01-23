@@ -116,6 +116,19 @@ averaged_moistclim <- variamoistclim %>%
 View(averaged_moistclim)
 
 
+# Diversity_Allover -------------------------------------------------------
+allflies <- flies %>% 
+  select(Species,Abundance) %>% 
+  group_by(Species) %>%
+  summarise_each(funs(sum))
+View(allflies)
+
+allfliesabundance <- flies %>% 
+  select(Abundance) %>% 
+  summarise_all(funs(sum))
+View(allfliesabundance)
+
+
 # Diversity_Indices_per_Ecozone ---------------------------------------------------
 ##First goup everything per site
 ecoflies <- flies %>% 
