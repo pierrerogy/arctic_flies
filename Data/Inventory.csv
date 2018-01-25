@@ -84,6 +84,7 @@ Chloropidae;Conioscinella ;Conioscinella sp. A;1;Churchill;MB;SA;E;58.73351;-93.
 Chloropidae;Tricimba;Tricimba melamonolica;3;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;;
 Chloropidae;Tricimba;Tricimba brunnicolis;1;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;;
 Chloropidae;Oscinella;Oscinella sp. D;1;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;;
+Chloropidae;Tricimba;Tricimba cincta;1;Churchill;MB;SA;E;58.73351;-93.79792;Mesic;1;;
 Lonchaeidae;Lonchaea;Lonchaea sp. Z;1;Churchill;MB;SA;E;58.73235;-93.79028;Mesic;2;01-05.vii.2010;Malaise Trap
 Chamaemyiidae;Leucopis;Leucopis sp. C;1;Churchill;MB;SA;E;58.73235;-93.79028;Mesic;2;01-05.vii.2010;Malaise Trap
 Chamaemyiidae;Leucopis;Leucopis sp. D;1;Churchill;MB;SA;E;58.73235;-93.79028;Mesic;2;01-05.vii.2010;Malaise Trap
@@ -122,7 +123,6 @@ Chloropidae;Tricimba;Tricimba melamonolica;1;Churchill;MB;SA;E;58.72235;-93.8399
 Chloropidae;Tricimba;Tricimba cincta;1;Churchill;MB;SA;E;58.72235;-93.83991;Mesic;3;;
 Chloropidae;Rhopalopterum;Rhopalopterum sp. A;1;Churchill;MB;SA;E;58.72235;-93.83991;Mesic;3;;
 Chloropidae;Oscinella;Oscinella sp. D;7;Churchill;MB;SA;E;58.72235;-93.83991;Mesic;3;;
-Chloropidae;Tricimba;Tricimba cincta;1;Churchill;MB;SA;E;58.72235;-93.83991;Mesic;1;;
 Lonchaeidae;Lonchaea;Lonchaea sp. J;1;Churchill;MB;SA;E;58.73573;-93.79789;Wet;1;05-09.vi.2010;Malaise Trap
 Ulidiidae;Haigia;Haigia nevadana ;1;Churchill;MB;SA;E;58.73573;-93.79789;Wet;1;05-09.vii.2010;Malaise Trap
 Chamaemyiidae;Leucopis;Leucopis sp. C;2;Churchill;MB;SA;E;58.73573;-93.79789;Wet;1;05-09.vii.2010;Malaise Trap
@@ -481,6 +481,7 @@ Sphaeroceridae;Copromyza;Copromyza sp. A;1;Moosonee;ON;NB;E;51.24622;-80.67281;M
 Sphaeroceridae;Pseudocollinella;Pseudocollinella sp. B;1;Moosonee;ON;NB;E;51.24622;-80.67281;Mesic;1;;
 Sphaeroceridae;Spelobia;Spelobia sp. E;1;Moosonee;ON;NB;E;51.24622;-80.67281;Mesic;1;;
 Sphaeroceridae;Spelobia;Spelobia sp. K;1;Moosonee;ON;NB;E;51.24622;-80.67281;Mesic;1;;
+Chloropidae;Conioscinella ;Conioscinella zetterstedti;8;Moosonee;ON;NB;E;51.24622;-80.67281;Mesic;1;;
 Micropezidae;Cnodocophora;Cnodocophora nasoni (Cresson);4;Moosonee;ON;NB;E;51.24466;-80.67767;Mesic;2;21-24.vi.2010;Malaise Trap
 Micropezidae;Compsobata;Compsobata univitta (Walker);3;Moosonee;ON;NB;E;51.24466;-80.67767;Mesic;2;21-24.vi.2010;Malaise Trap
 Lonchaeidae;Earomyia;Earomyia sp. B;3;Moosonee;ON;NB;E;51.24466;-80.67767;Mesic;2;21-24.vi.2010;Malaise Trap
@@ -612,7 +613,6 @@ Sphaeroceridae;Rachispoda;Rachispoda lutosa;2;Moosonee;ON;NB;E;51.2469;-80.68102
 Sphaeroceridae;Rachispoda;Rachispoda sp. B;1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;;
 Sphaeroceridae;Copromyza;Copromyza sp. A;2;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;;
 Sphaeroceridae;Pseudocollinella;Pseudocollinella sp. A;1;Moosonee;ON;NB;E;51.2469;-80.68102;Mesic;3;;
-Chloropidae;Conioscinella ;Conioscinella zetterstedti;8;Moosonee;ON;NB;E;51.24622;-80.67281;Mesic;1;;
 Micropezidae;Cnodocophora;Cnodocophora nasoni (Cresson);1;Moosonee;ON;NB;E;51.28034;-80.64252;Wet;1;15-18.vi.2010;Malaise Trap
 Micropezidae;Compsobata;Compsobata pallipes (Say);1;Moosonee;ON;NB;E;51.28034;-80.64252;Wet;1;15-18.vi.2010;Malaise Trap
 Micropezidae;Compsobata;Compsobata univitta (Walker);2;Moosonee;ON;NB;E;51.28034;-80.64252;Wet;1;15-18.vi.2010;Malaise Trap
