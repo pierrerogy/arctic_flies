@@ -5,12 +5,28 @@ View(flies)
 str(flies)
 
 #Load packages
-library(raster)
+##Data tidying
 library(plyr)
 library(dplyr)
 library(tidyr)
-library(vegan)
+##WorldClim
+library(raster)
 library(sp)
+##PCA
+library(ade4)
+##Diversity indices and analyses
+library(vegan)
+##Model analysis and visualization
+##car for Anova() instead of anova()
+##anova() does type I test, all variable tested in sequential order
+##Anova() does 
+library(car)
+##visreg for visualization of model, displays ech variable of th model when maintaining the others
+##at a median
+##not necessarily for paper, but more to see whats going on
+library(visreg)
+
+
 
 # Data_Tidying ------------------------------------------------------------
 ##Remove extra columns
@@ -71,7 +87,7 @@ worldclim_values <- extract(clim_data, coord_points)
 ###Now Combine the two data frames
 replicate_climate <- cbind(coords, worldclim_values)
 View(replicate_climate)
-##Bring tidyr back
+##Bring tidyr back                                          
 library(tidyr)
 
 
@@ -83,6 +99,8 @@ locality_climate <- replicate_climate %>%
   select(-Ecozone, -Side, -Moisture_Regime, -Replicate) %>% 
   group_by(Locality) %>% 
   summarise_each(funs(mean))
+###Extract vector with site names
+localist <- locality_climate[,1]
 
 ##Adding crystal's dataset and checking it
 cry <- read.csv("C:/Users/Pierre/OneDrive/Projects/arctic_flies/Data/Crystal_weather.csv", sep = ";")
@@ -101,7 +119,8 @@ cor(climate_corrtest, method = c("pearson", "kendall", "spearman"))
 ##Now blend the two climate datasets together
 locaclim <- data.frame(c(locality_climate, cry))
 ###Tidy it a bit, and remove redundant variables, and wind speed because missing values
-locaclim <- locaclim %>% select(-Locality, -Average.Wind.Speed, -site, Mean.Annual.Temp, -Total.Precipitation)
+locaclim <- locaclim %>% select(-Locality, -Average.Wind.Speed, -site, -Mean.Annual.Temp, -Total.Precipitation,
+                                -Latitude, -Longitude, -Total.Sun.Hours, -Total.Sun.Days)
 locaclim <- as.data.frame(locaclim, row.names = as.character(locality_climate$Locality))
 View(locaclim)
 
@@ -110,3 +129,40 @@ View(locaclim)
 
 
 
+
+# Using PCA to select relevant axes ---------------------------------------
+##Make sure locaclim is a dataframe
+class(locaclim)
+
+##Plot the data, to get a rough idea of the degree of correlation between variables
+###a lot of them, so gotta make it a PDF
+pdf("climData.pdf",height = 30,width = 30)
+plot(locaclim)
+dev.off()
+
+##Create PCA object
+locapca <- dudi.pca(locaclim)
+###the higher the bar, the more variation explained (y-axis NOT percentage)
+###three axes should be fine, although the third one seems to explain little variation
+###now visualize it
+locapca
+
+##Assessing axes
+###Degree of variation explained can be obtained by dividing each eigenvalue by their sum
+locapca$eig/sum(locapca$eig)
+###first three axes explain 71.4, 16.8, and 4.5% variation respectively
+##so let's drop the third one
+locapca <- dudi.pca(df = locaclim, scannf = FALSE, nf = 2)
+
+##Visualising the axes
+s.arrow(locapca$c1, clabel = 0.5, boxes =  F)
+s.corcircle(locapca$co, clabel = 0.5)
+##BIO3 and BIO7
+##But where do the sites fit on the axes now?
+s.class(locapca$li, as.factor(row.names(locaclim)), cpoint = 1)
+
+
+
+
+
+                                                               
