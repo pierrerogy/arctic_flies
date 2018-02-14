@@ -36,6 +36,8 @@ cleanflies <- flies %>%
   select(-Genus, -Province.Territory, -Trapping_Method, -Date) %>% 
   ##Remove Mcgill Station
   filter(Moisture_Regime != "McGill_Subarctic_Research_Station")
+##drop levels
+cleanflies$Moisture_Regime <- droplevels(cleanflies$Moisture_Regime)
 ##Make sure it works
 str(cleanflies)
 
@@ -43,7 +45,7 @@ str(cleanflies)
 # Setting_Up_WorldClim_Values ---------------------------------------------
 ##Getting the data, bio means all 19 variables, and res=2.5 is 21.62 square meter resolution
 ##yealry averages of 1970-2000
-clim_data <- getData("worldclim",var="bio",res=2.5)
+clim_data <- raster::getData("worldclim",var="bio",res=2.5)
 ###Note that all T values are incresed by factor 10 (eg 231 is 23.1°), because of file size issues
 
 ##Extract coordinates from flies
@@ -159,8 +161,6 @@ locapca$eig/sum(locapca$eig)
 locapca <- dudi.pca(df = locaclim, scannf = FALSE, nf = 2)
 
 ##Visualising the axes
-s.arrow(locapca$c1, clabel = 0.5, boxes =  F)
-s.corcircle(locapca$co, clabel = 0.5)
 ##BIO11 (min T of coldest quarter) and BIO7 (T annual range) stand out
 ##But where do the sites fit on the axes now?
 s.class(locapca$li, as.factor(row.names(locaclim)), cpoint = 1)
@@ -199,7 +199,7 @@ str(repliflies)
 ##Calculating diversity Indices
 ###Evenness
 replisimpson <- diversity(repliflies[4:380], index = "simpson", MARGIN = 1, base = exp(1))
-
+replishannon <- diversity(repliflies[4:380], index = "shannon", MARGIN = 1, base = exp(1))
 ###Margin =1 is number of specie per replicate, Margin = 2 is frequency of species
 replirichness <- specnumber(repliflies[4:380], MARGIN = 1)
 replifrequency <- specnumber(repliflies[4:380], MARGIN = 2)
@@ -211,12 +211,12 @@ repliabundance <- cleanflies %>%
 repliabundance <- repliabundance[,4]
 
 ##Bind abundance, richness, simpson vectors
-repliindices <- cbind.data.frame(repliabundance, replirichness, replisimpson)
+repliindices <- cbind.data.frame(repliabundance, replirichness, replisimpson, replishannon)
 View(repliindices)
 ###Rename columns
-colnames(repliindices) <- c('Abundance', 'Richness', 'Simpson')
+colnames(repliindices) <- c('Abundance', 'Richness', 'Simpson', 'Shannon')
 ###Add the 7 rows with no specimens collected
-replimissing <- as.data.frame(matrix(0, ncol =3, nrow = 7))
+replimissing <- as.data.frame(matrix(0, ncol =4, nrow = 7))
 ###Coerce the names so that rbind can take place (not working without in this case)
 names(replimissing) <- names(repliindices)
 ###Combination!
@@ -231,48 +231,51 @@ str(replicate_analysis)
 ##Change column names for later sanity
 colnames(replicate_analysis) <- c("Locality", "Ecozone", "Side", "Longitude", "Latitude",
                                   "Moisture_Regime", "Replicate", "Abundance", "Richness", 
-                                  "Simpson", "MeanT_Coldest_Quarter", "T_Annual_Range")
+                                  "Simpson", "Shannon", "MeanT_Coldest_Quarter", "T_Annual_Range")
 View(replicate_analysis)
 
 
 
 # Pattern Visualisation at site level ---------------------------------------------------
-
+##Create PDF
+pdf("clim_site.pdf",height = 15,width = 15)
+##set par
 par(mfrow = c(2,2))
 ##Richness vs bio11
-plot(replicate_analysis$MeanT_Coldest_Quarter ~ replicate_analysis$Richness, 
-     xlab = 'Richness', ylab = 'Mean T of Coldest Quarter(°C)',
-     xlim = c(0, 100), ylim = c(-35, -10),
+plot(replicate_analysis$Richness ~ replicate_analysis$MeanT_Coldest_Quarter, 
+     xlab = 'Mean T of Coldest Quarter(°C)', ylab = 'Richness',
+     xlim = c(-35, -10), ylim = c(0, 90),
      pch = c(0:12)[factor(Locality)],
-     col = c("blue", "red") [factor(Moisture_Regime)],
+     col = c("red", "blue") [factor(Moisture_Regime)],
      data = replicate_climate)
-legend("bottomright",pch = c(0:12), legend = unique(replicate_climate$Locality), cex = 0.4)
+legend("topright",pch = c(0:12), legend = unique(replicate_climate$Locality), cex = 1)
    
 ##Simpson vs bio11
-plot(replicate_analysis$MeanT_Coldest_Quarter ~ replicate_analysis$Simpson, 
-     xlab = '1-D', ylab = 'Mean T of Coldest Quarter(°C)',
-     xlim = c(0, 1), ylim = c(-35, -10),
+plot(replicate_analysis$Simpson ~ replicate_analysis$MeanT_Coldest_Quarter, 
+     xlab = 'Mean T of Coldest Quarter(°C)', ylab = '1-D',
+     xlim = c(-35, -10), ylim = c(0,1),
      pch = c(0:12)[factor(Locality)],
-     col = c("blue", "red") [factor(Moisture_Regime)],
+     col = c("red", "blue") [factor(Moisture_Regime)],
      data = replicate_climate)
 
 ##Richness vs bio7
-plot(replicate_analysis$T_Annual_Range ~ replicate_analysis$Richness, 
-     xlab = 'Richness', ylab = 'T Annual Range (°C)',
-     xlim = c(0, 100), ylim = c(40, 55),
+plot(replicate_analysis$Richness~ replicate_analysis$T_Annual_Range, 
+     xlab = 'T Annual Range (°C)', ylab = 'Richness',
+     xlim = c(40, 55), ylim = c(0,90),
      pch = c(0:12)[factor(Locality)],
-     col = c("blue", "red") [factor(Moisture_Regime)],
+     col = c("red", "blue") [factor(Moisture_Regime)],
      data = replicate_climate)
-legend("topright", pch = 1, col = c("blue", "red"), legend = c("Mesic", "Wet"), cex = 0.5)
+legend("topright", pch = 1, col = c("red", "blue"), legend = c("Mesic", "Wet"), cex = 1)
 
 ##Simpson vs bio7
-plot(replicate_analysis$T_Annual_Range ~ replicate_analysis$Simpson, 
-     xlab = '1-D', ylab = 'T Annual Range (°C)',
-     xlim = c(0, 1), ylim = c(40, 55),
+plot(replicate_analysis$Simpson ~ replicate_analysis$T_Annual_Range, 
+     xlab = 'T Annual Range (°C)', ylab = '1-D',
+     xlim = c(40, 55), ylim = c(0, 1),
      pch = c(0:12)[factor(Locality)],
-     col = c("blue", "red") [factor(Moisture_Regime)],
+     col = c("red", "blue") [factor(Moisture_Regime)],
      data = replicate_climate)
-
+##close dev.off()
+dev.off()
 ##Bringing back par
 par(mfrow = c(1,1))
 
@@ -284,49 +287,53 @@ par(mfrow = c(1,1))
 
 
 # Pattern visualisation at ecozone level ----------------------------------
+##Create PDF
+pdf("Clim_eco.pdf",height = 15,width = 15)
+##set par
 par(mfrow = c(2,2))
 ##Richness vs bio11
-plot(replicate_analysis$MeanT_Coldest_Quarter ~ replicate_analysis$Richness, 
-     xlab = 'Richness', ylab = 'Mean T of Coldest Quarter(°C)',
-     xlim = c(0, 100), ylim = c(-35, -10),
+plot(replicate_analysis$Richness ~ replicate_analysis$MeanT_Coldest_Quarter, 
+     xlab = 'Mean T of Coldest Quarter(°C)', ylab = 'Richness',
+     xlim = c(-35, -10), ylim = c(0, 90),
      pch = c(0:3)[factor(Ecozone)],
      col = c("blue", "red") [factor(Moisture_Regime)],
      data = replicate_climate)
-legend("bottomright",pch = c(0:3), legend = c("High Arctic", "Northern Boreal", "Subarctic"), 
-       cex = 0.4)
+legend("topright",pch = c(0:3), legend = c("High Arctic", "Northern Boreal", "Subarctic"), 
+       cex = 1)
 
 ##Simpson vs bio11
-plot(replicate_analysis$MeanT_Coldest_Quarter ~ replicate_analysis$Simpson, 
-     xlab = '1-D', ylab = 'Mean T of Coldest Quarter(°C)',
-     xlim = c(0, 1), ylim = c(-35, -10),
+plot(replicate_analysis$Simpson ~ replicate_analysis$MeanT_Coldest_Quarter, 
+     xlab = 'Mean T of Coldest Quarter(°C)', ylab = '1-D',
+     xlim = c(-35, -10), ylim = c(0,1),
      pch = c(0:3)[factor(Ecozone)],
      col = c("blue", "red") [factor(Moisture_Regime)],
      data = replicate_climate)
 
 ##Richness vs bio7
-plot(replicate_analysis$T_Annual_Range ~ replicate_analysis$Richness, 
-     xlab = 'Richness', ylab = 'T Annual Range (°C)',
-     xlim = c(0, 100), ylim = c(40, 55),
+plot(replicate_analysis$Richness~ replicate_analysis$T_Annual_Range, 
+     xlab = 'T Annual Range (°C)', ylab = 'Richness',
+     xlim = c(40, 55), ylim = c(0,90),
      pch = c(0:3)[factor(Ecozone)],
      col = c("blue", "red") [factor(Moisture_Regime)],
      data = replicate_climate)
-legend("topright", pch = 1, col = c("blue", "red"), legend = c("Mesic", "Wet"), cex = 0.5)
+legend("topright", pch = 1, col = c("blue", "red"), legend = c("Mesic", "Wet"), cex = 1)
 
 ##Simpson vs bio7
-plot(replicate_analysis$T_Annual_Range ~ replicate_analysis$Simpson, 
-     xlab = '1-D', ylab = 'T Annual Range (°C)',
-     xlim = c(0, 1), ylim = c(40, 55),
+plot(replicate_analysis$Simpson ~ replicate_analysis$T_Annual_Range, 
+     xlab = 'T Annual Range (°C)', ylab = '1-D',
+     xlim = c(40, 55), ylim = c(0, 1),
      pch = c(0:3)[factor(Ecozone)],
      col = c("blue", "red") [factor(Moisture_Regime)],
      data = replicate_climate)
-
+##closing de.off()
+dev.off()
 ##Bringing back par
 par(mfrow = c(1,1))
 
 # Model for site-level ----------------------------------------------------
 
 ##RICHNESS
-model_richness_1 <- lme(Richness ~ MeanT_Coldest_Quarter + T_Annual_Range, 
+model_richness_1 <- lme((Richness)^0.5 ~ MeanT_Coldest_Quarter + T_Annual_Range, 
                        random = ~ 1|Locality/Moisture_Regime, data = replicate_analysis)
 ##look at model
 summary(model_richness_1)
@@ -341,6 +348,46 @@ Anova(model_richness_1)
 visreg(model_richness_1)
 
 
+# Model incorporating envt data ----------------------------------------------------
+
+##Bring in new data
+plant_dat <- read.csv("C:/Users/Pierre/OneDrive/Projects/arctic_flies/Data/plant_dat.csv", sep = ";")
+View(plant_dat)
+
+##Bind both frames
+replicate_plant <- cbind(replicate_climate, plant_dat[,6:11])
+str(replicate_plant)
+
+
+##PCA
+plant_dat_pca <- replicate_plant[,8:32]
+plantpca <- dudi.pca(plant_dat_pca)
+plantpca
+plantpca$eig/sum(plantpca$eig)
+
+
+
+
+
+
+
+##RICHNESS
+model_richness_1 <- lme(Richness ~ MeanT_Coldest_Quarter + T_Annual_Range, 
+                        random = ~ 1|Locality/Moisture_Regime, data = replicate_analysis)
+##look at model
+summary(model_richness_1)
+#extract variance components
+VarCorr(model_richness_1)
+##plot model
+plot(model_richness_1)
+
+##Anova
+Anova(model_richness_1)
+##Isnt that too low for a P value?
+visreg(model_richness_1)
+
+
+
 # TBD --------------------------------------------------------------------
 
 
@@ -348,3 +395,109 @@ visreg(model_richness_1)
 ###Different sample sizes
 replichao <- vegdist(repliflies[4:380], method = "chao",binary=FALSE, diag=FALSE, upper=FALSE,
                    na.rm = FALSE)
+
+##Beta avec jaccard, correle ca avec dist() sur les envt variables
+
+
+# Issues ------------------------------------------------------------------
+
+##Maybe continental effect seen in range?
+
+
+plot(replicate_analysis$Simpson ~ replicate_analysis$Richness)
+##simpson and richness mathematically linked
+##can see corr at beginning
+##so using the two graphs would be just repeating the same thing twice over
+##REVIEW FORMULAS!!!!!!!!!!!!!!!
+##Try Pielou
+
+Pielou <- replicate_analysis$Shannon/log(replicate_analysis$Richness)
+replicate_analysis <- cbind(replicate_analysis, Pielou)
+plot(replicate_analysis$Pielou ~ replicate_analysis$Richness)
+
+##Create PDF
+pdf("Piel_site.pdf",height = 15,width = 15)
+##set par
+par(mfrow = c(2,2))
+##Richness vs bio11
+plot(replicate_analysis$Richness ~ replicate_analysis$MeanT_Coldest_Quarter, 
+     xlab = 'Mean T of Coldest Quarter(°C)', ylab = 'Richness',
+     xlim = c(-35, -10), ylim = c(0, 90),
+     pch = c(0:12)[factor(Locality)],
+     col = c("red", "blue") [factor(Moisture_Regime)],
+     data = replicate_climate)
+legend("topright",pch = c(0:12), legend = unique(replicate_climate$Locality), cex = 1)
+
+##pielou vs bio11
+plot(replicate_analysis$Pielou ~ replicate_analysis$MeanT_Coldest_Quarter, 
+     xlab = 'Mean T of Coldest Quarter(°C)', ylab = 'Pielou',
+     xlim = c(-35, -10), ylim = c(0,1),
+     pch = c(0:12)[factor(Locality)],
+     col = c("red", "blue") [factor(Moisture_Regime)],
+     data = replicate_climate)
+
+##Richness vs bio7
+plot(replicate_analysis$Richness~ replicate_analysis$T_Annual_Range, 
+     xlab = 'T Annual Range (°C)', ylab = 'Richness',
+     xlim = c(40, 55), ylim = c(0,90),
+     pch = c(0:12)[factor(Locality)],
+     col = c("red", "blue") [factor(Moisture_Regime)],
+     data = replicate_climate)
+legend("topright", pch = 1, col = c("red", "blue"), legend = c("Mesic", "Wet"), cex = 1)
+
+##pielou vs bio7
+plot(replicate_analysis$Pielou ~ replicate_analysis$T_Annual_Range, 
+     xlab = 'T Annual Range (°C)', ylab = 'Pielou',
+     xlim = c(40, 55), ylim = c(0, 1),
+     pch = c(0:12)[factor(Locality)],
+     col = c("red", "blue") [factor(Moisture_Regime)],
+     data = replicate_climate)
+##close dev.off()
+dev.off()
+##Bringing back par
+par(mfrow = c(1,1))
+
+##Create PDF
+pdf("Piel_zone.pdf",height = 15,width = 15)
+##set par
+par(mfrow = c(2,2))
+##Richness vs bio11
+plot(replicate_analysis$Richness ~ replicate_analysis$MeanT_Coldest_Quarter, 
+     xlab = 'Mean T of Coldest Quarter(°C)', ylab = 'Richness',
+     xlim = c(-35, -10), ylim = c(0, 90),
+     pch = c(0:3)[factor(Ecozone)],
+     col = c("red", "blue") [factor(Moisture_Regime)],
+     data = replicate_climate)
+legend("topright",pch = c(0:3), legend = c("High Arctic", "Northern Boreal", "Subarctic"), 
+       cex = 1)
+##pielou vs bio11
+plot(replicate_analysis$Pielou ~ replicate_analysis$MeanT_Coldest_Quarter, 
+     xlab = 'Mean T of Coldest Quarter(°C)', ylab = 'Pielou',
+     xlim = c(-35, -10), ylim = c(0,1),
+     pch = c(0:3)[factor(Ecozone)],
+     col = c("red", "blue") [factor(Moisture_Regime)],
+     data = replicate_climate)
+
+##Richness vs bio7
+plot(replicate_analysis$Richness~ replicate_analysis$T_Annual_Range, 
+     xlab = 'T Annual Range (°C)', ylab = 'Richness',
+     xlim = c(40, 55), ylim = c(0,90),
+     pch = c(0:3)[factor(Ecozone)],
+     col = c("red", "blue") [factor(Moisture_Regime)],
+     data = replicate_climate)
+legend("topright", pch = 1, col = c("red", "blue"), legend = c("Mesic", "Wet"), cex = 1)
+
+##pielou vs bio7
+plot(replicate_analysis$Pielou ~ replicate_analysis$T_Annual_Range, 
+     xlab = 'T Annual Range (°C)', ylab = 'Pielou',
+     xlim = c(40, 55), ylim = c(0, 1),
+     pch = c(0:3)[factor(Ecozone)],
+     col = c("red", "blue") [factor(Moisture_Regime)],
+     data = replicate_climate)
+##close dev.off()
+dev.off()
+##Bringing back par
+par(mfrow = c(1,1))
+
+
+
