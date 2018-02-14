@@ -57,8 +57,6 @@ longilat <- cleanflies %>% select (Locality, Ecozone, Side, Longitude, Latitude,
 ##Extract unique combinations using unique function in raster package
 ###Just to check
 coords<- unique(longilat)
-View(coords)
-
 
 ##Add data for replicates without specimens
 ###Lake Hazen and Cambridge Bay mesic 2
@@ -110,7 +108,6 @@ localist <- locality_climate[,1]
 ##Adding crystal's dataset and checking it
 cry <- read.csv("C:/Users/Pierre/OneDrive/Projects/arctic_flies/Data/Crystal_weather.csv", sep = ";")
 str(cry)
-View(cry)
 ###Localities in the same order
 
 ##Make a new frame with common variables (mean T, and total precipitation)
@@ -127,7 +124,7 @@ locaclim <- data.frame(c(locality_climate, cry))
 locaclim <- locaclim %>% select(-Locality, -Average.Wind.Speed, -site, -Mean.Annual.Temp, -Total.Precipitation,
                                 -Latitude, -Longitude, -Total.Sun.Hours, -Total.Sun.Days)
 locaclim <- as.data.frame(locaclim, row.names = as.character(locality_climate$Locality))
-View(locaclim)
+
 
 
 
@@ -280,12 +277,6 @@ dev.off()
 par(mfrow = c(1,1))
 
 
-
-
-
-
-
-
 # Pattern visualisation at ecozone level ----------------------------------
 ##Create PDF
 pdf("Clim_eco.pdf",height = 15,width = 15)
@@ -330,87 +321,11 @@ dev.off()
 ##Bringing back par
 par(mfrow = c(1,1))
 
-# Model for site-level ----------------------------------------------------
-
-##RICHNESS
-model_richness_1 <- lme((Richness)^0.5 ~ MeanT_Coldest_Quarter + T_Annual_Range, 
-                       random = ~ 1|Locality/Moisture_Regime, data = replicate_analysis)
-##look at model
-summary(model_richness_1)
-#extract variance components
-VarCorr(model_richness_1)
-##plot model
-plot(model_richness_1)
-
-##Anova
-Anova(model_richness_1)
-##Isnt that too low for a P value?
-visreg(model_richness_1)
-
-
-# Model incorporating envt data ----------------------------------------------------
-
-##Bring in new data
-plant_dat <- read.csv("C:/Users/Pierre/OneDrive/Projects/arctic_flies/Data/plant_dat.csv", sep = ";")
-View(plant_dat)
-
-##Bind both frames
-replicate_plant <- cbind(replicate_climate, plant_dat[,6:11])
-str(replicate_plant)
-
-
-##PCA
-plant_dat_pca <- replicate_plant[,8:32]
-plantpca <- dudi.pca(plant_dat_pca)
-plantpca
-plantpca$eig/sum(plantpca$eig)
-
-
-
-
-
-
-
-##RICHNESS
-model_richness_1 <- lme(Richness ~ MeanT_Coldest_Quarter + T_Annual_Range, 
-                        random = ~ 1|Locality/Moisture_Regime, data = replicate_analysis)
-##look at model
-summary(model_richness_1)
-#extract variance components
-VarCorr(model_richness_1)
-##plot model
-plot(model_richness_1)
-
-##Anova
-Anova(model_richness_1)
-##Isnt that too low for a P value?
-visreg(model_richness_1)
-
-
-
-# TBD --------------------------------------------------------------------
-
-
-###Although Bray-Curtis good at detecting underlying gradient, Chao is better at handling
-###Different sample sizes
-replichao <- vegdist(repliflies[4:380], method = "chao",binary=FALSE, diag=FALSE, upper=FALSE,
-                   na.rm = FALSE)
-
-##Beta avec jaccard, correle ca avec dist() sur les envt variables
-
-
-# Issues ------------------------------------------------------------------
-
-##Maybe continental effect seen in range?
-
-
+# Pielou ------------------------------------------------------------------
 plot(replicate_analysis$Simpson ~ replicate_analysis$Richness)
 ##simpson and richness mathematically linked
 ##can see corr at beginning
 ##so using the two graphs would be just repeating the same thing twice over
-##REVIEW FORMULAS!!!!!!!!!!!!!!!
-##Try Pielou
-
 Pielou <- replicate_analysis$Shannon/log(replicate_analysis$Richness)
 replicate_analysis <- cbind(replicate_analysis, Pielou)
 plot(replicate_analysis$Pielou ~ replicate_analysis$Richness)
@@ -498,6 +413,87 @@ plot(replicate_analysis$Pielou ~ replicate_analysis$T_Annual_Range,
 dev.off()
 ##Bringing back par
 par(mfrow = c(1,1))
+# Model for site-level ----------------------------------------------------
+
+##RICHNESS
+model_richness_1 <- lme((Richness)^0.5 ~ MeanT_Coldest_Quarter + T_Annual_Range, 
+                       random = ~ 1|Locality/Moisture_Regime, data = replicate_analysis)
+##look at model
+plot(model_richness_1)
+qqnorm(model_richness_1)
+summary(model_richness_1)
+#extract variance components
+VarCorr(model_richness_1)
+##Anova
+Anova(model_richness_1)
+##Isnt that too low for a P value?
+visreg(model_richness_1)
+
+##PIELOU
+model_richness_2 <- lme(Pielou~ MeanT_Coldest_Quarter + T_Annual_Range, 
+                        random = ~ 1|Locality/Moisture_Regime, data = replicate_analysis,
+                        na.action = na.exclude)
+plot(model_richness_2)
+qqnorm(model_richness_2)
+summary(model_richness_2)
+Anova(model_richness_2)
+visreg(model_richness_2)
+
+##Abundance
+###Not very good residuals here, have not found a way to fix this
+model_richness_3 <- lme(Abundance^0.25~ MeanT_Coldest_Quarter + T_Annual_Range, 
+                        random = ~ 1|Locality/Moisture_Regime, data = replicate_analysis)
+plot(model_richness_3)
+qqnorm(model_richness_3)
+summary(model_richness_3)
+Anova(model_richness_3)
+visreg(model_richness_3)
+
+# Model incorporating envt data ----------------------------------------------------
+
+##Bring in new data
+plant_dat <- read.csv("C:/Users/Pierre/OneDrive/Projects/arctic_flies/Data/plant_dat.csv", sep = ";")
+View(plant_dat)
+##PCA
+testplant_pca <- plant_dat[,6:11]
+testplant_pca <- dudi.pca(testplant_pca)
+testplant_pca
+testplant_pca$eig/sum(testplant_pca$eig)
+s.corcircle(testplant_pca$co, clabel = 0.5)
+
+
+##Bind both frames
+replicate_plant <- cbind(replicate_climate, plant_dat[,6:11])
+str(replicate_plant)
+##PCA
+plant_pca <- replicate_plant[,3:25]
+plant_pca <- dudi.pca(plant_pca)
+plant_pca
+plant_pca$eig/sum(plant_pca$eig)
+s.corcircle(plant_pca$co, clabel = 0.5)
+
+
+
+##RICHNESS
+model_richness_1 <- lme(Richness ~ MeanT_Coldest_Quarter + T_Annual_Range, 
+                        random = ~ 1|Locality/Moisture_Regime, data = replicate_analysis)
+##look at model
+summary(model_richness_1)
+#extract variance components
+VarCorr(model_richness_1)
+##plot model
+plot(model_richness_1)
+
+##Anova
+Anova(model_richness_1)
+##Isnt that too low for a P value?
+visreg(model_richness_1)
+
+
+
+# Issues ------------------------------------------------------------------
+
+##Maybe continental effect seen in range?
 
 
 
