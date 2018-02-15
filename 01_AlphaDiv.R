@@ -19,9 +19,6 @@ library(vegan)
 library(nlme)
 library(lme4)
 ##Model analysis and visualization
-##car for Anova() instead of anova()
-##anova() does type I test, all variable tested in sequential order
-##Anova() does 
 library(car)
 ##visreg for visualization of model, displays ech variable of th model when maintaining the others
 ##at a median
@@ -416,7 +413,7 @@ par(mfrow = c(1,1))
 # Model for site-level ----------------------------------------------------
 
 ##RICHNESS
-model_richness_1 <- lme((Richness)^0.5 ~ MeanT_Coldest_Quarter + T_Annual_Range, 
+model_richness_1 <- lme((Richness)^0.5 ~ MeanT_Coldest_Quarter*T_Annual_Range, 
                        random = ~ 1|Locality/Moisture_Regime, data = replicate_analysis)
 ##look at model
 plot(model_richness_1)
@@ -427,10 +424,9 @@ VarCorr(model_richness_1)
 ##Anova
 Anova(model_richness_1)
 ##Isnt that too low for a P value?
-visreg(model_richness_1)
 
 ##PIELOU
-model_richness_2 <- lme(Pielou~ MeanT_Coldest_Quarter + T_Annual_Range, 
+model_richness_2 <- lme(Pielou~ MeanT_Coldest_Quarter*T_Annual_Range, 
                         random = ~ 1|Locality/Moisture_Regime, data = replicate_analysis,
                         na.action = na.exclude)
 plot(model_richness_2)
@@ -441,7 +437,7 @@ visreg(model_richness_2)
 
 ##Abundance
 ###Not very good residuals here, have not found a way to fix this
-model_richness_3 <- lme(Abundance^0.25~ MeanT_Coldest_Quarter + T_Annual_Range, 
+model_richness_3 <- lme(Abundance^0.25~ MeanT_Coldest_Quarter*T_Annual_Range, 
                         random = ~ 1|Locality/Moisture_Regime, data = replicate_analysis)
 plot(model_richness_3)
 qqnorm(model_richness_3)
