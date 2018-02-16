@@ -230,6 +230,12 @@ View(replicate_analysis)
 
 
 
+# Sample-rarefaction curve ------------------------------------------------
+pdf("sample_rarecurve.pdf", height =10, width = 10)
+plot(specaccum(repliflies), ci.type = "poly", ci.col = "lightblue",
+     col ="blue",lwd = 2, ci.lty = 0, xlim = c(0,75), ylim=c(0,500))
+dev.off()
+
 # Pattern Visualisation at site level ---------------------------------------------------
 ##Create PDF
 pdf("clim_site.pdf",height = 15,width = 15)
