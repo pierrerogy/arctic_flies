@@ -181,13 +181,12 @@ par(mfrow = c(1,1))
 # Making data frame to visualise axes -------------------------------------
 #First goup everything per replicate
 repliflies <- cleanflies %>% 
-  select(Locality, Moisture_Regime, Replicate, Species, Abundance) %>% 
-  group_by(Locality, Moisture_Regime, Replicate, Species) %>%
+  select(Ecozone, Locality, Moisture_Regime, Replicate, Species, Abundance) %>% 
+  group_by(Ecozone, Locality, Moisture_Regime, Replicate, Species) %>%
   summarise_all(funs(sum)) %>%
   ###fill=0 means that 0 will be put instead of default NAs if the cell is to be empty
   spread(key = Species, Abundance, fill = 0)
 ##checking
-View(repliflies)
 str(repliflies)
 
 ##Calculating diversity Indices
@@ -198,19 +197,21 @@ replishannon <- diversity(repliflies[4:380], index = "shannon", MARGIN = 1, base
 replirichness <- specnumber(repliflies[4:380], MARGIN = 1)
 replifrequency <- specnumber(repliflies[4:380], MARGIN = 2)
 ###Abundance
-repliabundance <- cleanflies %>% 
-  select(Locality, Moisture_Regime, Replicate, Abundance) %>% 
-  group_by(Locality, Moisture_Regime, Replicate) %>%
+repliabundance <- 
+  cleanflies %>% 
+  select(Ecozone, Side, Locality, Moisture_Regime, Replicate, Abundance) %>% 
+  group_by(Ecozone,Side, Locality, Moisture_Regime, Replicate) %>%
   summarise_all(funs(sum))
-repliabundance <- repliabundance[,4]
 
 ##Bind abundance, richness, simpson vectors
 repliindices <- cbind.data.frame(repliabundance, replirichness, replisimpson, replishannon)
 View(repliindices)
 ###Rename columns
-colnames(repliindices) <- c('Abundance', 'Richness', 'Simpson', 'Shannon')
+colnames(repliindices) <- 
+  c('Ecozone', 'Side', 'Locality', 'Moisture_Regime', 'Replicate', 
+    'Abundance', 'Richness', 'Simpson', 'Shannon')
 ###Add the 7 rows with no specimens collected
-replimissing <- as.data.frame(matrix(0, ncol =4, nrow = 7))
+replimissing <- as.data.frame(matrix(0, ncol =9, nrow = 7))
 ###Coerce the names so that rbind can take place (not working without in this case)
 names(replimissing) <- names(repliindices)
 ###Combination!
@@ -219,11 +220,11 @@ View(repliindices)
 
 ##Now finishing binding with the rest, and PCA-selected variables
 ##T/10 because wordlcim T values are *10 for file size purposes
-replicate_analysis <- cbind(replicate_climate[,1:7], repliindices, replicate_climate$bio11/10,
+replicate_analysis <- cbind(replicate_climate[,1:2], repliindices, replicate_climate$bio11/10,
                             replicate_climate$bio7/10)
 str(replicate_analysis)
 ##Change column names for later sanity
-colnames(replicate_analysis) <- c("Locality", "Ecozone", "Side", "Longitude", "Latitude",
+colnames(replicate_analysis) <- c("Longitude", "Latitude","Ecozone", "Side","Locality",  
                                   "Moisture_Regime", "Replicate", "Abundance", "Richness", 
                                   "Simpson", "Shannon", "MeanT_Coldest_Quarter", "T_Annual_Range")
 View(replicate_analysis)
@@ -232,7 +233,7 @@ View(replicate_analysis)
 
 # Sample-rarefaction curve ------------------------------------------------
 pdf("sample_rarecurve.pdf", height =10, width = 10)
-plot(specaccum(repliflies), ci.type = "poly", ci.col = "lightblue",
+plot(specaccum(repliflies[,5:381]), ci.type = "poly", ci.col = "lightblue",
      col ="blue",lwd = 2, ci.lty = 0, xlim = c(0,75), ylim=c(0,500))
 dev.off()
 
