@@ -6,18 +6,16 @@ library(tidyr)
 ##Diversity indices and analyses
 library(vegan)
 library(betapart)
-##Modelling
-library(lme4)
-library(nlme)
 
 
-# B nestedness and turnover components------------------------------------------------------------------
+
+#B nestedness and turnover components------------------------------------------------------------------
 ##Not ideal because not with chao, but still interesting for interpretation
 ##Getting dataframe ready
 betaflies <- 
   cleanflies %>% 
   ungroup() %>% 
-  select(Locality, Moisture_Regime, Replicate, Species, Abundance) %>% 
+  dplyr::select(Locality, Moisture_Regime, Replicate, Species, Abundance) %>% 
   group_by(Locality, Moisture_Regime, Replicate, Species) %>% 
   summarise_all(funs(sum))
 ###Making presence/absence
@@ -46,53 +44,203 @@ stressplot(jac_nmds)
 ###Not necessary to plot, as nestedness component not significant
 ###Hence better to stick with chao
 
-# Chao NMDS ---------------------------------------------------------------
-##not with presence/absence, so turning back to repliflies
-repliflies <- 
-  repliflies %>% 
-  unite(site, Locality, Moisture_Regime, Replicate, sep ="_", remove = F)
-repliflies <-  data.frame(repliflies, row.names = repliflies$site)
-##chao
-chao <- vegdist(repliflies[,5:381], method = "chao")
+#Adonis ---------------------------------------------------------
+##Dataframe
+replicadonis <- 
+  replicate_analysis %>% 
+  left_join(repliflies)
+replicadonis <- 
+  replicadonis %>% 
+  filter(Richness != 0)
+replicadonis$Locality <- as.factor(replicadonis$Locality)
+str(replicadonis)
+##Names pretty long, hardly visible on plots, so have to shorten them
+replicadonis <- 
+  cbind(plant_dat[1:65,1], replicadonis[,4:394])
+colnames(replicadonis)[which(names(replicadonis) == "plant_dat[1:65, 1]")] <- 
+  "Locality"
+levels(replicadonis$Moisture_Regime) <- 
+  c(levels(replicadonis$Moisture_Regime),
+    "M",
+    "W")
+replicadonis$Moisture_Regime[replicadonis$Moisture_Regime=="Mesic"] <- 
+  "M"
+replicadonis$Moisture_Regime[replicadonis$Moisture_Regime=="Wet"] <- 
+  "W"
+levels(replicadonis$Moisture_Regime) <- 
+  droplevels(replicadonis$Moisture_Regime)
+##Uniting
+replicadonis <- 
+  replicadonis %>% 
+  unite(moisture, Locality, Moisture_Regime, sep =".", remove = F) %>% 
+  unite(plot, Locality, Moisture_Regime, Replicate, sep =".", remove = F)
+replicadonis$moisture <- 
+  as.factor(replicadonis$moisture)
+replicadonis$plot <- 
+  as.factor(replicadonis$plot)
+replicadonis <- 
+  data.frame(replicadonis, row.names = replicadonis$plot)
+
+#Adonis with latitude
+perm <- 
+  how(nperm = 999)
+setBlocks(perm) <- 
+  with(replicadonis, Locality, moisture, nested.blocks = T)
+adonis_latitude <-
+  adonis(replicadonis[,18:394]~ 
+           Latitude,
+          method = "chao",
+          permutations= perm,
+          data = replicadonis)
+
+#Adonis with envt variables
+perm <- 
+  how(nperm = 999)
+setBlocks(perm) <- 
+  with(replicadonis, Locality, moisture, nested.blocks = T)
+adonis_envt <-
+  adonis(replicadonis[,18:394]~ 
+           log(abs(coldest_quarter))*log(t_range)*Moisture_Regime,
+         method = "chao",
+         permutations= perm,
+         data = replicadonis)
+
+
+
+#NMDS--------------------------------------------------------------
 ##NMDS
-chao_nmds <- metaMDS(chao, k=2, autotransform =F,vplot = TRUE)
-stressplot(chao_nmds) ###Not that good either, but could be worse I guess
+chao_nmds <- 
+  metaMDS(replicadonis[,18:394], 
+          k=2, 
+          autotransform =T, 
+          distance = "chao",
+          engine = c("monoMDS", "isoMDS"))
+stressplot(chao_nmds)
 
 
+#Plotting NMDS----------------------------------------------------------------
+#Plot together
+pdf("chao_NMDS.pdf",
+    height = 10,width = 7)
+###Using layout
+##first part of matrix to say where each plot is
+layout(matrix(c(1,1,
+                2,3,
+                4,5), nrow=3, byrow =T),
+       widths=c(5,0.6))
+par(mar =c(4, 4, 4, 1))
+##making data frame with evferything, hard with vegan
+datascores <- 
+  as.data.frame(scores(chao_nmds))
+datascores$moisture <- 
+  replicadonis$Moisture_Regime
+datascores$coldest_quarter <- 
+  replicadonis$coldest_quarter
+datascores$t_range <- 
+  replicadonis$t_range
+##With sites
+plot(NULL, 
+     type ="n", 
+     xlim =c(-0.6,0.6), 
+     ylim =c(-0.4,0.4),
+     xlab ="NMDS1",
+     ylab ="NMDS2")
+sites <- 
+  replicadonis$Locality
+ordihull(chao_nmds,
+         groups=sites,
+         draw="polygon",
+         lty = 1,
+         col="grey60",
+         label=T,
+         cex=0.5,
+         xlim =c(-0.6,0.6), 
+         ylim =c(-0.4,0.4))
+
+
+##Min Winter T
+###Use n equally spaced breaks to assign each value 
+###to n-1 equal sized bins 
+colcol <- 
+  cut(sort(datascores$coldest_quarter, decreasing = F), 
+      breaks = seq(min(datascores$coldest_quarter),
+                   max(datascores$coldest_quarter), 
+                   len = 100), 
+      include.lowest = TRUE)
+###Use indices to select color from vector of n-1 equally spaced colors
+colfunc <- 
+  colorRampPalette(c("blue", "red"))(100)[colcol]
 ##Plot it
-pdf("chao_NMDS.pdf",height = 20,width = 20)
-par(mfrow =c(2,1))
-plot(chao_nmds, type ="n", xlim =c(-1,1), ylim =c(-0.5,0.5))
-orditorp(chao_nmds,display="sites",cex=1, pch = NA)
-###Cannot do style things with vegan option, so extracting and plotting
-datascores <- as.data.frame(scores(chao_nmds))
-datascores$moisture <- repliflies$Moisture_Regime
-datascores$zone <- repliflies$Ecozone
-plot(datascores$NMDS2 ~ datascores$NMDS1, pch = c(16,17)[datascores$moisture], cex =2, 
-     col= c('blue','orange','red')[datascores$zone], xlim =c(-1,1), ylim =c(-0.5,0.5),
-     xlab = "NMDS1", ylab = "NMDS2")
-legend ("topleft", legend = c("Northen Boreal", "Subarctic", "High Arctic"), pch = 15, pt.bg = c('orange','red', 'blue'), col = c('orange','red', 'blue'))
-legend("topright", legend = c("Mesic", "Wet"), pch = c(1, 2))
+plot(datascores$NMDS2 ~ 
+       datascores$NMDS1, 
+     pch = c(16,17)[datascores$moisture], 
+     cex =1, 
+     col= colfunc,
+     xlim =c(-0.6,0.6), 
+     ylim =c(-0.4,0.4),
+     xlab = "NMDS1", 
+     ylab = "NMDS2")
+legend("topright", 
+       legend = c("Mesic", "Wet"), 
+       pch = c(1, 2))
+###Color legend
+fitcold <- 
+  unique(datascores$coldest_quarter)
+graphics::image(1,
+                sort(fitcold, decreasing = F), 
+                t(seq_along(fitcold)), 
+                col=colfunc, 
+                xlab ="",
+                ylab="",
+                main ="",
+                axes = F)
+##Using title to make axis name closer to plot
+title(main="", 
+      ylab="Mean T of Coldest Quarter(°C)",
+      line =0.1)
+axis(4)
+##With T range
+###Colors
+colcol <- 
+  cut(sort(datascores$t_range, decreasing = F), 
+      breaks = seq(min(datascores$t_range),
+                   max(datascores$t_range), 
+                   len = 50), 
+      include.lowest = TRUE)
+###Use indices to select color from vector of n-1 equally spaced colors
+colfunc <- 
+  colorRampPalette(c("blue", "red"))(50)[colcol]
+plot(datascores$NMDS2 ~ datascores$NMDS1, 
+     pch = c(16,17)[datascores$moisture], 
+     cex =1, 
+     col= colfunc, 
+     xlim =c(-0.6,0.6), 
+     ylim =c(-0.4,0.4),
+     xlab = "NMDS1", 
+     ylab = "NMDS2")
+###color legend
+rangecold <- 
+  unique(datascores$t_range)
+graphics::image(1,
+                sort(rangecold , decreasing = F), 
+                t(seq_along(rangecold )), 
+                col=colfunc, 
+                xlab ="",
+                ylab="",
+                axes = F)
+title(main="", 
+      ylab="Annual T Range(°C)",
+      line =0.1)
+axis(4)
+##closing
 dev.off()
-par(mfrow =c(1,1))
-
-##Beta avec jaccard, correle ca avec dist() sur les envt variables
-##NMDS
+.pardefault <- par()
 
 
-# Mantel Test -------------------------------------------------------------
-###Distance matrix for longitude and PCA axes
-####Remove empty samples (not accepted in NMDS)
-dist_variables <- 
-  replicate_climate %>% 
-  unite(site, Locality, Moisture_Regime, Replicate, sep ="_", remove = F) %>% 
-  select(site, Longitude, Latitude, bio11, bio7)
-dist_variables <-  dist_variables[1:65,]
-dist_variables <-  data.frame(dist_variables, row.names = dist_variables$site)
-dist_variable_matrix <- dist(dist_variables[,2:5])
 
-##vegan
-mantel(chao, dist_variable_matrix, permutations = 999)
-##ade4
-mantel.rtest(chao, dist_variable_matrix, nrepet = 999)
-###Significant positive correlation!
+
+
+
+
+
+
