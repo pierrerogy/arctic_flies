@@ -9,41 +9,6 @@ library(betapart)
 
 
 
-#B nestedness and turnover components------------------------------------------------------------------
-##Not ideal because not with chao, but still interesting for interpretation
-##Getting dataframe ready
-betaflies <- 
-  cleanflies %>% 
-  ungroup() %>% 
-  dplyr::select(Locality, Moisture_Regime, Replicate, Species, Abundance) %>% 
-  group_by(Locality, Moisture_Regime, Replicate, Species) %>% 
-  summarise_all(funs(sum))
-###Making presence/absence
-betaflies$Abundance <- 1
-betaflies <- 
-  betaflies %>% 
-  spread(key = Species, Abundance, fill =0)
-###row names
-betaflies <- 
-  betaflies %>% 
-  unite(site, Locality, Moisture_Regime, Replicate, sep ="_", remove = F)
-betaflies <-  data.frame(betaflies[,2:381], row.names = betaflies$site)
-
-###Compute with jaccard
-jaccard <- beta.pair(betaflies[,4:380], index.family = "jaccard")
-###NMDS it
-jtu_nmds <- 
-  metaMDS(jaccard$beta.jtu, k = 2)
-stressplot(jtu_nmds)
-jne_nmds <- 
-  metaMDS(jaccard$beta.jne, k = 2)
-stressplot(jne_nmds) ##Stress >0.3, not significant
-jac_nmds <- 
-  metaMDS(jaccard$beta.jac, k = 2)
-stressplot(jac_nmds)
-###Not necessary to plot, as nestedness component not significant
-###Hence better to stick with chao
-
 #Adonis ---------------------------------------------------------
 ##Dataframe
 replicadonis <- 
@@ -121,15 +86,15 @@ stressplot(chao_nmds)
 #Plotting NMDS----------------------------------------------------------------
 #Plot together
 pdf("chao_NMDS.pdf",
-    height = 10,width = 7)
+    height = 10,width = 8)
 ###Using layout
 ##first part of matrix to say where each plot is
 layout(matrix(c(1,1,
                 2,3,
                 4,5), nrow=3, byrow =T),
        widths=c(5,0.6))
-par(mar =c(4, 4, 4, 1))
-##making data frame with evferything, hard with vegan
+par(mar =c(4, 3, 3, 2))
+##making data frame with everything, hard with vegan
 datascores <- 
   as.data.frame(scores(chao_nmds))
 datascores$moisture <- 
@@ -169,7 +134,7 @@ colcol <-
       include.lowest = TRUE)
 ###Use indices to select color from vector of n-1 equally spaced colors
 colfunc <- 
-  colorRampPalette(c("blue", "red"))(100)[colcol]
+  colorRampPalette(c("grey85", "grey13"))(100)[colcol]
 ##Plot it
 plot(datascores$NMDS2 ~ 
        datascores$NMDS1, 
@@ -209,7 +174,7 @@ colcol <-
       include.lowest = TRUE)
 ###Use indices to select color from vector of n-1 equally spaced colors
 colfunc <- 
-  colorRampPalette(c("blue", "red"))(50)[colcol]
+  colorRampPalette(c("grey85", "grey13"))(50)[colcol]
 plot(datascores$NMDS2 ~ datascores$NMDS1, 
      pch = c(16,17)[datascores$moisture], 
      cex =1, 
@@ -234,7 +199,7 @@ title(main="",
 axis(4)
 ##closing
 dev.off()
-.pardefault <- par()
+par(mfrow=c(1,1))
 
 
 
@@ -242,5 +207,281 @@ dev.off()
 
 
 
+
+
+
+#B nestedness and turnover components for incidence------------------------------------------------------------------
+#Getting dataframe ready
+betaflies <- 
+  cleanflies %>% 
+  ungroup() %>% 
+  dplyr::select(Locality, Moisture_Regime, Replicate, Species, Abundance) %>% 
+  group_by(Locality, Moisture_Regime, Replicate, Species) %>% 
+  summarise_all(funs(sum))
+###Making incidence
+betaflies$Abundance <- 
+  1
+betaflies <- 
+  betaflies %>% 
+  spread(key = Species, Abundance, fill =0)
+###row names
+betaflies <- 
+  betaflies %>% 
+  unite(plot, Locality, Moisture_Regime, Replicate, sep ="_", remove = F)
+betaflies <-  
+  data.frame(betaflies, row.names = betaflies$plot)
+
+###Compute with jaccard, because not nterested in dominance
+jaccard <- 
+  beta.pair(betaflies[,5:381], index.family = "jaccard")
+###NMDS it
+jtu_nmds <- 
+  metaMDS(jaccard$beta.jtu, k = 2)
+stressplot(jtu_nmds)
+jne_nmds <- 
+  metaMDS(jaccard$beta.jne, k = 2)
+stressplot(jne_nmds) ##Stress >0.3, not significant
+jac_nmds <- 
+  metaMDS(jaccard$beta.jac, k = 2)
+stressplot(jac_nmds)
+###nestedness component not significant
+
+
+#Plot it
+##setup
+pdf("jacincidence_NMDS.pdf",
+    height = 10,width = 8)
+par(mfrow =c(3,2))
+
+##Turnover
+plot(NULL, 
+     type ="n", 
+     xlab ="NMDS1",
+     ylab ="Turnover",         
+     main ="With localities",
+     xlim =c(-1,1), 
+     ylim =c(-0.5,0.5))
+sites <- 
+  replicadonis$Locality
+ordihull(jtu_nmds,
+         groups=sites,
+         draw="polygon",
+         lty = 1,
+         col="grey60",
+         label=T,
+         cex=0.5)
+###making data frame to show wet/mesic and plot
+datascores <- 
+  as.data.frame(scores(jtu_nmds))
+datascores$moisture <- 
+  betaflies$Moisture_Regime
+plot(datascores$NMDS2 ~ 
+       datascores$NMDS1, 
+     pch = c(1,2)[datascores$moisture], 
+     cex =1, 
+     xlim =c(-1,1), 
+     ylim =c(-0.5,0.5),
+     xlab = "NMDS1", 
+     ylab = "NMDS2",
+     main = "With replicates")
+legend("topright", 
+       legend = c("Mesic", "Wet"), 
+       pch = c(1, 2))
+
+##Nestedness
+plot(NULL, 
+     type ="n", 
+     xlab ="NMDS1",
+     ylab ="Nestedness",
+     xlim =c(-1,1), 
+     ylim =c(-0.5,0.5))
+ordihull(jne_nmds,
+         groups=sites,
+         draw="polygon",
+         lty = 1,
+         col="grey60",
+         label=T,
+         cex=0.5)
+
+###making data frame to show wet/mesic and plot
+datascores <- 
+  as.data.frame(scores(jne_nmds))
+datascores$moisture <- 
+  betaflies$Moisture_Regime
+plot(datascores$NMDS2 ~ 
+       datascores$NMDS1, 
+     pch = c(1,2)[datascores$moisture], 
+     cex =1, 
+     xlim =c(-1,1), 
+     ylim =c(-0.5,0.5),
+     xlab = "NMDS1", 
+     ylab = "NMDS2")
+
+##Total
+plot(NULL, 
+     type ="n", 
+     xlab ="NMDS1",
+     ylab ="Nestedness and Turnover",
+     xlim =c(-1,1), 
+     ylim =c(-0.5,0.5))
+ordihull(jac_nmds,
+         groups=sites,
+         draw="polygon",
+         lty = 1,
+         col="grey60",
+         label=T,
+         cex=0.5)
+
+###making data frame to show wet/mesic and plot
+datascores <- 
+  as.data.frame(scores(jac_nmds))
+datascores$moisture <- 
+  betaflies$Moisture_Regime
+plot(datascores$NMDS2 ~ 
+       datascores$NMDS1, 
+     pch = c(1,2)[datascores$moisture], 
+     cex =1, 
+     xlim =c(-1,1), 
+     ylim =c(-0.5,0.5),
+     xlab = "NMDS1", 
+     ylab = "NMDS2")
+
+##closing
+dev.off()
+par(mfrow =c(1,1))
+
+
+
+#B balance abundance and abundance gradients------------------------------------------------------------------
+#Getting dataframe ready
+betaflies <- 
+  cleanflies %>% 
+  ungroup() %>% 
+  dplyr::select(Locality, Moisture_Regime, Replicate, Species, Abundance) %>% 
+  group_by(Locality, Moisture_Regime, Replicate, Species) %>% 
+  summarise_all(funs(sum)) %>% 
+  spread(key = Species, Abundance, fill =0)
+###row names
+betaflies <- 
+  betaflies %>% 
+  unite(plot, Locality, Moisture_Regime, Replicate, sep ="_", remove = F)
+betaflies <-  
+  data.frame(betaflies, row.names = betaflies$plot)
+
+###Compute with jaccard, because not nterested in dominance
+bray <- 
+  beta.pair.abund(betaflies[,5:381], index.family = "bray")
+###NMDS it
+bal_nmds <- 
+  metaMDS(bray$beta.bray.bal, k = 2)
+stressplot(bal_nmds)
+gra_nmds <- 
+  metaMDS(bray$beta.bray.gra, k = 2)
+stressplot(gra_nmds) ##not significant
+bray_nmds <- 
+  metaMDS(bray$beta.bray, k = 2)
+stressplot(bray_nmds)
+
+#Plot it
+##setup
+pdf("brayabundance_NMDS.pdf",
+    height = 10,width = 8)
+par(mfrow =c(3,2))
+
+##Balanced abundance variation
+plot(NULL, 
+     type ="n", 
+     xlab ="NMDS1",
+     ylab ="Balanced abundance variation",         
+     main ="With localities",
+     xlim =c(-1,1),
+     ylim=c(-0.5,0.5)
+     )
+sites <- 
+  replicadonis$Locality
+ordihull(bal_nmds,
+         groups=sites,
+         draw="polygon",
+         lty = 1,
+         col="grey60",
+         label=T,
+         cex=0.5)
+###making data frame to show wet/mesic and plot
+datascores <- 
+  as.data.frame(scores(bal_nmds))
+datascores$moisture <- 
+  betaflies$Moisture_Regime
+plot(datascores$NMDS2 ~ 
+       datascores$NMDS1, 
+     pch = c(1,2)[datascores$moisture], 
+     cex =1, 
+     xlim =c(-1,1), 
+     ylim =c(-0.5,0.5),
+     xlab = "NMDS1", 
+     ylab = "NMDS2",
+     main = "With replicates")
+legend("topright", 
+       legend = c("Mesic", "Wet"), 
+       pch = c(1, 2))
+
+##Gradient
+plot(NULL, 
+     type ="n", 
+     xlab ="NMDS1",
+     ylab ="Abundance gradient",
+     xlim =c(-1,1),
+     ylim=c(-0.5,0.5))
+ordihull(gra_nmds,
+         groups=sites,
+         draw="polygon",
+         lty = 1,
+         col="grey60",
+         label=T,
+         cex=0.5)
+###making data frame to show wet/mesic and plot
+datascores <- 
+  as.data.frame(scores(gra_nmds))
+datascores$moisture <- 
+  betaflies$Moisture_Regime
+plot(datascores$NMDS2 ~ 
+       datascores$NMDS1, 
+     pch = c(1,2)[datascores$moisture], 
+     cex =1, 
+     xlim =c(-1,1), 
+     ylim =c(-0.5,0.5),
+     xlab = "NMDS1", 
+     ylab = "NMDS2")
+
+##Total
+plot(NULL, 
+     type ="n", 
+     xlab ="NMDS1",
+     ylab ="Abundance gradient and balance",
+     xlim =c(-1,1), 
+     ylim =c(-0.5,0.5))
+ordihull(bray_nmds,
+         groups=sites,
+         draw="polygon",
+         lty = 1,
+         col="grey60",
+         label=T,
+         cex=0.5)
+###making data frame to show wet/mesic and plot
+datascores <- 
+  as.data.frame(scores(bray_nmds))
+datascores$moisture <- 
+  betaflies$Moisture_Regime
+plot(datascores$NMDS2 ~ 
+       datascores$NMDS1, 
+     pch = c(1,2)[datascores$moisture], 
+     cex =1, 
+     xlim =c(-1,1), 
+     ylim =c(-0.5,0.5),
+     xlab = "NMDS1", 
+     ylab = "NMDS2")
+
+##closing
+dev.off()
+par(mfrow =c(1,1))
 
 

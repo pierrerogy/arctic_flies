@@ -15,6 +15,9 @@ library(sp)
 library(ade4)
 ##Diversity indices and analyses
 library(vegan)
+library(iNEXT)
+##To plot iNEXT results
+library(ggplot2)
 ##Modelling
 library(MASS)
 ##Model analysis and visualization
@@ -26,7 +29,7 @@ library(visreg)
 # Data_Tidying ------------------------------------------------------------
 ##Remove extra columns
 cleanflies <- flies %>% 
-  select(-Genus, -Province.Territory, -Trapping_Method, -Date) %>% 
+  dplyr::select(-Genus, -Province.Territory, -Trapping_Method, -Date) %>% 
   ##Remove Mcgill Station
   filter(Moisture_Regime != "McGill_Subarctic_Research_Station")
 ##drop levels
@@ -448,6 +451,21 @@ par(mfrow =c(1,1))
 
 
 
+# Sample completeness -----------------------------------------------------
+#Per site
+repliflies <- 
+  cleanflies %>% 
+  dplyr::select(Locality, Moisture_Regime, Replicate,Species, Abundance) %>% 
+  group_by(Locality, Moisture_Regime, Replicate, Species) %>%
+  summarise_all(funs(sum)) %>%
+  spread(key = Species, Abundance, fill = 0) %>% 
+  unite(moisture, Locality, Moisture_Regime, sep ="_", remove = F) %>% 
+  unite(plot, moisture, Replicate, sep ="_", remove =F)
+completeness <- 
+  iNEXT(list(repliflies[,6:382]), 
+      q=1, 
+      datatype = "abundance")
+ggiNEXT(completeness)
 # Setting_Up_WorldClim_Values ---------------------------------------------
 ##Extract coordinates from flies
 ###Only works if Longitude before Latitude, otherwise returns only NAs
@@ -489,17 +507,20 @@ longilat <-
 ##Make longilat vector
 coords <- 
   unique(longilat) %>% 
-  select(Longitude, Latitude)
+  dplyr::select(Longitude, Latitude)
 
 ##use spatial point function to fit coordinates into the worldclim 
-coord_points <- SpatialPoints(coords, proj4string = clim_data@crs)
+coord_points <- 
+  SpatialPoints(coords, proj4string = clim_data@crs)
 ###remove the tidyr package, because it also has an extract function, whoch conflicts with raster's
 .rs.unloadPackage("tidyr")
 ##Extract the values of clim_data in the coord points
 ###name of all 19 values present on http://www.worldclim.org/bioclim
-worldclim_values <- extract(clim_data, coord_points)
+worldclim_values <- 
+  extract(clim_data, coord_points)
 ###Now Combine the two data frames, and order it a bit
-replicate_climate <- cbind(unique(longilat), worldclim_values)
+replicate_climate <- 
+  cbind(unique(longilat), worldclim_values)
 View(replicate_climate)
 ##Bring tidyr back                                          
 library(tidyr)
@@ -510,14 +531,16 @@ library(tidyr)
 ##Making wordlclim variables pooled by site
 locality_climate <- 
   replicate_climate %>% 
-  select(-Ecozone, -Side, -Moisture_Regime, -Replicate) %>% 
+  dplyr::select(-Ecozone, -Side, -Moisture_Regime, -Replicate) %>% 
   group_by(Locality) %>% 
-  summarise_each(funs(mean))
+  summarise_all(funs(mean))
 ###Extract vector with site names
-localist <- locality_climate[,1]
+localist <- 
+  locality_climate[,1]
 
 ##Adding crystal's dataset and checking it
-cry <- read.csv("C:/Users/Pierre/OneDrive/Projects/arctic_flies/Data/Crystal_weather.csv", sep = ";")
+cry <- 
+  read.csv("C:/Users/Pierre/OneDrive/Projects/arctic_flies/Data/Crystal_weather.csv", sep = ";")
 str(cry)
 ###Localities in the same order
 
@@ -526,15 +549,21 @@ climate_corrtest <- cbind(locality_climate$bio1, locality_climate$bio13,
                           cry$Mean.Annual.Temp, cry$Total.Precipitation)
 ##Check correlation
 ##Cutoff point set at .95
-cor(climate_corrtest, method = c("pearson", "kendall", "spearman"))
+cor(climate_corrtest, 
+    method = c("pearson", "kendall", "spearman"))
 ##interestingly, cry variables less correlated than worldclim
 
 ##Now blend the two climate datasets together
-locaclim <- data.frame(c(locality_climate, cry))
+locaclim <- 
+  data.frame(c(locality_climate, cry))
 ###Tidy it a bit, and remove redundant variables, and wind speed because missing values
-locaclim <- locaclim %>% select(-Locality, -Average.Wind.Speed, -site, -Mean.Annual.Temp, -Total.Precipitation,
+locaclim <- 
+  locaclim %>% 
+  dplyr::select(-Locality, -Average.Wind.Speed, -site, -Mean.Annual.Temp, -Total.Precipitation,
                                 -Latitude, -Longitude, -Total.Sun.Hours, -Total.Sun.Days)
-locaclim <- as.data.frame(locaclim, row.names = as.character(locality_climate$Locality))
+locaclim <- 
+  as.data.frame(locaclim, 
+                row.names = as.character(locality_climate$Locality))
 
 # Using PCA to select relevant axes ---------------------------------------
 ##Make sure locaclim is a dataframe
@@ -620,15 +649,19 @@ str(repliflies)
 
 ##Calculating diversity Indices
 ###Evenness
-Simpson <- diversity(repliflies[,6:382], index = "simpson", MARGIN = 1, base = exp(1))
-Shannon <- diversity(repliflies[,6:382], index = "shannon", MARGIN = 1, base = exp(1))
+Simpson <- 
+  diversity(repliflies[,6:382], index = "simpson", MARGIN = 1, base = exp(1))
+Shannon <- 
+  diversity(repliflies[,6:382], index = "shannon", MARGIN = 1, base = exp(1))
 ###Margin =1 is number of specie per replicate, Margin = 2 is frequency of species
-Richness <- specnumber(repliflies[,6:382], MARGIN = 1)
-Frequency <- specnumber(repliflies[,6:382], MARGIN = 2)
+Richness <- 
+  specnumber(repliflies[,6:382], MARGIN = 1)
+Frequency <- 
+  specnumber(repliflies[,6:382], MARGIN = 2)
 ###Abundance
 repliabundance <- 
   cleanflies %>% 
-  select(Locality, Moisture_Regime, Replicate, Abundance) %>% 
+  dplyr::select(Locality, Moisture_Regime, Replicate, Abundance) %>% 
   group_by(Locality, Moisture_Regime, Replicate) %>%
   summarise_all(funs(sum))
 
@@ -639,11 +672,13 @@ str(repliindices)
 replicate_analysis <- 
   replicate_climate[,1:7] %>% 
   left_join(repliindices)
-replicate_analysis[is.na(replicate_analysis)] <- 0
+replicate_analysis[is.na(replicate_analysis)] <- 
+  0
 
 ##Now finishing binding with PCA-selected variables
 ##T/10 because wordlcim T values are *10 for file size purposes
-replicate_analysis <- cbind(replicate_analysis,replicate_climate$bio11/10, 
+replicate_analysis <- 
+  cbind(replicate_analysis,replicate_climate$bio11/10, 
                             replicate_climate$bio7/10)
 str(replicate_analysis)
 ##Change column names for later sanity
@@ -667,11 +702,15 @@ replicate_analysis <-
   cbind(replicate_analysis, Pielou)
 plot(replicate_analysis$Pielou ~ replicate_analysis$Richness)
 
-##Adding forb cover
+##Adding chao1
+chaorichness2 <- 
+  t(estimateR(repliflies[,6:382]))
+chao1 <- 
+  chaorichness[,2]
+chao1 <- 
+  c(chao1,0,0,0,0,0,0,0)
 replicate_analysis <- 
-  cbind(replicate_analysis, plant_dat$forb.cover)
-colnames(replicate_analysis)[17] <- 
-  "forbcover"
+  cbind(replicate_analysis, chao1)
 # Plotting for latitudinal effect -----------------------------------------
 #Plotting
 ##Create PDF
@@ -700,13 +739,13 @@ plot(replicate_analysis$Abundance ~ replicate_analysis$Latitude,
      main ="Abundance",
      cex.main =2,
      data = replicate_climate)
-###Pielou
-plot(replicate_analysis$Pielou~ replicate_analysis$Latitude, 
-     xlab = '', ylab = "Pielou's evenness",
-     ylim = c(0,1),
+###Chao 1
+plot(replicate_analysis$chao1~ replicate_analysis$Latitude, 
+     xlab = '', ylab = "Chao 1 estimator",
+     ylim = c(0,200),
      pch = c(0:12)[factor(Locality)],
      col = c("red", "blue") [factor(Moisture_Regime)],
-     main ="Pielou's evennes",
+     main ="Chao 1 estimator",
      cex.main =2,
      data = replicate_climate)
 legend("topright", pch = 1, col = c("red", "blue"), legend = c("Mesic", "Wet"), cex = 1)
@@ -728,10 +767,10 @@ plot(replicate_analysis$Abundance ~ replicate_analysis$Latitude,
      pch = c(15:17)[factor(Ecozone)],
      col = c("red", "blue") [factor(Moisture_Regime)],
      data = replicate_climate)
-###Pielou
-plot(replicate_analysis$Pielou~ replicate_analysis$Latitude, 
-     xlab = 'Latitude', ylab = "Pielou's evenness",
-     ylim = c(0,1),
+###Chao1
+plot(replicate_analysis$chao1~ replicate_analysis$Latitude, 
+     xlab = 'Latitude', ylab = "Chao 1 estimator",
+     ylim = c(0,200),
      pch = c(15:17)[factor(Ecozone)],
      col = c("red", "blue") [factor(Moisture_Regime)],
      data = replicate_climate)
@@ -740,54 +779,12 @@ legend("topright", pch = 1, col = c("red", "blue"), legend = c("Mesic", "Wet"), 
 dev.off()
 par(mfrow=c(1,1))
 
-# Testing for latitudinal effect ------------------------------------------
-##Richness
-model_latrichness <- 
-  glmmPQL(Richness~ 
-          Latitude,
-          random =~1|Locality/moisture,
-          family = "quasipoisson"(link ="sqrt"),
-        data = replicate_analysis)
-plot(model_latrichness)
-qqnorm(residuals(model_latrichness))
-qqline(residuals(model_latrichness), col = "red")
-summary(model_latrichness)
-Anova(model_latrichness)
-visreg(model_latrichness)
-##Abundance
-###could not fit with glmer.., PQL seems to work better than glmer Laplace 
-model_latabundance <- 
-  glmmPQL(Abundance~ 
-            Latitude, 
-          random = ~1|Locality/moisture,
-          family = "quasipoisson"(link ="log"),
-          data = replicate_analysis)
-plot(model_latabundance)
-qqnorm(residuals(model_latabundance))
-qqline(residuals(model_latabundance), col = "red")
-summary(model_latabundance)
-Anova(model_latabundance)
-visreg(model_latabundance)
-##Pielou
-model_latpielou <- 
-  glmmPQL(Pielou+0.1~ 
-          Latitude,
-          random =~1|Locality/moisture,
-        na.action = na.omit,
-          family = "Gamma"(link="log"),
-          data = replicate_analysis)
-plot(model_latpielou)
-qqnorm(residuals(model_latpielou))
-qqline(residuals(model_latpielou), col = "red")
-summary(model_latpielou)
-Anova(model_latpielou)
-visreg(model_latpielou)
 # Plotting for environmental effects --------------------------------------
 #Plotting three variables at stake vs. latitude
 ##Create PDF
 pdf("lat_envt.pdf",height = 3,width = 10)
 ##set par
-par(mfrow = c(1,3))
+par(mfrow = c(1,2))
 ##Sites
 ###Mean T of Coldest Quarter(°C)
 plot(replicate_analysis$coldest_quarter ~ replicate_analysis$Latitude, 
@@ -805,18 +802,6 @@ plot(replicate_analysis$t_range ~ replicate_analysis$Latitude,
      pch = c(0:12)[factor(Locality)],
      col = c("red", "blue") [factor(Moisture_Regime)],
      data = replicate_climate)
-###Forb cover
-plot(replicate_analysis$forbcover~ replicate_analysis$Latitude, 
-     xlab = 'Latitude', ylab = "Forb cover (%)",
-     pch = c(0:12)[factor(Locality)],
-     col = c("red", "blue") [factor(Moisture_Regime)],
-     cex.main =2,
-     data = replicate_climate)
-legend("topright", 
-       pch = 1, 
-       col = c("red", "blue"), 
-       legend = c("Mesic", "Wet"), 
-       cex = 0.5)
 ##Closing
 dev.off()
 par(mfrow =c(1,1))
@@ -847,11 +832,11 @@ plot(replicate_analysis$Richness ~ replicate_analysis$t_range,
      cex.lab =2,
      data = replicate_climate)
 #Richness vs forb cover
-plot(replicate_analysis$Richness ~ replicate_analysis$forbcover, 
+plot(replicate_analysis$Richness ~ replicate_analysis$chao1, 
      xlab = '', ylab = '',
      pch = c(0:12)[factor(Locality)],
      col = c("red", "blue") [factor(Moisture_Regime)],
-     main = "Forb cover (%)",
+     main = "Chao 1 index",
      cex.main =2,
      cex.lab =2,
      data = replicate_climate)
@@ -877,7 +862,7 @@ plot(replicate_analysis$Abundance ~ replicate_analysis$t_range,
      cex.lab =2,
      data = replicate_climate)
 #Abundance vs forb cover
-plot(replicate_analysis$Abundance ~ replicate_analysis$forbcover, 
+plot(replicate_analysis$Abundance ~ replicate_analysis$chao1, 
      xlab = '', ylab = '',
      pch = c(0:12)[factor(Locality)],
      col = c("red", "blue") [factor(Moisture_Regime)],
@@ -901,7 +886,7 @@ plot(replicate_analysis$Pielou ~ replicate_analysis$t_range,
      cex.lab =2,
      data = replicate_climate)
 #Pielou vs forb cover
-plot(replicate_analysis$Pielou ~ replicate_analysis$forbcover, 
+plot(replicate_analysis$Pielou ~ replicate_analysis$chao1, 
      xlab = '', ylab = '',
      pch = c(0:12)[factor(Locality)],
      col = c("red", "blue") [factor(Moisture_Regime)],
@@ -913,7 +898,7 @@ dev.off()
 par(mfrow=c(1,1))
 
 # Testing for environmental effects----------------------------------------------------
-##RICHNESS
+##Observed Richness
 model_richness <- 
   glmmPQL(Richness~ 
              log(abs(coldest_quarter))*log(t_range)*Moisture_Regime,
@@ -926,6 +911,20 @@ qqline(residuals(model_richness), col = "red")
 summary(model_richness)
 Anova(model_richness)
 visreg(model_richness)
+
+##Chao1
+model_chao1 <- 
+  glmmPQL(round(chao1)~ 
+            log(abs(coldest_quarter))*log(t_range)*Moisture_Regime,
+          random =~1|Locality/moisture,
+          family = "quasipoisson"(link="sqrt"),
+          data = replicate_analysis)
+plot(model_chao1)
+qqnorm(residuals(model_chao1))
+qqline(residuals(model_chao1), col = "red")
+summary(model_chao1)
+Anova(model_chao1)
+visreg(model_chao1)
 
 ##Abundance
 model_abundance <- 
@@ -940,20 +939,3 @@ qqline(residuals(model_abundance), col = "red")
 summary(model_abundance)
 Anova(model_abundance)
 visreg(model_abundance)
-
-##Pielou
-model_pielou <- 
-  glmmPQL(Pielou+0.1~ 
-            log(abs(coldest_quarter))*log(t_range)*Moisture_Regime,
-          random =~1|Locality/moisture,
-          na.action = na.omit,
-          family = "Gamma"(link="log"),
-          data = replicate_analysis)
-plot(model_pielou)
-qqnorm(residuals(model_pielou))
-qqline(residuals(model_pielou), col = "red")
-summary(model_pielou)
-Anova(model_pielou)
-visreg(model_pielou)
-
-
