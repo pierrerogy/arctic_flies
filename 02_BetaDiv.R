@@ -103,6 +103,7 @@ datascores$coldest_quarter <-
   replicadonis$coldest_quarter
 datascores$t_range <- 
   replicadonis$t_range
+
 ##With sites
 plot(NULL, 
      type ="n", 
@@ -209,6 +210,43 @@ par(mfrow=c(1,1))
 
 
 
+
+
+# Second NMDS -------------------------------------------------------------
+##With sites
+plot(NULL, 
+     type ="n", 
+     xlim =c(-0.6,0.6), 
+     ylim =c(-0.4,0.4),
+     xlab ="NMDS1",
+     ylab ="NMDS2")
+sites <- 
+  replicadonis$Locality
+ordihull(chao_nmds,
+         groups=sites,
+         draw="polygon",
+         lty = 1,
+         col="grey60",
+         label=T,
+         cex=0.5,
+         xlim =c(-0.6,0.6), 
+         ylim =c(-0.4,0.4))
+##With replicates
+plot(datascores$NMDS2 ~ 
+       datascores$NMDS1, 
+     pch = c(16,17)[datascores$moisture], 
+     cex =1, 
+     xlim =c(-0.6,0.6), 
+     ylim =c(-0.4,0.4),
+     xlab = "NMDS1", 
+     ylab = "NMDS2")
+legend("topright", 
+       legend = c("Mesic", "Wet"), 
+       pch = c(16, 17))
+plot(envfit(chao_nmds, 
+       replicadonis[,14:15],
+       permutations = 0,
+       display= "sites"))
 
 #B nestedness and turnover components for incidence------------------------------------------------------------------
 #Getting dataframe ready
