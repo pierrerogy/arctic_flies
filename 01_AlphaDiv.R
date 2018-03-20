@@ -1,5 +1,7 @@
 #Load data and check if it's alright
-flies <- read.csv("C:/Users/Pierre/OneDrive/Projects/arctic_flies/Data/Inventory.csv", sep = ";")
+flies <- 
+  read.csv("C:/Users/pierr/OneDrive/Projects/arctic_flies/Data/Inventory.csv", 
+           sep = ",")
 View(flies)
 str(flies)
 
@@ -18,6 +20,7 @@ library(vegan)
 library(iNEXT)
 ##To plot iNEXT results
 library(ggplot2)
+library(gridExtra)
 ##Modelling
 library(MASS)
 ##Model analysis and visualization
@@ -33,7 +36,8 @@ cleanflies <- flies %>%
   ##Remove Mcgill Station
   filter(Moisture_Regime != "McGill_Subarctic_Research_Station")
 ##drop levels
-cleanflies$Moisture_Regime <- droplevels(cleanflies$Moisture_Regime)
+cleanflies$Moisture_Regime <- 
+  droplevels(cleanflies$Moisture_Regime)
 cleanflies$Replicate <- 
   as.factor(cleanflies$Replicate)
 ##Make sure it works
@@ -51,7 +55,7 @@ replifliesMO <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesMO[,3:196]), ci.type = "poly", ci.col = "lightblue",
+plot(specaccum(replifliesMO[,3:164]), ci.type = "poly", ci.col = "lightblue",
      col ="blue",lwd = 2, ci.lty = 0, xlim = c(1,7), ylim=c(0,200), 
      main = "Northern Boreal", cex.main =2, xlab = "Moosonee", cex.lab = 2,
      ylab ="")
@@ -63,7 +67,7 @@ replifliesCH <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesCH[,3:90]), ci.type = "poly", ci.col = "lightcoral",
+plot(specaccum(replifliesCH[,3:84]), ci.type = "poly", ci.col = "lightcoral",
      col ="red",lwd = 2, ci.lty = 0, xlim = c(1,7), ylim=c(0,200), 
      main = "Subarctic", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Churchill")
@@ -75,7 +79,7 @@ replifliesAN <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesAN[,3:18]), ci.type = "poly", ci.col = "tan1",
+plot(specaccum(replifliesAN[,3:14]), ci.type = "poly", ci.col = "tan1",
      col ="tan4",lwd = 2, ci.lty = 0, xlim = c(1,7), ylim=c(0,200), 
      main = "High Arctic", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Aulavik Nat Park")
@@ -87,7 +91,7 @@ replifliesGB <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesGB[,3:36]), ci.type = "poly", ci.col = "lightblue",
+plot(specaccum(replifliesGB[,3:22]), ci.type = "poly", ci.col = "lightblue",
      col ="blue",lwd = 2, ci.lty = 0, xlim = c(1,7), ylim=c(0,200), 
      main = "", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Goose Bay")
@@ -99,7 +103,7 @@ replifliesKG <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesKG[,3:30]), ci.type = "poly", ci.col = "lightcoral",
+plot(specaccum(replifliesKG[,3:29]), ci.type = "poly", ci.col = "lightcoral",
      col ="red",lwd = 2, ci.lty = 0, xlim = c(1,7), ylim=c(0,200), 
      main = "", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Kugluktuk")
@@ -111,7 +115,7 @@ replifliesCB <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesCB[,3:11]), ci.type = "poly", ci.col = "tan1",
+plot(specaccum(replifliesCB[,3:14]), ci.type = "poly", ci.col = "tan1",
      col ="tan4",lwd = 2, ci.lty = 0, xlim = c(1,7), ylim=c(0,200), 
      main = "", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Cambridge Bay")
@@ -123,7 +127,7 @@ replifliesNW <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesNW[,3:108]), ci.type = "poly", ci.col = "lightblue",
+plot(specaccum(replifliesNW[,3:98]), ci.type = "poly", ci.col = "lightblue",
      col ="blue",lwd = 2, ci.lty = 0, xlim = c(1,7), ylim=c(0,200), 
      main = "", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Norman Wells")
@@ -135,7 +139,7 @@ replifliesSC <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesSC[,3:45]), ci.type = "poly", ci.col = "lightcoral",
+plot(specaccum(replifliesSC[,3:41]), ci.type = "poly", ci.col = "lightcoral",
      col ="red",lwd = 2, ci.lty = 0, xlim = c(1,7), ylim=c(0,200), 
      main = "", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Schefferville")
@@ -147,7 +151,7 @@ replifliesIQ <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesIQ[,3:12]), ci.type = "poly", ci.col = "tan1",
+plot(specaccum(replifliesIQ[,3:13]), ci.type = "poly", ci.col = "tan1",
      col ="tan4",lwd = 2, ci.lty = 0, xlim = c(1,7), ylim=c(0,200), 
      main = "", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Iqaluit")
@@ -159,7 +163,7 @@ replifliesYK <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesYK[,3:91]), ci.type = "poly", ci.col = "lightblue",
+plot(specaccum(replifliesYK[,3:73]), ci.type = "poly", ci.col = "lightblue",
      col ="blue",lwd = 2, ci.lty = 0, xlim = c(1,7), ylim=c(0,200), 
      main = "", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Yellowknife")
@@ -171,7 +175,7 @@ replifliesTM <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesTM[,3:76]), ci.type = "poly", ci.col = "lightcoral",
+plot(specaccum(replifliesTM[,3:67]), ci.type = "poly", ci.col = "lightcoral",
      col ="red",lwd = 2, ci.lty = 0, xlim = c(1,7), ylim=c(0,200), 
      main = "", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Tombstone Mountains")
@@ -193,7 +197,7 @@ replifliesMOm <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesMOm[,3:123]), ci.type = "poly", ci.col = "lightblue",
+plot(specaccum(replifliesMOm[,3:100]), ci.type = "poly", ci.col = "lightblue",
      col ="blue",lwd = 2, ci.lty = 0, xlim = c(1,4), ylim=c(0,150), 
      main = "Northern Boreal Mesic", cex.main =2, xlab = "Moosonee", cex.lab = 2,
      ylab ="")
@@ -204,7 +208,7 @@ replifliesMOw <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesMOw[,3:143]), ci.type = "poly", ci.col = "lightblue",
+plot(specaccum(replifliesMOw[,3:119]), ci.type = "poly", ci.col = "lightblue",
      col ="blue",lwd = 2, ci.lty = 0, xlim = c(1,4), ylim=c(0,150), 
      main = "Northern Boreal Wet", cex.main =2, xlab = "Moosonee", cex.lab = 2,
      ylab ="")
@@ -216,7 +220,7 @@ replifliesCHm <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesCHm[,3:47]), ci.type = "poly", ci.col = "lightcoral",
+plot(specaccum(replifliesCHm[,3:41]), ci.type = "poly", ci.col = "lightcoral",
      col ="red",lwd = 2, ci.lty = 0, xlim = c(1,4), ylim=c(0,150), 
      main = "Subarctic Mesic", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Churchill")
@@ -227,7 +231,7 @@ replifliesCHw <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesCHw[,3:66]), ci.type = "poly", ci.col = "lightcoral",
+plot(specaccum(replifliesCHw[,3:63]), ci.type = "poly", ci.col = "lightcoral",
      col ="red",lwd = 2, ci.lty = 0, xlim = c(1,4), ylim=c(0,150), 
      main = "Subarctic Wet", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Churchill")
@@ -250,7 +254,7 @@ replifliesANw <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesANw[,3:15]), ci.type = "poly", ci.col = "tan1",
+plot(specaccum(replifliesANw[,3:12]), ci.type = "poly", ci.col = "tan1",
      col ="tan4",lwd = 2, ci.lty = 0, xlim = c(1,4), ylim=c(0,150), 
      main = "High Arctic Wet", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Aulavik Nat Park")
@@ -262,7 +266,7 @@ replifliesGBm <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesGBm[,3:23]), ci.type = "poly", ci.col = "lightblue",
+plot(specaccum(replifliesGBm[,3:17]), ci.type = "poly", ci.col = "lightblue",
      col ="blue",lwd = 2, ci.lty = 0, xlim = c(1,4), ylim=c(0,150), 
      main = "", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Goose Bay")
@@ -273,7 +277,7 @@ replifliesGBw <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesGBw[,3:20]), ci.type = "poly", ci.col = "lightblue",
+plot(specaccum(replifliesGBw[,3:10]), ci.type = "poly", ci.col = "lightblue",
      col ="blue",lwd = 2, ci.lty = 0, xlim = c(1,4), ylim=c(0,150), 
      main = "", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Goose Bay")
@@ -296,7 +300,7 @@ replifliesKGw <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesKGw[,3:23]), ci.type = "poly", ci.col = "lightcoral",
+plot(specaccum(replifliesKGw[,3:19]), ci.type = "poly", ci.col = "lightcoral",
      col ="red",lwd = 2, ci.lty = 0, xlim = c(1,4), ylim=c(0,150), 
      main = "", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Kugluktuk")
@@ -308,7 +312,7 @@ replifliesCBm <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesCBm[,3:4]), ci.type = "poly", ci.col = "tan1",
+plot(specaccum(replifliesCBm[,3:5]), ci.type = "poly", ci.col = "tan1",
      col ="tan4",lwd = 2, ci.lty = 0, xlim = c(1,4), ylim=c(0,150), 
      main = "", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Cambridge Bay")
@@ -319,7 +323,7 @@ replifliesCBw <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesCBw[,3:11]), ci.type = "poly", ci.col = "tan1",
+plot(specaccum(replifliesCBw[,3:13]), ci.type = "poly", ci.col = "tan1",
      col ="tan4",lwd = 2, ci.lty = 0, xlim = c(1,4), ylim=c(0,150), 
      main = "", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Cambridge Bay")
@@ -331,7 +335,7 @@ replifliesNWm <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesNWm[,3:77]), ci.type = "poly", ci.col = "lightblue",
+plot(specaccum(replifliesNWm[,3:69]), ci.type = "poly", ci.col = "lightblue",
      col ="blue",lwd = 2, ci.lty = 0, xlim = c(1,4), ylim=c(0,150), 
      main = "", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Norman Wells")
@@ -342,7 +346,7 @@ replifliesNWw <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesNWw[,3:63]), ci.type = "poly", ci.col = "lightblue",
+plot(specaccum(replifliesNWw[,3:57]), ci.type = "poly", ci.col = "lightblue",
      col ="blue",lwd = 2, ci.lty = 0, xlim = c(1,4), ylim=c(0,150), 
      main = "", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Norman Wells")
@@ -365,7 +369,7 @@ replifliesSCw <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesSCw[,3:30]), ci.type = "poly", ci.col = "lightcoral",
+plot(specaccum(replifliesSCw[,3:26]), ci.type = "poly", ci.col = "lightcoral",
      col ="red",lwd = 2, ci.lty = 0, xlim = c(1,4), ylim=c(0,150), 
      main = "", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Schefferville")
@@ -377,18 +381,18 @@ replifliesIQm <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesIQm[,3:6]), ci.type = "poly", ci.col = "tan1",
+plot(specaccum(replifliesIQm[,3:7]), ci.type = "poly", ci.col = "tan1",
      col ="tan4",lwd = 2, ci.lty = 0, xlim = c(1,4), ylim=c(0,150), 
      main = "", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Iqaluit")
 replifliesIQw <- 
   cleanflies %>% 
-  filter(Locality =="Iqaluit"& Moisture_Regime == "Mesic") %>% 
+  filter(Locality =="Iqaluit"& Moisture_Regime == "Wet") %>% 
   dplyr::select(Moisture_Regime, Replicate,Species, Abundance) %>% 
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesIQm[,3:6]), ci.type = "poly", ci.col = "tan1",
+plot(specaccum(replifliesIQw[,3:12]), ci.type = "poly", ci.col = "tan1",
      col ="tan4",lwd = 2, ci.lty = 0, xlim = c(1,4), ylim=c(0,150), 
      main = "", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Iqaluit")
@@ -400,7 +404,7 @@ replifliesYKm <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesYKm[,3:36]), ci.type = "poly", ci.col = "lightblue",
+plot(specaccum(replifliesYKm[,3:26]), ci.type = "poly", ci.col = "lightblue",
      col ="blue",lwd = 2, ci.lty = 0, xlim = c(1,4), ylim=c(0,150), 
      main = "", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Yellowknife")
@@ -411,7 +415,7 @@ replifliesYKw <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesYKw[,3:70]), ci.type = "poly", ci.col = "lightblue",
+plot(specaccum(replifliesYKw[,3:60]), ci.type = "poly", ci.col = "lightblue",
      col ="blue",lwd = 2, ci.lty = 0, xlim = c(1,4), ylim=c(0,150), 
      main = "", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Yellowknife")
@@ -423,7 +427,7 @@ replifliesTMm <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesTMm[,3:47]), ci.type = "poly", ci.col = "lightcoral",
+plot(specaccum(replifliesTMm[,3:40]), ci.type = "poly", ci.col = "lightcoral",
      col ="red",lwd = 2, ci.lty = 0, xlim = c(1,4), ylim=c(0,150), 
      main = "", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Tombstone Mountains")
@@ -434,7 +438,7 @@ replifliesTMw <-
   group_by(Moisture_Regime, Replicate,Species) %>% 
   summarise_all(funs(sum)) %>% 
   tidyr::spread(key = Species, Abundance, fill =0)
-plot(specaccum(replifliesTMw[,3:62]), ci.type = "poly", ci.col = "lightcoral",
+plot(specaccum(replifliesTMw[,3:53]), ci.type = "poly", ci.col = "lightcoral",
      col ="red",lwd = 2, ci.lty = 0, xlim = c(1,4), ylim=c(0,150), 
      main = "", cex.main =2, ylab = "", cex.lab = 2,
      xlab ="Tombstone Mountains")
@@ -451,21 +455,218 @@ par(mfrow =c(1,1))
 
 
 
-# Sample completeness -----------------------------------------------------
+# Sample completeness per site-----------------------------------------------------
+pdf("completeness_site.pdf", height = 8, width = 15)
 #Per site
 repliflies <- 
   cleanflies %>% 
-  dplyr::select(Locality, Moisture_Regime, Replicate,Species, Abundance) %>% 
-  group_by(Locality, Moisture_Regime, Replicate, Species) %>%
+  dplyr::select(Locality,Species, Abundance) %>% 
+  group_by(Locality,Species) %>%
   summarise_all(funs(sum)) %>%
-  spread(key = Species, Abundance, fill = 0) %>% 
-  unite(moisture, Locality, Moisture_Regime, sep ="_", remove = F) %>% 
-  unite(plot, moisture, Replicate, sep ="_", remove =F)
+  spread(key = Species, Abundance, fill = 0) 
+repliflies <- 
+  data.frame(repliflies[,2:334], row.names = repliflies$Locality)
 completeness <- 
-  iNEXT(list(repliflies[,6:382]), 
-      q=1, 
+  iNEXT(t(repliflies), 
+      q=0, 
       datatype = "abundance")
 ggiNEXT(completeness)
+dev.off()
+# Sample completeness per moisture regime-----------------------------------------------------
+#Moosonee
+replifliesMO <- 
+  cleanflies %>% 
+  filter(Locality== "Moosonee") %>% 
+  dplyr::select(Moisture_Regime, Species, Abundance) %>% 
+  group_by(Moisture_Regime,Species) %>%
+  summarise_all(funs(sum)) %>%
+  spread(key = Species, Abundance, fill = 0) 
+replifliesMO <- 
+  data.frame(replifliesMO[,2:163], row.names = replifliesMO$Moisture_Regime)
+completeness <- 
+  iNEXT(t(replifliesMO), 
+        q=0, 
+        datatype = "abundance")
+plot1 <- 
+  ggiNEXT(completeness) + ggtitle("Moosonee")+ xlim(0, 1400) + ylim(0,175)
+
+#Churchill
+replifliesCH <- 
+  cleanflies %>% 
+  filter(Locality== "Churchill") %>% 
+  dplyr::select(Moisture_Regime, Species, Abundance) %>% 
+  group_by(Moisture_Regime,Species) %>%
+  summarise_all(funs(sum)) %>%
+  spread(key = Species, Abundance, fill = 0) 
+replifliesCH <- 
+  data.frame(replifliesCH[,2:83], row.names = replifliesCH$Moisture_Regime)
+completeness <- 
+  iNEXT(t(replifliesCH), 
+        q=0, 
+        datatype = "abundance")
+plot2 <- 
+  ggiNEXT(completeness) + ggtitle("Churchill")+ xlim(0, 1400) + ylim(0,175)
+
+#Aulavik
+replifliesAU <- 
+  cleanflies %>% 
+  filter(Locality== "Aulavik_National_Park") %>% 
+  dplyr::select(Moisture_Regime, Species, Abundance) %>% 
+  group_by(Moisture_Regime,Species) %>%
+  summarise_all(funs(sum)) %>%
+  spread(key = Species, Abundance, fill = 0) 
+replifliesAU <- 
+  data.frame(replifliesAU[,2:13], row.names = replifliesAU$Moisture_Regime)
+completeness <- 
+  iNEXT(t(replifliesAU), 
+        q=0, 
+        datatype = "abundance")
+
+plot3 <- 
+  ggiNEXT(completeness) + ggtitle("Aulavik National Park")+ xlim(0, 1400) + ylim(0,175)
+
+#Goose Bay
+replifliesGB <- 
+  cleanflies %>% 
+  filter(Locality== "Goose_Bay") %>% 
+  dplyr::select(Moisture_Regime, Species, Abundance) %>% 
+  group_by(Moisture_Regime,Species) %>%
+  summarise_all(funs(sum)) %>%
+  spread(key = Species, Abundance, fill = 0) 
+replifliesGB <- 
+  data.frame(replifliesGB[,2:21], row.names = replifliesGB$Moisture_Regime)
+completeness <- 
+  iNEXT(t(replifliesGB), 
+        q=0, 
+        datatype = "abundance")
+plot4 <- 
+  ggiNEXT(completeness) + ggtitle("Goose Bay")+ xlim(0, 1400) + ylim(0,175)
+
+#Kugluktuk
+replifliesKG <- 
+  cleanflies %>% 
+  filter(Locality== "Kugluktuk") %>% 
+  dplyr::select(Moisture_Regime, Species, Abundance) %>% 
+  group_by(Moisture_Regime,Species) %>%
+  summarise_all(funs(sum)) %>%
+  spread(key = Species, Abundance, fill = 0) 
+replifliesKG <- 
+  data.frame(replifliesKG[,2:28], row.names = replifliesKG$Moisture_Regime)
+completeness <- 
+  iNEXT(t(replifliesKG), 
+        q=0, 
+        datatype = "abundance")
+plot5 <- 
+  ggiNEXT(completeness) + ggtitle("Kugluktuk")+ xlim(0, 1400) + ylim(0,175)
+
+#Cambridge Bay
+replifliesCB <- 
+  cleanflies %>% 
+  filter(Locality== "Cambridge_Bay") %>% 
+  dplyr::select(Moisture_Regime, Species, Abundance) %>% 
+  group_by(Moisture_Regime,Species) %>%
+  summarise_all(funs(sum)) %>%
+  spread(key = Species, Abundance, fill = 0) 
+replifliesCB <- 
+  data.frame(replifliesCB[,2:13], row.names = replifliesCB$Moisture_Regime)
+completeness <- 
+  iNEXT(t(replifliesCB), 
+        q=0, 
+        datatype = "abundance")
+plot6 <- 
+  ggiNEXT(completeness) + ggtitle("Cambridge Bay")+ xlim(0, 1400) + ylim(0,175)
+
+#Norman Wells
+replifliesNW <- 
+  cleanflies %>% 
+  filter(Locality== "Norman_Wells") %>% 
+  dplyr::select(Moisture_Regime, Species, Abundance) %>% 
+  group_by(Moisture_Regime,Species) %>%
+  summarise_all(funs(sum)) %>%
+  spread(key = Species, Abundance, fill = 0) 
+replifliesNW <- 
+  data.frame(replifliesNW[,2:97], row.names = replifliesNW$Moisture_Regime)
+completeness <- 
+  iNEXT(t(replifliesNW), 
+        q=0, 
+        datatype = "abundance")
+plot7 <- 
+  ggiNEXT(completeness) + ggtitle("Norman Wells")+ xlim(0, 1400) + ylim(0,175)
+
+#Schefferville
+replifliesSC <- 
+  cleanflies %>% 
+  filter(Locality== "Schefferville") %>% 
+  dplyr::select(Moisture_Regime, Species, Abundance) %>% 
+  group_by(Moisture_Regime,Species) %>%
+  summarise_all(funs(sum)) %>%
+  spread(key = Species, Abundance, fill = 0) 
+replifliesSC <- 
+  data.frame(replifliesSC[,2:40], row.names = replifliesSC$Moisture_Regime)
+completeness <- 
+  iNEXT(t(replifliesSC), 
+        q=0, 
+        datatype = "abundance")
+plot8 <- 
+  ggiNEXT(completeness) + ggtitle("Schefferville")+ xlim(0, 1400) + ylim(0,175)
+
+#Iqaluit
+replifliesIQ<- 
+  cleanflies %>% 
+  filter(Locality== "Iqaluit") %>% 
+  dplyr::select(Moisture_Regime, Species, Abundance) %>% 
+  group_by(Moisture_Regime,Species) %>%
+  summarise_all(funs(sum)) %>%
+  spread(key = Species, Abundance, fill = 0) 
+replifliesIQ <- 
+  data.frame(replifliesIQ[,2:12], row.names = replifliesIQ$Moisture_Regime)
+completeness <- 
+  iNEXT(t(replifliesIQ), 
+        q=0, 
+        datatype = "abundance")
+plot9 <- 
+  ggiNEXT(completeness) + ggtitle("Iqaluit")+ xlim(0, 1400) + ylim(0,175)
+
+#Yellowknife
+replifliesYK<- 
+  cleanflies %>% 
+  filter(Locality== "Yellowknife") %>% 
+  dplyr::select(Moisture_Regime, Species, Abundance) %>% 
+  group_by(Moisture_Regime,Species) %>%
+  summarise_all(funs(sum)) %>%
+  spread(key = Species, Abundance, fill = 0) 
+replifliesYK <- 
+  data.frame(replifliesYK[,2:72], row.names = replifliesYK$Moisture_Regime)
+completeness <- 
+  iNEXT(t(replifliesYK), 
+        q=0, 
+        datatype = "abundance")
+plot10 <- 
+  ggiNEXT(completeness) + ggtitle("Yellowknife")+ xlim(0, 1400) + ylim(0,175)
+
+#Tombstone Mountains
+replifliesTM <- 
+  cleanflies %>% 
+  filter(Locality== "Tombstone_Mountains") %>% 
+  dplyr::select(Moisture_Regime, Species, Abundance) %>% 
+  group_by(Moisture_Regime,Species) %>%
+  summarise_all(funs(sum)) %>%
+  spread(key = Species, Abundance, fill = 0) 
+replifliesTM <- 
+  data.frame(replifliesTM[,2:66], row.names = replifliesTM$Moisture_Regime)
+completeness <- 
+  iNEXT(t(replifliesTM), 
+        q=0, 
+        datatype = "abundance")
+plot11 <- 
+  ggiNEXT(completeness) + ggtitle("Tombstone Mountains")+ xlim(0, 1400) + ylim(0,175)
+
+#Closing
+pdf("completeness_moisture.pdf", height = 30, width =30)
+grid.arrange(plot1, plot2, plot3, plot4, plot5, plot6, 
+             plot7, plot8, plot9, plot10, plot11, ncol =3)
+dev.off()
+
 # Setting_Up_WorldClim_Values ---------------------------------------------
 ##Extract coordinates from flies
 ###Only works if Longitude before Latitude, otherwise returns only NAs
@@ -540,7 +741,7 @@ localist <-
 
 ##Adding crystal's dataset and checking it
 cry <- 
-  read.csv("C:/Users/Pierre/OneDrive/Projects/arctic_flies/Data/Crystal_weather.csv", sep = ";")
+  read.csv("C:/Users/pierr/OneDrive/Projects/arctic_flies/Data/Crystal_weather.csv", sep = ";")
 str(cry)
 ###Localities in the same order
 
@@ -609,7 +810,7 @@ par(mfrow = c(1,1))
 
 #With Plant Data
 plant_dat <- 
-  read.csv("C:/Users/Pierre/OneDrive/Projects/arctic_flies/Data/plant_dat.csv", sep = ";")
+  read.csv("C:/Users/pierr/OneDrive/Projects/arctic_flies/Data/plant_dat.csv", sep = ";")
 View(plant_dat)
 plot(plant_dat[,6:11])
 ##PCA
@@ -650,14 +851,14 @@ str(repliflies)
 ##Calculating diversity Indices
 ###Evenness
 Simpson <- 
-  diversity(repliflies[,6:382], index = "simpson", MARGIN = 1, base = exp(1))
+  diversity(repliflies[,6:338], index = "simpson", MARGIN = 1, base = exp(1))
 Shannon <- 
-  diversity(repliflies[,6:382], index = "shannon", MARGIN = 1, base = exp(1))
+  diversity(repliflies[,6:338], index = "shannon", MARGIN = 1, base = exp(1))
 ###Margin =1 is number of specie per replicate, Margin = 2 is frequency of species
 Richness <- 
-  specnumber(repliflies[,6:382], MARGIN = 1)
+  specnumber(repliflies[,6:338], MARGIN = 1)
 Frequency <- 
-  specnumber(repliflies[,6:382], MARGIN = 2)
+  specnumber(repliflies[,6:338], MARGIN = 2)
 ###Abundance
 repliabundance <- 
   cleanflies %>% 
@@ -691,9 +892,12 @@ replicate_analysis <-
   unite(moisture, Locality, Moisture_Regime, sep ="_", remove = F) %>% 
   unite(plot, moisture, Replicate, sep ="_", remove =F)
 str(replicate_analysis)
-replicate_analysis$moisture <- as.factor(replicate_analysis$moisture)
-replicate_analysis$Locality <- as.factor(replicate_analysis$Locality)
-replicate_analysis$plot <- as.factor(replicate_analysis$plot)
+replicate_analysis$moisture <- 
+  as.factor(replicate_analysis$moisture)
+replicate_analysis$Locality <- 
+  as.factor(replicate_analysis$Locality)
+replicate_analysis$plot <- 
+  as.factor(replicate_analysis$plot)
 
 ##Adding Pielou's evenness
 Pielou <- 
@@ -703,48 +907,72 @@ replicate_analysis <-
 plot(replicate_analysis$Pielou ~ replicate_analysis$Richness)
 
 ##Adding chao1
-chaorichness2 <- 
-  t(estimateR(repliflies[,6:382]))
 chao1 <- 
-  chaorichness[,2]
+  t(estimateR(repliflies[,6:338]))
+chao1 <- 
+  chao1[,2]
 chao1 <- 
   c(chao1,0,0,0,0,0,0,0)
 replicate_analysis <- 
   cbind(replicate_analysis, chao1)
-# Plotting for environmental effects --------------------------------------
-#Plotting three variables at stake vs. latitude
-##Create PDF
-pdf("lat_envt.pdf",height = 3,width = 10)
-##set par
-par(mfrow = c(1,2))
-##Sites
-###Mean T of Coldest Quarter(°C)
-plot(replicate_analysis$coldest_quarter ~ replicate_analysis$Latitude, 
-     xlab = 'Latitude', ylab = 'Mean T of Coldest Quarter(°C)',
-     pch = c(0:12)[factor(Locality)],
-     col = c("red", "blue") [factor(Moisture_Regime)],
-     cex.main =2,
-     data = replicate_climate)
-legend("topright",pch = c(0:12), 
-       legend = unique(replicate_climate$Locality), 
-       cex = 0.5)
-###Annual T range
-plot(replicate_analysis$t_range ~ replicate_analysis$Latitude, 
-     xlab = 'Latitude', ylab = 'Annual T Range (°C)',
-     pch = c(0:12)[factor(Locality)],
-     col = c("red", "blue") [factor(Moisture_Regime)],
-     data = replicate_climate)
-##Closing
-dev.off()
-par(mfrow =c(1,1))
+# Testing for environmental effects----------------------------------------------------
+##Observed Richness
+model_richness <- 
+  glmmPQL(Richness~ 
+            log(abs(coldest_quarter))*log(t_range) + Moisture_Regime,
+          random =~1|Locality/moisture, 
+          family = "quasipoisson"(link="sqrt"),
+       data = replicate_analysis)
+plot(model_richness)
+qqnorm(residuals(model_richness))
+qqline(residuals(model_richness), col = "red")
+summary(model_richness)
+summary(model_richness)$tTable
+Anova(model_richness)
+visreg(model_richness)
+r.squaredGLMM(model_richness)
 
+##Chao1
+model_chao1 <- 
+  glmmPQL(round(chao1)~ 
+            log(abs(coldest_quarter))*log(t_range) + Moisture_Regime,
+          random =~1|Locality/moisture,
+          family = "quasipoisson"(link="sqrt"),
+          data = replicate_analysis)
+plot(model_chao1)
+qqnorm(residuals(model_chao1))
+qqline(residuals(model_chao1), col = "red")
+summary(model_chao1)
+summary(model_chao1)$tTable
+Anova(model_chao1)
+visreg(model_chao1)
+r.squaredGLMM(model_chao1)
+
+##Abundance
+model_abundance <- 
+  glmmPQL(Abundance~ 
+            log(abs(coldest_quarter))*log(t_range) + Moisture_Regime, 
+          random = ~1|Locality/moisture,
+          family = "quasipoisson"(link ="sqrt"),
+          data = replicate_analysis)
+plot(model_abundance)
+qqnorm(residuals(model_abundance))
+qqline(residuals(model_abundance), col = "red")
+summary(model_abundance)
+summary(model_abundance)$tTable
+Anova(model_abundance)
+visreg(model_abundance)
+r.squaredGLMM(model_abundance)
+
+
+# Plotting for environmental effects --------------------------------------
 #Plotting variables vs indices
 pdf("envt_indices.pdf",height = 15,width = 15)
 ##set par
 par(mfrow = c(3,3), mar =c(5.1, 5.2, 4.2, 2))
 #Richness vs coldest quarter
-plot(replicate_analysis$Richness ~ replicate_analysis$coldest_quarter, 
-     xlab = '', ylab = 'Richness',
+plot(replicate_analysis$Richness ~ log(abs(replicate_analysis$coldest_quarter)), 
+     xlab = '', ylab = 'Observed species richness',
      pch = c(0:12)[factor(Locality)],
      col = c("red", "blue") [factor(Moisture_Regime)],
      main = "Mean T of Coldest Quarter(°C)",
@@ -752,7 +980,7 @@ plot(replicate_analysis$Richness ~ replicate_analysis$coldest_quarter,
      cex.lab =2,
      data = replicate_climate)
 legend("topleft",pch = c(0:12), 
-       legend = unique(replicate_climate$Locality), 
+       legend = levels(replicate_climate$Locality), 
        cex = 1)
 #Richness vs T range
 plot(replicate_analysis$Richness ~ replicate_analysis$t_range, 
@@ -763,20 +991,50 @@ plot(replicate_analysis$Richness ~ replicate_analysis$t_range,
      cex.main =2,
      cex.lab =2,
      data = replicate_climate)
-#Richness vs forb cover
-plot(replicate_analysis$Richness ~ replicate_analysis$chao1, 
-     xlab = '', ylab = '',
-     pch = c(0:12)[factor(Locality)],
-     col = c("red", "blue") [factor(Moisture_Regime)],
-     main = "Chao 1 index",
-     cex.main =2,
-     cex.lab =2,
-     data = replicate_climate)
-legend("topright", 
-       pch = 1, 
-       col = c("red", "blue"), 
-       legend = c("Mesic", "Wet"), 
-       cex = 1)
+#Richness vs habitat
+##Aggregate and convert to data frame
+moistplot <- 
+  do.call(data.frame,
+          stats::aggregate(Richness ~ Ecozone + Moisture_Regime, 
+                           data = replicate_analysis,
+                           FUN = function(Richness) 
+                             c(mean = mean(Richness), 
+                               sd = sd(Richness), 
+                               n = length(Richness))))
+##reorder factor levels for ecozone
+levels(moistplot$Richness) <- 
+  levels(moistplot$Richness == c("NB","SA","HA"))
+
+##add standard error
+moistplot$se <- 
+  moistplot$Richness.sd / sqrt(moistplot$Richness.n)
+##Use tapply to put in barplot format
+tabbedMeans <- 
+  tapply(moistplot$Richness.mean, 
+         list(moistplot$Moisture_Regime, moistplot$Ecozone),
+         function(Richness.mean) c(Richness.mean = Richness.mean))
+tabbedMeans <- 
+  cbind(tabbedMeans[,2], tabbedMeans[,3], tabbedMeans[,1])
+tabbedSE <- 
+  tapply(moistplot$se, 
+         list(moistplot$Moisture_Regime, moistplot$Ecozone),
+         function(se) c(se = se))
+tabbedSE <- 
+  cbind(tabbedSE[,2], tabbedSE[,3], tabbedSE[,1])
+graphbar <- 
+  barplot(tabbedMeans, 
+          names.arg = c("Northern Boreal", "Subarctic", "High Arctic"),
+          beside = T,
+          ylim = c(0, 50),
+          legend = T)
+##add SE bars
+segments(graphbar, tabbedMeans - tabbedSE, graphbar,
+         tabbedMeans + tabbedSE, lwd = 1.5)
+arrows(graphbar, tabbedMeans - tabbedSE, graphbar,
+       tabbedMeans + tabbedSE, lwd = 1.5, angle = 90,
+       code = 3, length = 0.05)
+
+
 #Abundance vs coldest quarter
 plot(replicate_analysis$Abundance ~ replicate_analysis$coldest_quarter, 
      xlab = '', ylab = 'Abundance',
@@ -793,81 +1051,105 @@ plot(replicate_analysis$Abundance ~ replicate_analysis$t_range,
      cex.main =2,
      cex.lab =2,
      data = replicate_climate)
-#Abundance vs forb cover
-plot(replicate_analysis$Abundance ~ replicate_analysis$chao1, 
+#Abundance vs habitat
+##Aggregate and convert to data frame
+moistplot <- 
+  do.call(data.frame,
+          stats::aggregate(Abundance ~ Moisture_Regime, 
+                           data = replicate_analysis,
+                           FUN = function(Abundance) 
+                             c(mean = mean(Abundance), 
+                               sd = sd(Abundance), 
+                               n = length(Abundance))))
+##reorder factor levels for ecozone
+levels(moistplot$Abundance) <- 
+  levels(moistplot$Abundance == c("NB","SA","HA"))
+
+##add standard error
+moistplot$se <- 
+  moistplot$Abundance.sd / sqrt(moistplot$Abundance.n)
+##Use tapply to put in barplot format
+tabbedMeans <- 
+  tapply(moistplot$Abundance.mean, 
+         list(moistplot$Moisture_Regime),
+         function(Abundance.mean) c(Abundance.mean = Abundance.mean))
+tabbedMeans <- 
+  cbind(tabbedMeans[,2], tabbedMeans[,3], tabbedMeans[,1])
+tabbedSE <- 
+  tapply(moistplot$se, 
+         list(moistplot$Moisture_Regime),
+         function(se) c(se = se))
+tabbedSE <- 
+  cbind(tabbedSE[,2], tabbedSE[,3], tabbedSE[,1])
+graphbar <- 
+  barplot(tabbedMeans, 
+          names.arg = c("Northern Boreal", "Subarctic", "High Arctic"),
+          beside = T,
+          ylim = c(0, 200),
+          legend = T)
+##add SE bars
+segments(graphbar, tabbedMeans - tabbedSE, graphbar,
+         tabbedMeans + tabbedSE, lwd = 1.5)
+arrows(graphbar, tabbedMeans - tabbedSE, graphbar,
+       tabbedMeans + tabbedSE, lwd = 1.5, angle = 90,
+       code = 3, length = 0.05)
+
+#Chao1 vs coldest quarter
+plot(replicate_analysis$chao1 ~ replicate_analysis$coldest_quarter, 
+     xlab = '', ylab = "Chao1 estimator",
+     pch = c(0:12)[factor(Locality)],
+     col = c("red", "blue") [factor(Moisture_Regime)],
+     cex.main =2,
+     cex.lab =2,
+     data = replicate_climate)
+#Chao1 vs T range
+plot(replicate_analysis$chao1 ~ replicate_analysis$t_range, 
      xlab = '', ylab = '',
      pch = c(0:12)[factor(Locality)],
      col = c("red", "blue") [factor(Moisture_Regime)],
      cex.main =2,
      cex.lab =2,
      data = replicate_climate)
-#Pielou vs coldest quarter
-plot(replicate_analysis$Pielou ~ replicate_analysis$coldest_quarter, 
-     xlab = '', ylab = "Pielou's evenness",
-     pch = c(0:12)[factor(Locality)],
-     col = c("red", "blue") [factor(Moisture_Regime)],
-     cex.main =2,
-     cex.lab =2,
-     data = replicate_climate)
-#Pielou vs T range
-plot(replicate_analysis$Pielou ~ replicate_analysis$t_range, 
-     xlab = '', ylab = '',
-     pch = c(0:12)[factor(Locality)],
-     col = c("red", "blue") [factor(Moisture_Regime)],
-     cex.main =2,
-     cex.lab =2,
-     data = replicate_climate)
-#Pielou vs forb cover
-plot(replicate_analysis$Pielou ~ replicate_analysis$chao1, 
-     xlab = '', ylab = '',
-     pch = c(0:12)[factor(Locality)],
-     col = c("red", "blue") [factor(Moisture_Regime)],
-     cex.main =2,
-     cex.lab =2,
-     data = replicate_climate)
+#Chao vs habitat
+moistplot <- 
+  do.call(data.frame,
+          stats::aggregate(chao1 ~ Ecozone + Moisture_Regime, 
+                           data = replicate_analysis,
+                           FUN = function(chao1) 
+                             c(mean = mean(chao1), 
+                               sd = sd(chao1), 
+                               n = length(chao1))))
+##add standard error
+moistplot$se <- 
+  moistplot$chao1.sd / sqrt(moistplot$chao1.n)
+##Use tapply to put in barplot format
+tabbedMeans <- 
+  tapply(moistplot$chao1.mean, 
+         list(moistplot$Moisture_Regime, moistplot$Ecozone),
+         function(chao1.mean) c(chao1.mean = chao1.mean))
+tabbedMeans <- 
+  cbind(tabbedMeans[,2], tabbedMeans[,3], tabbedMeans[,1])
+tabbedSE <- 
+  tapply(moistplot$se, 
+         list(moistplot$Moisture_Regime, moistplot$Ecozone),
+         function(se) c(se = se))
+tabbedSE <- 
+  cbind(tabbedSE[,2], tabbedSE[,3], tabbedSE[,1])
+graphbar <- 
+  barplot(tabbedMeans, 
+          names.arg = c("Northern Boreal", "Subarctic", "High Arctic"),
+          beside = T,
+          ylim = c(0, 100),
+          legend = T)
+##add SE bars
+segments(graphbar, tabbedMeans - tabbedSE, graphbar,
+         tabbedMeans + tabbedSE, lwd = 1.5)
+arrows(graphbar, tabbedMeans - tabbedSE, graphbar,
+       tabbedMeans + tabbedSE, lwd = 1.5, angle = 90,
+       code = 3, length = 0.05)
+
+
 ##closing
 dev.off()
 par(mfrow=c(1,1))
 
-# Testing for environmental effects----------------------------------------------------
-##Observed Richness
-model_richness <- 
-  glmmPQL(Richness~ 
-             log(abs(coldest_quarter))*log(t_range)*Moisture_Regime,
-          random =~1|Locality/moisture,
-          family = "quasipoisson"(link="sqrt"),
-       data = replicate_analysis)
-plot(model_richness)
-qqnorm(residuals(model_richness))
-qqline(residuals(model_richness), col = "red")
-summary(model_richness)
-Anova(model_richness)
-visreg(model_richness)
-
-##Chao1
-model_chao1 <- 
-  glmmPQL(round(chao1)~ 
-            log(abs(coldest_quarter))*log(t_range)*Moisture_Regime,
-          random =~1|Locality/moisture,
-          family = "quasipoisson"(link="sqrt"),
-          data = replicate_analysis)
-plot(model_chao1)
-qqnorm(residuals(model_chao1))
-qqline(residuals(model_chao1), col = "red")
-summary(model_chao1)
-Anova(model_chao1)
-visreg(model_chao1)
-
-##Abundance
-model_abundance <- 
-  glmmPQL(Abundance~ 
-            log(abs(coldest_quarter))*log(t_range)*Moisture_Regime, 
-          random = ~1|Locality/moisture,
-          family = "quasipoisson"(link ="log"),
-          data = replicate_analysis)
-plot(model_abundance)
-qqnorm(residuals(model_abundance))
-qqline(residuals(model_abundance), col = "red")
-summary(model_abundance)
-Anova(model_abundance)
-visreg(model_abundance)

@@ -13,61 +13,35 @@ library(betapart)
 ##Dataframe
 replicadonis <- 
   replicate_analysis %>% 
-  left_join(repliflies)
+  left_join(repliflies) %>% 
+  dplyr::select(-Locality)
 replicadonis <- 
   replicadonis %>% 
   filter(Richness != 0)
-replicadonis$Locality <- as.factor(replicadonis$Locality)
 str(replicadonis)
 ##Names pretty long, hardly visible on plots, so have to shorten them
 replicadonis <- 
-  cbind(plant_dat[1:65,1], replicadonis[,4:394])
+  cbind(plant_dat[1:65,1], replicadonis[,2:349])
 colnames(replicadonis)[which(names(replicadonis) == "plant_dat[1:65, 1]")] <- 
   "Locality"
-levels(replicadonis$Moisture_Regime) <- 
-  c(levels(replicadonis$Moisture_Regime),
-    "M",
-    "W")
-replicadonis$Moisture_Regime[replicadonis$Moisture_Regime=="Mesic"] <- 
-  "M"
-replicadonis$Moisture_Regime[replicadonis$Moisture_Regime=="Wet"] <- 
-  "W"
-levels(replicadonis$Moisture_Regime) <- 
-  droplevels(replicadonis$Moisture_Regime)
+
 ##Uniting
-replicadonis <- 
-  replicadonis %>% 
-  unite(moisture, Locality, Moisture_Regime, sep =".", remove = F) %>% 
-  unite(plot, Locality, Moisture_Regime, Replicate, sep =".", remove = F)
-replicadonis$moisture <- 
-  as.factor(replicadonis$moisture)
-replicadonis$plot <- 
-  as.factor(replicadonis$plot)
 replicadonis <- 
   data.frame(replicadonis, row.names = replicadonis$plot)
 
-#Adonis with latitude
-perm <- 
-  how(nperm = 999)
-setBlocks(perm) <- 
-  with(replicadonis, Locality, moisture, nested.blocks = T)
-adonis_latitude <-
-  adonis(replicadonis[,18:394]~ 
-           Latitude,
-          method = "chao",
-          permutations= perm,
-          data = replicadonis)
-
 #Adonis with envt variables
 perm <- 
-  how(nperm = 999)
+  how(nperm = 2000)
 setBlocks(perm) <- 
-  with(replicadonis, Locality, moisture, nested.blocks = T)
+  with(replicadonis, 
+       moisture %in% Locality,
+       nested.Blocks = T)
 adonis_envt <-
-  adonis(replicadonis[,18:394]~ 
-           log(abs(coldest_quarter))*log(t_range)*Moisture_Regime,
+  adonis(replicadonis[,17:349]~ 
+           log(abs(coldest_quarter))*log(t_range) + Moisture_Regime,
          method = "chao",
-         permutations= perm,
+         permutations= 2000,
+         strata = replicadonis$Locality,
          data = replicadonis)
 
 
@@ -77,11 +51,20 @@ adonis_envt <-
 chao_nmds <- 
   metaMDS(replicadonis[,18:394], 
           k=2, 
+          trymax = 100,
           autotransform =T, 
           distance = "chao",
           engine = c("monoMDS", "isoMDS"))
 stressplot(chao_nmds)
-
+##making data frame with everything for plotting, hard with vegan
+datascores <- 
+  as.data.frame(scores(chao_nmds))
+datascores$moisture <- 
+  replicadonis$Moisture_Regime
+datascores$coldest_quarter <- 
+  replicadonis$coldest_quarter
+datascores$t_range <- 
+  replicadonis$t_range
 
 #Plotting NMDS----------------------------------------------------------------
 #Plot together
@@ -94,15 +77,7 @@ layout(matrix(c(1,1,
                 4,5), nrow=3, byrow =T),
        widths=c(5,0.6))
 par(mar =c(4, 3, 3, 2))
-##making data frame with everything, hard with vegan
-datascores <- 
-  as.data.frame(scores(chao_nmds))
-datascores$moisture <- 
-  replicadonis$Moisture_Regime
-datascores$coldest_quarter <- 
-  replicadonis$coldest_quarter
-datascores$t_range <- 
-  replicadonis$t_range
+
 
 ##With sites
 plot(NULL, 
@@ -212,7 +187,9 @@ par(mfrow=c(1,1))
 
 
 
-# Second NMDS -------------------------------------------------------------
+#Second NMDS -------------------------------------------------------------
+par(mfrow = c(2,1),
+    mar=  c(4, 4, 2, 2))
 ##With sites
 plot(NULL, 
      type ="n", 
@@ -228,13 +205,17 @@ ordihull(chao_nmds,
          lty = 1,
          col="grey60",
          label=T,
-         cex=0.5,
+         cex=0.3,
          xlim =c(-0.6,0.6), 
          ylim =c(-0.4,0.4))
+legend("topright", 
+       legend = "Stress = 0.17",
+       cex = 0.7)
 ##With replicates
 plot(datascores$NMDS2 ~ 
        datascores$NMDS1, 
-     pch = c(16,17)[datascores$moisture], 
+     pch = 16, 
+     col = c("grey30", "grey80")[datascores$moisture],
      cex =1, 
      xlim =c(-0.6,0.6), 
      ylim =c(-0.4,0.4),
@@ -242,12 +223,21 @@ plot(datascores$NMDS2 ~
      ylab = "NMDS2")
 legend("topright", 
        legend = c("Mesic", "Wet"), 
-       pch = c(16, 17))
-plot(envfit(chao_nmds, 
+       pch = 16,
+       col = c("grey30", "grey80"),
+       cex =0.7)
+climarrows <- 
+  envfit(chao_nmds, 
        replicadonis[,14:15],
-       permutations = 0,
-       display= "sites"))
-
+       permutations = 2000,
+       display= "site")
+ordiArrowMul(scores(climarrows, display ="vectors"), rescale = F)
+par(mfrow=c(1,1))
+plot(climarrows, 
+col ="black",
+labels = c("Min. T of coldest quarter", 
+           "T annual range"),
+cex = 0.7)
 #B nestedness and turnover components for incidence------------------------------------------------------------------
 #Getting dataframe ready
 betaflies <- 
@@ -269,9 +259,24 @@ betaflies <-
 betaflies <-  
   data.frame(betaflies, row.names = betaflies$plot)
 
+
+
+
 ###Compute with jaccard, because not nterested in dominance
 jaccard <- 
   beta.pair(betaflies[,5:381], index.family = "jaccard")
+
+###Plot histograms
+hist(jaccard$beta.jtu, 
+     xlab= "Turnover",
+     main = NULL,
+     col = "grey50",
+     ylim = c(0,2000))
+hist(jaccard$beta.jne,
+     xlab= "Nestedness",
+     main = NULL,
+     col = "grey50",
+     ylim = c(0,2000))
 ###NMDS it
 jtu_nmds <- 
   metaMDS(jaccard$beta.jtu, k = 2)
@@ -388,138 +393,5 @@ plot(datascores$NMDS2 ~
 dev.off()
 par(mfrow =c(1,1))
 
-
-
-#B balance abundance and abundance gradients------------------------------------------------------------------
-#Getting dataframe ready
-betaflies <- 
-  cleanflies %>% 
-  ungroup() %>% 
-  dplyr::select(Locality, Moisture_Regime, Replicate, Species, Abundance) %>% 
-  group_by(Locality, Moisture_Regime, Replicate, Species) %>% 
-  summarise_all(funs(sum)) %>% 
-  spread(key = Species, Abundance, fill =0)
-###row names
-betaflies <- 
-  betaflies %>% 
-  unite(plot, Locality, Moisture_Regime, Replicate, sep ="_", remove = F)
-betaflies <-  
-  data.frame(betaflies, row.names = betaflies$plot)
-
-###Compute with jaccard, because not nterested in dominance
-bray <- 
-  beta.pair.abund(betaflies[,5:381], index.family = "bray")
-###NMDS it
-bal_nmds <- 
-  metaMDS(bray$beta.bray.bal, k = 2)
-stressplot(bal_nmds)
-gra_nmds <- 
-  metaMDS(bray$beta.bray.gra, k = 2)
-stressplot(gra_nmds) ##not significant
-bray_nmds <- 
-  metaMDS(bray$beta.bray, k = 2)
-stressplot(bray_nmds)
-
-#Plot it
-##setup
-pdf("brayabundance_NMDS.pdf",
-    height = 10,width = 8)
-par(mfrow =c(3,2))
-
-##Balanced abundance variation
-plot(NULL, 
-     type ="n", 
-     xlab ="NMDS1",
-     ylab ="Balanced abundance variation",         
-     main ="With localities",
-     xlim =c(-1,1),
-     ylim=c(-0.5,0.5)
-     )
-sites <- 
-  replicadonis$Locality
-ordihull(bal_nmds,
-         groups=sites,
-         draw="polygon",
-         lty = 1,
-         col="grey60",
-         label=T,
-         cex=0.5)
-###making data frame to show wet/mesic and plot
-datascores <- 
-  as.data.frame(scores(bal_nmds))
-datascores$moisture <- 
-  betaflies$Moisture_Regime
-plot(datascores$NMDS2 ~ 
-       datascores$NMDS1, 
-     pch = c(1,2)[datascores$moisture], 
-     cex =1, 
-     xlim =c(-1,1), 
-     ylim =c(-0.5,0.5),
-     xlab = "NMDS1", 
-     ylab = "NMDS2",
-     main = "With replicates")
-legend("topright", 
-       legend = c("Mesic", "Wet"), 
-       pch = c(1, 2))
-
-##Gradient
-plot(NULL, 
-     type ="n", 
-     xlab ="NMDS1",
-     ylab ="Abundance gradient",
-     xlim =c(-1,1),
-     ylim=c(-0.5,0.5))
-ordihull(gra_nmds,
-         groups=sites,
-         draw="polygon",
-         lty = 1,
-         col="grey60",
-         label=T,
-         cex=0.5)
-###making data frame to show wet/mesic and plot
-datascores <- 
-  as.data.frame(scores(gra_nmds))
-datascores$moisture <- 
-  betaflies$Moisture_Regime
-plot(datascores$NMDS2 ~ 
-       datascores$NMDS1, 
-     pch = c(1,2)[datascores$moisture], 
-     cex =1, 
-     xlim =c(-1,1), 
-     ylim =c(-0.5,0.5),
-     xlab = "NMDS1", 
-     ylab = "NMDS2")
-
-##Total
-plot(NULL, 
-     type ="n", 
-     xlab ="NMDS1",
-     ylab ="Abundance gradient and balance",
-     xlim =c(-1,1), 
-     ylim =c(-0.5,0.5))
-ordihull(bray_nmds,
-         groups=sites,
-         draw="polygon",
-         lty = 1,
-         col="grey60",
-         label=T,
-         cex=0.5)
-###making data frame to show wet/mesic and plot
-datascores <- 
-  as.data.frame(scores(bray_nmds))
-datascores$moisture <- 
-  betaflies$Moisture_Regime
-plot(datascores$NMDS2 ~ 
-       datascores$NMDS1, 
-     pch = c(1,2)[datascores$moisture], 
-     cex =1, 
-     xlim =c(-1,1), 
-     ylim =c(-0.5,0.5),
-     xlab = "NMDS1", 
-     ylab = "NMDS2")
-
-##closing
-dev.off()
-par(mfrow =c(1,1))
 
 

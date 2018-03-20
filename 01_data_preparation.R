@@ -309,3 +309,32 @@ moistanalysis <- cbind.data.frame(averaged_moistclim[,2:4], moistrichness, moist
                                  moistshannon,moistsimpson, averaged_moistclim[,5:24])
 
 
+
+
+# Plotting three variables at stake vs. latitude -------------------------
+
+
+##Create PDF
+pdf("lat_envt.pdf",height = 3,width = 10)
+##set par
+par(mfrow = c(1,2))
+##Sites
+###Mean T of Coldest Quarter(°C)
+plot(replicate_analysis$coldest_quarter ~ replicate_analysis$Latitude, 
+     xlab = 'Latitude', ylab = 'Mean T of Coldest Quarter(°C)',
+     pch = c(0:12)[factor(Locality)],
+     col = c("red", "blue") [factor(Moisture_Regime)],
+     cex.main =2,
+     data = replicate_climate)
+legend("topright",pch = c(0:12), 
+       legend = unique(replicate_climate$Locality), 
+       cex = 0.5)
+###Annual T range
+plot(replicate_analysis$t_range ~ replicate_analysis$Latitude, 
+     xlab = 'Latitude', ylab = 'Annual T Range (°C)',
+     pch = c(0:12)[factor(Locality)],
+     col = c("red", "blue") [factor(Moisture_Regime)],
+     data = replicate_climate)
+##Closing
+dev.off()
+par(mfrow =c(1,1))
