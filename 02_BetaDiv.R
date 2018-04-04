@@ -13,32 +13,20 @@ library(betapart)
 ##Dataframe
 replicadonis <- 
   replicate_analysis %>% 
+  left_join(sitemap[,1:2], by = "Locality") %>% 
   left_join(repliflies) %>% 
-  dplyr::select(-Locality)
-replicadonis <- 
-  replicadonis %>% 
   filter(Richness != 0)
 str(replicadonis)
-##Names pretty long, hardly visible on plots, so have to shorten them
-replicadonis <- 
-  cbind(plant_dat[1:65,1], replicadonis[,2:349])
-colnames(replicadonis)[which(names(replicadonis) == "plant_dat[1:65, 1]")] <- 
-  "Locality"
+
 
 ##Uniting
 replicadonis <- 
   data.frame(replicadonis, row.names = replicadonis$plot)
 
 #Adonis with envt variables
-perm <- 
-  how(nperm = 2000)
-setBlocks(perm) <- 
-  with(replicadonis, 
-       moisture %in% Locality,
-       nested.Blocks = T)
 adonis_envt <-
-  adonis(replicadonis[,17:349]~ 
-           log(abs(coldest_quarter))*log(t_range) + Moisture_Regime,
+  adonis(replicadonis[,19:349]~ 
+           coldest_quarter*t_range + Moisture_Regime,
          method = "chao",
          permutations= 2000,
          strata = replicadonis$Locality,
@@ -49,7 +37,7 @@ adonis_envt <-
 #NMDS--------------------------------------------------------------
 ##NMDS
 chao_nmds <- 
-  metaMDS(replicadonis[,18:394], 
+  metaMDS(replicadonis[,19:394], 
           k=2, 
           trymax = 100,
           autotransform =T, 
@@ -188,9 +176,12 @@ par(mfrow=c(1,1))
 
 
 #Second NMDS -------------------------------------------------------------
-par(mfrow = c(2,1),
-    mar=  c(4, 4, 2, 2))
 ##With sites
+tiff("NMDS_sites.tiff",
+     width = 4800,
+     height = 3200, 
+     units = "px", 
+     res = 800)
 plot(NULL, 
      type ="n", 
      xlim =c(-0.6,0.6), 
@@ -198,7 +189,7 @@ plot(NULL,
      xlab ="NMDS1",
      ylab ="NMDS2")
 sites <- 
-  replicadonis$Locality
+  replicadonis$LOC
 ordihull(chao_nmds,
          groups=sites,
          draw="polygon",
@@ -208,10 +199,14 @@ ordihull(chao_nmds,
          cex=0.3,
          xlim =c(-0.6,0.6), 
          ylim =c(-0.4,0.4))
-legend("topright", 
-       legend = "Stress = 0.17",
-       cex = 0.7)
+
+dev.off()
 ##With replicates
+tiff("NMDS_replicates.tiff",
+     width = 4800,
+     height = 3200, 
+     units = "px", 
+     res = 800)
 plot(datascores$NMDS2 ~ 
        datascores$NMDS1, 
      pch = 16, 
@@ -237,7 +232,8 @@ plot(climarrows,
 col ="black",
 labels = c("Min. T of coldest quarter", 
            "T annual range"),
-cex = 0.7)
+cex = 0.5)
+dev.off()
 #B nestedness and turnover components for incidence------------------------------------------------------------------
 #Getting dataframe ready
 betaflies <- 
@@ -267,16 +263,28 @@ jaccard <-
   beta.pair(betaflies[,5:381], index.family = "jaccard")
 
 ###Plot histograms
+tiff("hist_turnover.tiff",
+     width = 4800,
+     height = 3200, 
+     units = "px", 
+     res = 800)
 hist(jaccard$beta.jtu, 
      xlab= "Turnover",
      main = NULL,
      col = "grey50",
      ylim = c(0,2000))
+dev.off()
+tiff("hist_nestedness.tiff",
+     width = 4800,
+     height = 3200, 
+     units = "px", 
+     res = 800)
 hist(jaccard$beta.jne,
      xlab= "Nestedness",
      main = NULL,
      col = "grey50",
      ylim = c(0,2000))
+dev.off()
 ###NMDS it
 jtu_nmds <- 
   metaMDS(jaccard$beta.jtu, k = 2)

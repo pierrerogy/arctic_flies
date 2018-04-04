@@ -10,6 +10,8 @@ str(flies)
 library(plyr)
 library(dplyr)
 library(tidyr)
+##Maps
+library(rworldmap)
 ##WorldClim
 library(raster)
 library(sp)
@@ -23,6 +25,8 @@ library(ggplot2)
 library(gridExtra)
 ##Modelling
 library(MASS)
+library(MuMIn)
+library(effects)
 ##Model analysis and visualization
 library(car)
 library(visreg)
@@ -667,7 +671,90 @@ grid.arrange(plot1, plot2, plot3, plot4, plot5, plot6,
              plot7, plot8, plot9, plot10, plot11, ncol =3)
 dev.off()
 
-# Setting_Up_WorldClim_Values ---------------------------------------------
+
+# Map of sites ------------------------------------------------------------
+#Get map of Canada
+canamap<-  
+ raster::getData("GADM", 
+                  country = "CAN", 
+                  level = 1)
+#Average longitude and latitude per site
+sitemap <- 
+  longilat %>% 
+  dplyr::select(Locality, Ecozone, Longitude, Latitude) %>% 
+  group_by(Locality, Ecozone) %>% 
+  summarise_all(funs(mean))
+##bind column with shortened names and add points coordinates
+sitemap$LOC <- 
+  c("AUL", "CAM", "CHU", "GOO",
+    "IQA", "KUG", "MOO", "NOR",
+    "SCH", "TOM", "YEL", "HAZ")
+sitemap$LON <- 
+  sitemap$Longitude
+sitemap[12,6] <- 
+  -63
+sitemap[5,6] <- 
+  -58
+sitemap[9,6] <- 
+  -70
+sitemap[4,6] <- 
+  -68
+sitemap[2,6] <- 
+  -101.5
+sitemap[6,6] <- 
+  -123
+sitemap[1,6] <- 
+  -128
+sitemap[8,6] <- 
+  -123.5
+sitemap[11,6] <- 
+  -107
+sitemap[7,6] <- 
+  -89
+sitemap[3,6] <- 
+  -96
+sitemap[10,6] <- 
+  -135
+sitemap$LAT <- 
+  sitemap$Latitude
+sitemap[12,7] <- 
+  80
+sitemap[9,7] <- 
+  56.8
+sitemap[8,7] <- 
+  63
+sitemap[10,7] <- 
+  62
+sitemap[2,7] <- 
+  66.3
+sitemap[3,7] <- 
+  56
+sitemap[1,7] <- 
+  75.5
+sitemap[4,7] <- 
+  53
+##Reorder a bit
+sitemap <- 
+  sitemap %>% 
+  dplyr::select(Locality, LOC, Longitude, Latitude, LON, LAT)
+##Plot and save map
+tiff("canamap.tiff",
+     width = 3200,
+     height = 3200, 
+     units = "px", 
+     res = 800)
+par(mar= c(1,1,1,2))
+plot(canamap)
+points(sitemap$Longitude, 
+       sitemap$Latitude, 
+       col = c("black", "grey70", "grey40")[sitemap$Ecozone], 
+       pch= 19, 
+       cex = 2)
+text(sitemap$LON, 
+     sitemap$LAT, 
+     sitemap$LOC)
+dev.off()
+# Setting up WorldClim values ---------------------------------------------
 ##Extract coordinates from flies
 ###Only works if Longitude before Latitude, otherwise returns only NAs
 ##yearly averages of 1970-2000
@@ -919,7 +1006,7 @@ replicate_analysis <-
 ##Observed Richness
 model_richness <- 
   glmmPQL(Richness~ 
-            log(abs(coldest_quarter))*log(t_range) + Moisture_Regime,
+            coldest_quarter*t_range + Moisture_Regime,
           random =~1|Locality/moisture, 
           family = "quasipoisson"(link="sqrt"),
        data = replicate_analysis)
@@ -931,11 +1018,82 @@ summary(model_richness)$tTable
 Anova(model_richness)
 visreg(model_richness)
 r.squaredGLMM(model_richness)
+##plot
+plot(effect("coldest_quarter:t_range", 
+            model_richness),
+     ci.style = "band",
+     lines = list(multiline = T, 
+                  lty =1, 
+                  col = c("black", "grey25", "grey40",
+                          "grey55", "grey70")),
+     lattice = list(key.args =list(
+       x = 0.1, 
+       y = 1,
+       cex = 0.75,
+       between.columns = 0)),
+     ylab = "Observed richness per plot",
+     xlab = "Minimum temperature of the coldest quarter (°C)",
+     ylim = c(0,10),
+     type = "response",
+     main = ""
+)
+plot(effect("coldest_quarter", 
+            model_richness),
+     ci.style = "band",
+     lines = list(multiline = T, 
+                  lty =1, 
+                  col = "grey30"),
+     lattice = list(key.args =list(
+       x = 0.79, 
+       y = 1,
+       cex = 0.75,
+       between.columns = 0)),
+     ylab = "Observed richness per plot",
+     xlab = "Minimum temperature of the coldest quarter (°C)",
+     ylim = c(0,10),
+     type = "response",
+     main = ""
+)
+plot(effect("t_range", 
+            model_richness),
+     ci.style = "band",
+     lines = list(multiline = T, 
+                  lty =1, 
+                  col = "grey30"),
+     lattice = list(key.args =list(
+       x = 0.79, 
+       y = 1,
+       cex = 0.75,
+       between.columns = 0)),
+     ylab = "Observed richness per plot",
+     xlab = "Temperature annual range (°C)",
+     ylim = c(0,10),
+     type = "response",
+     main = ""
+)
+plot(effect("Moisture_Regime", 
+            model_richness),
+     ci.style = "bar",
+     lines = list(multiline = T, 
+                  lty =0, 
+                  col = c("grey20", "grey35", "grey50",
+                          "grey65", "grey80")),
+     lattice = list(key.args =list(
+       x = 0.79, 
+       y = 1,
+       cex = 0.75,
+       between.columns = 0)),
+     ylab = "Observed richness per plot",
+     xlab = "Moisture Regime",
+     ylim = c(0,10),
+     type = "response",
+     main = ""
+)
 
 ##Chao1
 model_chao1 <- 
-  glmmPQL(round(chao1)~ 
-            log(abs(coldest_quarter))*log(t_range) + Moisture_Regime,
+  glmmPQL(chao1~ 
+            coldest_quarter*t_range + Moisture_Regime,
           random =~1|Locality/moisture,
           family = "quasipoisson"(link="sqrt"),
           data = replicate_analysis)
@@ -947,11 +1105,81 @@ summary(model_chao1)$tTable
 Anova(model_chao1)
 visreg(model_chao1)
 r.squaredGLMM(model_chao1)
+##plot
+plot(effect("coldest_quarter:t_range", 
+            model_chao1),
+     ci.style = "band",
+     lines = list(multiline = T, 
+                  lty =1, 
+                  col = c("black", "grey25", "grey40",
+                          "grey55", "grey70")),
+     lattice = list(key.args =list(
+       x = 0.1, 
+       y = 1,
+       cex = 0.75,
+       between.columns = 0)),
+     ylab = "Estimated richness per plot",
+     xlab = "Minimum temperature of the coldest quarter (°C)",
+     ylim = c(0,20),
+     type = "response",
+     main = ""
+)
+plot(effect("coldest_quarter", 
+            model_chao1),
+     ci.style = "band",
+     lines = list(multiline = T, 
+                  lty =1, 
+                  col = "grey30"),
+     lattice = list(key.args =list(
+       x = 0.79, 
+       y = 1,
+       cex = 0.75,
+       between.columns = 0)),
+     ylab = "Estimated richness per plot",
+     xlab = "Minimum temperature of the coldest quarter (°C)",
+     ylim = c(0,10),
+     type = "response",
+     main = ""
+)
+plot(effect("t_range", 
+            model_chao1),
+     ci.style = "band",
+     lines = list(multiline = T, 
+                  lty =1, 
+                  col = "grey30"),
+     lattice = list(key.args =list(
+       x = 0.79, 
+       y = 1,
+       cex = 0.75,
+       between.columns = 0)),
+     ylab = "Estimated richness per plot",
+     xlab = "Temperature annual range (°C)",
+     ylim = c(0,10),
+     type = "response",
+     main = ""
+)
+plot(effect("Moisture_Regime", 
+            model_chao1),
+     ci.style = "bar",
+     lines = list(multiline = T, 
+                  lty =0, 
+                  col = "grey30"),
+     lattice = list(key.args =list(
+       x = 0.79, 
+       y = 1,
+       cex = 0.75,
+       between.columns = 0)),
+     ylab = "Estimated richness per plot",
+     xlab = "Moisture Regime",
+     ylim = c(0,10),
+     type = "response",
+     main = ""
+)
 
 ##Abundance
 model_abundance <- 
   glmmPQL(Abundance~ 
-            log(abs(coldest_quarter))*log(t_range) + Moisture_Regime, 
+            coldest_quarter*t_range + Moisture_Regime, 
           random = ~1|Locality/moisture,
           family = "quasipoisson"(link ="sqrt"),
           data = replicate_analysis)
@@ -963,193 +1191,73 @@ summary(model_abundance)$tTable
 Anova(model_abundance)
 visreg(model_abundance)
 r.squaredGLMM(model_abundance)
-
-
-# Plotting for environmental effects --------------------------------------
-#Plotting variables vs indices
-pdf("envt_indices.pdf",height = 15,width = 15)
-##set par
-par(mfrow = c(3,3), mar =c(5.1, 5.2, 4.2, 2))
-#Richness vs coldest quarter
-plot(replicate_analysis$Richness ~ log(abs(replicate_analysis$coldest_quarter)), 
-     xlab = '', ylab = 'Observed species richness',
-     pch = c(0:12)[factor(Locality)],
-     col = c("red", "blue") [factor(Moisture_Regime)],
-     main = "Mean T of Coldest Quarter(°C)",
-     cex.main =2,
-     cex.lab =2,
-     data = replicate_climate)
-legend("topleft",pch = c(0:12), 
-       legend = levels(replicate_climate$Locality), 
-       cex = 1)
-#Richness vs T range
-plot(replicate_analysis$Richness ~ replicate_analysis$t_range, 
-     xlab = '', ylab = '',
-     pch = c(0:12)[factor(Locality)],
-     col = c("red", "blue") [factor(Moisture_Regime)],
-     main = "Annual T Range (°C)",
-     cex.main =2,
-     cex.lab =2,
-     data = replicate_climate)
-#Richness vs habitat
-##Aggregate and convert to data frame
-moistplot <- 
-  do.call(data.frame,
-          stats::aggregate(Richness ~ Ecozone + Moisture_Regime, 
-                           data = replicate_analysis,
-                           FUN = function(Richness) 
-                             c(mean = mean(Richness), 
-                               sd = sd(Richness), 
-                               n = length(Richness))))
-##reorder factor levels for ecozone
-levels(moistplot$Richness) <- 
-  levels(moistplot$Richness == c("NB","SA","HA"))
-
-##add standard error
-moistplot$se <- 
-  moistplot$Richness.sd / sqrt(moistplot$Richness.n)
-##Use tapply to put in barplot format
-tabbedMeans <- 
-  tapply(moistplot$Richness.mean, 
-         list(moistplot$Moisture_Regime, moistplot$Ecozone),
-         function(Richness.mean) c(Richness.mean = Richness.mean))
-tabbedMeans <- 
-  cbind(tabbedMeans[,2], tabbedMeans[,3], tabbedMeans[,1])
-tabbedSE <- 
-  tapply(moistplot$se, 
-         list(moistplot$Moisture_Regime, moistplot$Ecozone),
-         function(se) c(se = se))
-tabbedSE <- 
-  cbind(tabbedSE[,2], tabbedSE[,3], tabbedSE[,1])
-graphbar <- 
-  barplot(tabbedMeans, 
-          names.arg = c("Northern Boreal", "Subarctic", "High Arctic"),
-          beside = T,
-          ylim = c(0, 50),
-          legend = T)
-##add SE bars
-segments(graphbar, tabbedMeans - tabbedSE, graphbar,
-         tabbedMeans + tabbedSE, lwd = 1.5)
-arrows(graphbar, tabbedMeans - tabbedSE, graphbar,
-       tabbedMeans + tabbedSE, lwd = 1.5, angle = 90,
-       code = 3, length = 0.05)
-
-
-#Abundance vs coldest quarter
-plot(replicate_analysis$Abundance ~ replicate_analysis$coldest_quarter, 
-     xlab = '', ylab = 'Abundance',
-     pch = c(0:12)[factor(Locality)],
-     col = c("red", "blue") [factor(Moisture_Regime)],
-     cex.main =2,
-     cex.lab =2,
-     data = replicate_climate)
-#Abundance vs T range
-plot(replicate_analysis$Abundance ~ replicate_analysis$t_range, 
-     xlab = '', ylab = '',
-     pch = c(0:12)[factor(Locality)],
-     col = c("red", "blue") [factor(Moisture_Regime)],
-     cex.main =2,
-     cex.lab =2,
-     data = replicate_climate)
-#Abundance vs habitat
-##Aggregate and convert to data frame
-moistplot <- 
-  do.call(data.frame,
-          stats::aggregate(Abundance ~ Moisture_Regime, 
-                           data = replicate_analysis,
-                           FUN = function(Abundance) 
-                             c(mean = mean(Abundance), 
-                               sd = sd(Abundance), 
-                               n = length(Abundance))))
-##reorder factor levels for ecozone
-levels(moistplot$Abundance) <- 
-  levels(moistplot$Abundance == c("NB","SA","HA"))
-
-##add standard error
-moistplot$se <- 
-  moistplot$Abundance.sd / sqrt(moistplot$Abundance.n)
-##Use tapply to put in barplot format
-tabbedMeans <- 
-  tapply(moistplot$Abundance.mean, 
-         list(moistplot$Moisture_Regime),
-         function(Abundance.mean) c(Abundance.mean = Abundance.mean))
-tabbedMeans <- 
-  cbind(tabbedMeans[,2], tabbedMeans[,3], tabbedMeans[,1])
-tabbedSE <- 
-  tapply(moistplot$se, 
-         list(moistplot$Moisture_Regime),
-         function(se) c(se = se))
-tabbedSE <- 
-  cbind(tabbedSE[,2], tabbedSE[,3], tabbedSE[,1])
-graphbar <- 
-  barplot(tabbedMeans, 
-          names.arg = c("Northern Boreal", "Subarctic", "High Arctic"),
-          beside = T,
-          ylim = c(0, 200),
-          legend = T)
-##add SE bars
-segments(graphbar, tabbedMeans - tabbedSE, graphbar,
-         tabbedMeans + tabbedSE, lwd = 1.5)
-arrows(graphbar, tabbedMeans - tabbedSE, graphbar,
-       tabbedMeans + tabbedSE, lwd = 1.5, angle = 90,
-       code = 3, length = 0.05)
-
-#Chao1 vs coldest quarter
-plot(replicate_analysis$chao1 ~ replicate_analysis$coldest_quarter, 
-     xlab = '', ylab = "Chao1 estimator",
-     pch = c(0:12)[factor(Locality)],
-     col = c("red", "blue") [factor(Moisture_Regime)],
-     cex.main =2,
-     cex.lab =2,
-     data = replicate_climate)
-#Chao1 vs T range
-plot(replicate_analysis$chao1 ~ replicate_analysis$t_range, 
-     xlab = '', ylab = '',
-     pch = c(0:12)[factor(Locality)],
-     col = c("red", "blue") [factor(Moisture_Regime)],
-     cex.main =2,
-     cex.lab =2,
-     data = replicate_climate)
-#Chao vs habitat
-moistplot <- 
-  do.call(data.frame,
-          stats::aggregate(chao1 ~ Ecozone + Moisture_Regime, 
-                           data = replicate_analysis,
-                           FUN = function(chao1) 
-                             c(mean = mean(chao1), 
-                               sd = sd(chao1), 
-                               n = length(chao1))))
-##add standard error
-moistplot$se <- 
-  moistplot$chao1.sd / sqrt(moistplot$chao1.n)
-##Use tapply to put in barplot format
-tabbedMeans <- 
-  tapply(moistplot$chao1.mean, 
-         list(moistplot$Moisture_Regime, moistplot$Ecozone),
-         function(chao1.mean) c(chao1.mean = chao1.mean))
-tabbedMeans <- 
-  cbind(tabbedMeans[,2], tabbedMeans[,3], tabbedMeans[,1])
-tabbedSE <- 
-  tapply(moistplot$se, 
-         list(moistplot$Moisture_Regime, moistplot$Ecozone),
-         function(se) c(se = se))
-tabbedSE <- 
-  cbind(tabbedSE[,2], tabbedSE[,3], tabbedSE[,1])
-graphbar <- 
-  barplot(tabbedMeans, 
-          names.arg = c("Northern Boreal", "Subarctic", "High Arctic"),
-          beside = T,
-          ylim = c(0, 100),
-          legend = T)
-##add SE bars
-segments(graphbar, tabbedMeans - tabbedSE, graphbar,
-         tabbedMeans + tabbedSE, lwd = 1.5)
-arrows(graphbar, tabbedMeans - tabbedSE, graphbar,
-       tabbedMeans + tabbedSE, lwd = 1.5, angle = 90,
-       code = 3, length = 0.05)
-
-
-##closing
-dev.off()
-par(mfrow=c(1,1))
-
+##plot
+plot(effect("coldest_quarter:t_range", 
+            model_chao1),
+     ci.style = "band",
+     lines = list(multiline = F, 
+                  lty =1, 
+                  col = c("black", "grey25", "grey40",
+                          "grey55", "grey70")),
+     lattice = list(key.args =list(
+       x = 0.1, 
+       y = 1,
+       cex = 0.75,
+       between.columns = 0)),
+     ylab = "Abundance per plot",
+     xlab = "Minimum temperature of the coldest quarter (°C)",
+     ylim = c(0,20),
+     type = "response",
+     main = ""
+)
+plot(effect("coldest_quarter", 
+            model_abundance),
+     ci.style = "band",
+     lines = list(multiline = T, 
+                  lty =1, 
+                  col = "grey30"),
+     lattice = list(key.args =list(
+       x = 0.79, 
+       y = 1,
+       cex = 0.75,
+       between.columns = 0)),
+     ylab = "Abundance per plot",
+     xlab = "Minimum temperature of the coldest quarter (°C)",
+     ylim = c(0,20),
+     type = "response",
+     main = ""
+)
+plot(effect("t_range", 
+            model_abundance),
+     ci.style = "band",
+     lines = list(multiline = T, 
+                  lty =1, 
+                  col = "grey30"),
+     lattice = list(key.args =list(
+       x = 0.79, 
+       y = 1,
+       cex = 0.75,
+       between.columns = 0)),
+     ylab = "Abundance per plot",
+     xlab = "Temperature annual range (°C)",
+     ylim = c(0,20),
+     type = "response",
+     main = ""
+)
+plot(effect("Moisture_Regime", 
+            model_abundance),
+     ci.style = "bar",
+     lines = list(multiline = T, 
+                  lty =0, 
+                  col = "grey30"),
+     lattice = list(key.args =list(
+       x = 0.79, 
+       y = 1,
+       cex = 0.75,
+       between.columns = 0)),
+     ylab = "Abundance per plot",
+     xlab = "Moisture Regime",
+     ylim = c(0,10),
+     type = "response",
+     main = ""
+)
