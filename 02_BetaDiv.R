@@ -53,6 +53,8 @@ datascores$coldest_quarter <-
   replicadonis$coldest_quarter
 datascores$t_range <- 
   replicadonis$t_range
+datascores$ecozone <- 
+  replicadonis$Ecozone
 
 #Plotting NMDS----------------------------------------------------------------
 #Plot together
@@ -308,7 +310,7 @@ par(mfrow =c(3,2))
 plot(NULL, 
      type ="n", 
      xlab ="NMDS1",
-     ylab ="Turnover",         
+     ylab ="NMDS2",         
      main ="With localities",
      xlim =c(-1,1), 
      ylim =c(-0.5,0.5))
@@ -340,12 +342,19 @@ legend("topright",
        pch = c(1, 2))
 
 ##Nestedness
+tiff("nestedness_nmds.tiff",
+     width = 4800,
+     height = 3200, 
+     units = "px", 
+     res = 800)
 plot(NULL, 
      type ="n", 
      xlab ="NMDS1",
-     ylab ="Nestedness",
+     ylab ="NMDS2",
      xlim =c(-1,1), 
      ylim =c(-0.5,0.5))
+sites <- 
+  replicadonis$LOC
 ordihull(jne_nmds,
          groups=sites,
          draw="polygon",
@@ -353,7 +362,7 @@ ordihull(jne_nmds,
          col="grey60",
          label=T,
          cex=0.5)
-
+dev.off()
 ###making data frame to show wet/mesic and plot
 datascores <- 
   as.data.frame(scores(jne_nmds))
@@ -372,7 +381,7 @@ plot(datascores$NMDS2 ~
 plot(NULL, 
      type ="n", 
      xlab ="NMDS1",
-     ylab ="Nestedness and Turnover",
+     ylab ="NMDS2",
      xlim =c(-1,1), 
      ylim =c(-0.5,0.5))
 ordihull(jac_nmds,
@@ -400,6 +409,62 @@ plot(datascores$NMDS2 ~
 ##closing
 dev.off()
 par(mfrow =c(1,1))
+
+
+
+
+
+#Testing turnover with betadisper ----------------------------------------
+#Make site data frame
+locaflies <- 
+  cleanflies %>% 
+  dplyr::select(Ecozone, Locality, Species, Abundance) %>% 
+  group_by(Ecozone, Locality, Species) %>% 
+  summarise_all(funs(sum)) %>% 
+  spread(key=Species, Abundance, fill =0)
+#Compute distance
+locadist <- 
+  vegdist(locaflies[,3:335], 
+          method = "chao")
+
+#betadisper
+turnosite <- 
+  betadisper(locadist,
+             locaflies$Ecozone,
+             type = "centroid",
+             bias.adjust = T)
+##testing and visualising
+boxplot(turnosite,
+        notch = F,
+        col = "coral")
+anova(turnosite)
+turnosite$distances
+permutest(turnosite,
+          pairwise = T)
+plot(TukeyHSD(turnosite))
+##plotting
+tiff("ecozone_turnover.tiff",
+     width = 4800,
+     height = 3200, 
+     units = "px", 
+     res = 800)
+plot(turnosite,
+     groups = locaflies$Ecozone,
+     cex = 1,
+     label = F,
+     ellipse = T,
+     hull = F,
+     sub = "",
+     main = "",
+     col = c("grey70", "black", "grey50"),
+     xlim = c(-0.6, 0.6))
+legend("topleft",
+       legend = c("Northern Boreal", "Subarctic", "High Arctic"),
+       col= c("black", "grey50", "grey70"),
+       pch = 16,
+       cex = 0.6)
+
+dev.off()
 
 
 

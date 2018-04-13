@@ -459,7 +459,7 @@ par(mfrow =c(1,1))
 
 
 
-# Sample completeness per site-----------------------------------------------------
+# Rarefaction and sample completeness per site-----------------------------------------------------
 pdf("completeness_site.pdf", height = 8, width = 15)
 #Per site
 repliflies <- 
@@ -476,7 +476,10 @@ completeness <-
       datatype = "abundance")
 ggiNEXT(completeness)
 dev.off()
-# Sample completeness per moisture regime-----------------------------------------------------
+##values
+DataInfo(t(repliflies), 
+         datatype = "abundance")
+# Rarefaction per moisture regime-----------------------------------------------------
 #Moosonee
 replifliesMO <- 
   cleanflies %>% 
@@ -865,7 +868,7 @@ dev.off()
 ###definitely most are highly correlated, bio 7 seems to stand out
 
 ##Create PCA object
-locapca <- dudi.pca(locaclim, scannf = FALSE, nf = 2)
+locapca <- dudi.pca(locality_climate[,4:22], scannf = FALSE, nf = 3)
 ##Assessing axes
 ###Degree of variation explained can be obtained by dividing each eigenvalue by their sum
 locapca$eig/sum(locapca$eig)
@@ -921,6 +924,14 @@ testplant_pca$eig/sum(testplant_pca$eig)
 s.corcircle(testplant_pca$co, clabel = 0.5)
 s.class(testplant_pca$li, as.factor(plant_dat$site), cpoint = 1)
 
+##Checkingvegetation measurements vs. habitat
+hist(plant_dat$max.veg.height)
+hist(plant_dat$graminoid.cover)
+hist(plant_dat$moss.cover)
+hist(plant_dat$lichen.cover)
+hist(plant_dat$forb.cover)
+hist(plant_dat$shrub.cover)
+plot(plant_dat$habitat, plant_dat$shrub.cover)
 # Making data frame to visualise axes -------------------------------------
 #First goup everything per replicate
 repliflies <- 
@@ -1024,16 +1035,19 @@ plot(effect("coldest_quarter:t_range",
      ci.style = "band",
      lines = list(multiline = T, 
                   lty =1, 
-                  col = c("black", "grey25", "grey40",
-                          "grey55", "grey70")),
+                  col = c("coral", "coral1", "coral2",
+                          "coral3", "coral4")),
      lattice = list(key.args =list(
-       x = 0.1, 
+       space = "top",
+       columns = 5,
+       x = 0.01, 
        y = 1,
-       cex = 0.75,
+       title= "Annual temperature range (°C)",
+       border = "transparent",
        between.columns = 0)),
-     ylab = "Observed richness per plot",
+     ylab = "Observed species richness",
      xlab = "Minimum temperature of the coldest quarter (°C)",
-     ylim = c(0,10),
+     ylim = c(0,15),
      type = "response",
      main = ""
 )
@@ -1111,12 +1125,15 @@ plot(effect("coldest_quarter:t_range",
      ci.style = "band",
      lines = list(multiline = T, 
                   lty =1, 
-                  col = c("black", "grey25", "grey40",
-                          "grey55", "grey70")),
+                  col = c("coral", "coral1", "coral2",
+                          "coral3", "coral4")),
      lattice = list(key.args =list(
-       x = 0.1, 
+       space = "top",
+       columns = 5,
+       x = 0.01, 
        y = 1,
-       cex = 0.75,
+       title= "Annual T range (°C)",
+       border = "transparent",
        between.columns = 0)),
      ylab = "Estimated richness per plot",
      xlab = "Minimum temperature of the coldest quarter (°C)",
