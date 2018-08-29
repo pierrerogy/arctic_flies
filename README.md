@@ -28,7 +28,7 @@ Metadata is available in [EML format](https://github.com/pierrerogy/arctic_flies
 ### Table format
 Family | Genus | Species | Abundance | Locality | Province.Territory | Ecoclimatic_zone | Side | Latitude | Longitude | Moisture_Regime | Replicate | Date | Trapping_Method |
 ------------ | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-Linnaean family | Linnaean genus | Binomial name (may include name of authority) | Number of specimens collected | Locality of collection | Corresponding Province or Territory | Corresponding ecoclimatic zone (Northern boreal (NB), Subarctic (SA) or High Artic (HA) | Western or eastern Canada | GPS latitude of replicate | GPS longitude of replicate | Moisture regime of the replicate (Mesic or Wet) | Date of collection (days.month.yer) | Malaise trap, pan traps, or sweep netting |
+Linnaean family | Linnaean genus | Binomial name (may include name of authority) | Number of specimens collected | Locality of collection | Corresponding Province or Territory | Corresponding ecoclimatic zone (Northern boreal (NB), Subarctic (SA) or High Artic (HA) | Western or eastern Canada | GPS latitude of replicate | GPS longitude of replicate | Moisture regime of the replicate (Mesic or Wet) | Number of the replicate | Date of collection (days.month.yer) | Malaise trap, pan traps, or sweep netting |
 
 
 ## Useful links
