@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <eml:dataset xmlns:eml="eml://ecoinformatics.org/eml-2.1.1" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" system="uuid">
-  <title>Spatial Diversity of Acalyptrate Flies in the Northern Nearctic</title>
+  <title>Spatial distribution of acalyptrate fly assemblages in northern Canada</title>
   <creator>
     <individualName>
-      <givenName>Pierre</givenName>
-      <surName>Rogy</surName>
+      <surName>Pierre_Rogy</surName>
     </individualName>
     <electronicMailAddress>rogy@zoology.ubc.ca</electronicMailAddress>
   </creator>
-  <abstract>Solving the riddle of Arctic Diptera dominance requires a comprehensive framework of diversity patterns, and is especially important as this taxon can be used to assess shifts in rapidly-changing Arctic ecosystems. Thus, this paper aims at unraveling the spatial component of this framework for Acalyptratae. Acalyptrate diversity should decrease with increasing latitude for most groups, while abundance per species should increase. On the same gradient, the moisture regime should influence diversity in northern, resource-scarce environments. To study those patterns, the Northern Biodiversity Program (2010-2011) collected arthropods at 12 sites across the Northern Boreal, Subarctic and High Arctic zones. This yielded 4486 acalyptrate specimens, whose biodiversity patterns are compared here across different spatial scales. The latitudinal richness gradient was followed by 22 of the 25 families, but abundance patterns remained similar across zones. Subarctic sites showed most variability, which may result from geographical and glacial legacies. Finally, wet sites harbored more diversity and abundance with increasing latitude, except in the High Arctic, likely due to mating and dispersal behaviors. In conclusion, acalyptrate diversity in the Arctic generally follows patterns seen in other animal groups. These results can be used as bases for further temporal and ecological studies to understand Arctic shifts. </abstract>
+  <abstract>Flies are the dominant animal in Arctic ecosystems, and as such can be used to monitor biodiversity change, but prior research has often focused on the most common taxa. This paper examines the spatial diversity of the poorly-documented Acalyptratae flies using 3603 specimens collected from twelve sites across northern Canada. We predicted that Acalyptratae diversity should be higher in resource-rich habitats, and positively associated with seasonal and limiting temperatures. We also predicted that spatial turnover should result from the combination of biological, geographical and historical features. Climatic variables had a persistent effect on acalyptrate assemblages, consistent with the latitudinal richness gradient seen in other animal groups. However, habitat had a stronger effect on species composition than species richness, and no effect on abundance. Spatial turnover in composition was greatest between sites in the Subarctic zone, with no overlap across sites. The High Arctic ecoclimatic zone was as spatially heterogenous in composition as Northern Boreal and Subarctic zones ecoclimatic zones, hinting at complex interplays between geographical and glacial legacies. Overall, our results contradict the historical view of Arctic arthropod diversity as simple and uniform, and may serve as a baseline for future biodiversity monitoring.</abstract>
   <dataTable>
     <entityName>ArcticFlies.csv</entityName>
-    <entityDescription>Arctic Fly Project</entityDescription>
+    <entityDescription>Arctic Acalyptrate Fly Project</entityDescription>
     <physical>
       <objectName>ArcticFlies.csv</objectName>
       <size unit="bytes"/>
@@ -30,52 +29,16 @@
         <attributeName>Family</attributeName>
         <attributeDefinition>Linnaean family of the specimen</attributeDefinition>
         <storageType>string</storageType>
-        <measurementScale>
-          <nominal>
-            <nonNumericDomain>
-              <enumeratedDomain>
-                <codeDefinition>
-                  <code>NA</code>
-                  <definition>NA</definition>
-                </codeDefinition>
-              </enumeratedDomain>
-            </nonNumericDomain>
-          </nominal>
-        </measurementScale>
       </attribute>
       <attribute>
         <attributeName>Genus</attributeName>
         <attributeDefinition>Linnaean genus of the specimen</attributeDefinition>
         <storageType>string</storageType>
-        <measurementScale>
-          <nominal>
-            <nonNumericDomain>
-              <enumeratedDomain>
-                <codeDefinition>
-                  <code>NA</code>
-                  <definition>NA</definition>
-                </codeDefinition>
-              </enumeratedDomain>
-            </nonNumericDomain>
-          </nominal>
-        </measurementScale>
       </attribute>
       <attribute>
         <attributeName>Species</attributeName>
         <attributeDefinition>Linnaean binomial species name or morphospecies, may include original taxonomist name</attributeDefinition>
         <storageType>string</storageType>
-        <measurementScale>
-          <nominal>
-            <nonNumericDomain>
-              <enumeratedDomain>
-                <codeDefinition>
-                  <code>NA</code>
-                  <definition>NA</definition>
-                </codeDefinition>
-              </enumeratedDomain>
-            </nonNumericDomain>
-          </nominal>
-        </measurementScale>
       </attribute>
       <attribute>
         <attributeName>Abundance</attributeName>
@@ -101,28 +64,36 @@
             <nonNumericDomain>
               <enumeratedDomain>
                 <codeDefinition>
-                  <code>Moosonee</code>
-                  <definition>Moosonee, ON</definition>
+                  <code>Aulavik_National_Park</code>
+                  <definition>Aulavik National Park, NT</definition>
                 </codeDefinition>
                 <codeDefinition>
-                  <code>Goose_Bay</code>
-                  <definition>Goose Bay, NL</definition>
-                </codeDefinition>
-                <codeDefinition>
-                  <code>Yellowknife</code>
-                  <definition>Yellowknife, NT</definition>
-                </codeDefinition>
-                <codeDefinition>
-                  <code>Norman_Wells</code>
-                  <definition>Norman Weels, NT</definition>
+                  <code>Cambridge_Bay</code>
+                  <definition>Cambridge Bay, NU</definition>
                 </codeDefinition>
                 <codeDefinition>
                   <code>Churchill</code>
                   <definition>Churchill, MB</definition>
                 </codeDefinition>
                 <codeDefinition>
+                  <code>Goose_Bay</code>
+                  <definition>Goose Bay, NL</definition>
+                </codeDefinition>
+                <codeDefinition>
+                  <code>Iqaluit</code>
+                  <definition>Iqaluit, NU</definition>
+                </codeDefinition>
+                <codeDefinition>
                   <code>Kugluktuk</code>
                   <definition>Kugluktuk, NU</definition>
+                </codeDefinition>
+                <codeDefinition>
+                  <code>Moosonee</code>
+                  <definition>Moosonee, ON</definition>
+                </codeDefinition>
+                <codeDefinition>
+                  <code>Norman_Wells</code>
+                  <definition>Norman Weels, NT</definition>
                 </codeDefinition>
                 <codeDefinition>
                   <code>Schefferville</code>
@@ -133,16 +104,8 @@
                   <definition>Dempster Highway near North Fork Pass, YT</definition>
                 </codeDefinition>
                 <codeDefinition>
-                  <code>Iqaluit</code>
-                  <definition>Iqaluit, NU</definition>
-                </codeDefinition>
-                <codeDefinition>
-                  <code>Aulavik_National_Park</code>
-                  <definition>Aulavik National Park, NT</definition>
-                </codeDefinition>
-                <codeDefinition>
-                  <code>Cambridge_Bay</code>
-                  <definition>Cambridge Bay, NU</definition>
+                  <code>Yellowknife</code>
+                  <definition>Yellowknife, NT</definition>
                 </codeDefinition>
               </enumeratedDomain>
             </nonNumericDomain>
@@ -150,7 +113,7 @@
         </measurementScale>
       </attribute>
       <attribute>
-        <attributeName>Province/Territory</attributeName>
+        <attributeName>Province.Territory</attributeName>
         <attributeDefinition>Province/Territory of locality</attributeDefinition>
         <storageType>string</storageType>
         <measurementScale>
@@ -167,8 +130,8 @@
         </measurementScale>
       </attribute>
       <attribute>
-        <attributeName>Ecozone</attributeName>
-        <attributeDefinition>Ecozone of locality</attributeDefinition>
+        <attributeName>Ecoclimatic_zone</attributeName>
+        <attributeDefinition>Ecoclimatic zone of locality</attributeDefinition>
         <storageType>string</storageType>
         <measurementScale>
           <nominal>
@@ -214,12 +177,12 @@
       </attribute>
       <attribute>
         <attributeName>Latitude</attributeName>
-        <attributeDefinition>Latitude of the replicate (WGS-84 datum)</attributeDefinition>
+        <attributeDefinition>Decimal latitude of the replicate (WGS-84 datum)</attributeDefinition>
         <storageType>float</storageType>
         <measurementScale>
           <ratio>
             <unit>
-              <customUnit>Decimal WGS-84</customUnit>
+              <standardUnit>dimensionless</standardUnit>
             </unit>
             <numericDomain>
               <numberType>coordinate</numberType>
@@ -229,12 +192,12 @@
       </attribute>
       <attribute>
         <attributeName>Longitude</attributeName>
-        <attributeDefinition>Longitude of the replicate (WGS-84 datum)</attributeDefinition>
+        <attributeDefinition>Decimal longitude of the replicate (WGS-84 datum)</attributeDefinition>
         <storageType>float</storageType>
         <measurementScale>
           <ratio>
             <unit>
-              <customUnit>Decimal WGS-84</customUnit>
+              <standardUnit>dimensionless</standardUnit>
             </unit>
             <numericDomain>
               <numberType>coordinate</numberType>
@@ -286,7 +249,7 @@
       </attribute>
       <attribute>
         <attributeName>Date</attributeName>
-        <attributeDefinition>Date of collection</attributeDefinition>
+        <attributeDefinition>Date of collection (days.month.year)</attributeDefinition>
         <storageType>string</storageType>
         <measurementScale>
           <nominal>
@@ -302,21 +265,9 @@
         </measurementScale>
       </attribute>
       <attribute>
-        <attributeName>Trapping Method</attributeName>
+        <attributeName>Trapping_Method</attributeName>
         <attributeDefinition>Trapping Method</attributeDefinition>
         <storageType>string</storageType>
-        <measurementScale>
-          <nominal>
-            <nonNumericDomain>
-              <enumeratedDomain>
-                <codeDefinition>
-                  <code>NA</code>
-                  <definition>NA</definition>
-                </codeDefinition>
-              </enumeratedDomain>
-            </nonNumericDomain>
-          </nominal>
-        </measurementScale>
       </attribute>
     </attributeList>
   </dataTable>
