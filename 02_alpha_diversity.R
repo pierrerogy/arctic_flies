@@ -391,6 +391,9 @@ col <-
                 "gold4",
                 ifelse(effect_richness$group ==50,
                        "darkorange3", "firebrick4")))
+####Rescale
+effect_richness[,2:4] <- 
+  effect_richness[,2:4] +1
 ####Plot
 plot_richness <- 
   plot(effect_richness,
@@ -405,7 +408,7 @@ plot_richness <-
   labs(color = "Annual T range (°C)") +
   ggtitle("") +
   scale_y_continuous(trans="log",
-                     breaks = c(1,10,70)) +
+                     breaks = c(0,10,70)) +
   xlab("Minimum T of coldest quarter (°C)") +
   ylab("Observed species richness") + 
   scale_color_manual(labels = c(42, 46.3, 50, 53.1), 
@@ -443,12 +446,54 @@ r.squaredGLMM(model_chao1)
 ###visreg
 visreg(model_chao1)
 ###ggeffects
-plot(
+####Data
+effect_chao1 <- 
   ggeffect(model_chao1,
            type = "re",
-           ##selecting  restricted set of t_range value for computation and visibility 
+           ##selecting  restricted set of t_range value for computation and visibility
            terms = c("coldest_quarter", "t_range [42, 46.3, 50, 53.1]"),
-           ci.lvl = 0.95))
+           ci.lvl = 0.95)
+####Graphics
+col <- 
+  ifelse(effect_chao1$group ==42,
+         "deepskyblue4",
+         ifelse(effect_chao1$group ==46.3,
+                "gold4",
+                ifelse(effect_chao1$group ==50,
+                       "darkorange3", "firebrick4")))
+####Rescale
+effect_chao1[,2:4] <- 
+  effect_chao1[,2:4] +1
+####Plot
+plot_chao1 <- 
+  plot(effect_chao1,
+       ci = T)+
+  geom_point(data = replicate_analysis,
+             mapping = aes(x = coldest_quarter, 
+                           y = Chao1 +1), 
+             colour = c("grey30", "grey80")[replicate_analysis$Moisture_Regime], 
+             fill = c("grey30", "grey80")[replicate_analysis$Moisture_Regime],
+             pch = 16,
+             cex=2) +
+  labs(color = "Annual T range (°C)") +
+  ggtitle("") +
+  scale_y_continuous(trans="log",
+                     breaks = c(0,10,150)) +
+  xlab("Minimum T of coldest quarter (°C)") +
+  ylab("Estimated species richness") + 
+  scale_color_manual(labels = c(42, 46.3, 50, 53.1), 
+                     values = c("deepskyblue4", "gold4",
+                                "darkorange3", "firebrick4")) +
+  scale_fill_manual(values = c("deepskyblue4", "gold4",
+                               "darkorange3", "firebrick4")) +
+  theme(legend.position = c(0.1,0.9),
+        legend.text = element_text(size = rel(0.6)),
+        legend.key.size =  unit(0.2, "in"),
+        legend.title = element_text(size = rel(0.7)),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(), 
+        axis.line = element_line(colour = "black"))
 
 #Abundance
 ##Model
@@ -471,17 +516,76 @@ r.squaredGLMM(model_abundance)
 ###visreg
 visreg(model_abundance)
 ###ggeffects
-plot(
+####Data
+effect_abundance <- 
   ggeffect(model_abundance,
            type = "re",
-           ##selecting  restricted set of t_range value for computation and visibility 
+           ##selecting  restricted set of t_range value for computation and visibility
            terms = c("coldest_quarter", "t_range [42, 46.3, 50, 53.1]"),
-           ci.lvl = 0.95))
-# Print richness plot in tiff format ---------------------------------------------------------
+           ci.lvl = 0.95)
+####Graphics
+col <- 
+  ifelse(effect_abundance$group ==42,
+         "deepskyblue4",
+         ifelse(effect_abundance$group ==46.3,
+                "gold4",
+                ifelse(effect_abundance$group ==50,
+                       "darkorange3", "firebrick4")))
+####Rescale
+effect_abundance[,2:4] <- 
+  effect_abundance[,2:4] +3
+####Plot
+plot_abundance <- 
+  plot(effect_abundance,
+       ci = T)+
+  geom_point(data = replicate_analysis,
+             mapping = aes(x = coldest_quarter, 
+                           y = Abundance + 3), 
+             colour = c("grey30", "grey80")[replicate_analysis$Moisture_Regime], 
+             fill = c("grey30", "grey80")[replicate_analysis$Moisture_Regime],
+             pch = 16,
+             cex=2) +
+  labs(color = "Annual T range (°C)") +
+  ggtitle("") +
+  scale_y_continuous(trans="log",
+                     breaks = c(0,10,350)) +
+  xlab("Minimum T of coldest quarter (°C)") +
+  ylab("Abundance") + 
+  scale_color_manual(labels = c(42, 46.3, 50, 53.1), 
+                     values = c("deepskyblue4", "gold4",
+                                "darkorange3", "firebrick4")) +
+  scale_fill_manual(values = c("deepskyblue4", "gold4",
+                               "darkorange3", "firebrick4")) +
+  theme(legend.position = c(0.1,0.9),
+        legend.text = element_text(size = rel(0.6)),
+        legend.key.size =  unit(0.2, "in"),
+        legend.title = element_text(size = rel(0.7)),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(), 
+        axis.line = element_line(colour = "black"))
+
+# Print plots in tiff format ---------------------------------------------------------
 tiff("richness_plot.tiff",
      width = 4800,
      height = 3200, 
      units = "px", 
      res = 800)
 plot_richness
+dev.off()
+
+tiff("chao1_plot.tiff",
+     width = 4800,
+     height = 3200, 
+     units = "px", 
+     res = 800)
+plot_chao1
+dev.off()
+
+tiff("abundance_plot.tiff",
+     width = 4800,
+     height = 3200, 
+     units = "px", 
+     res = 800)
+plot_abundance
 dev.off()
