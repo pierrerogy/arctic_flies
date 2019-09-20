@@ -19,7 +19,9 @@ repliflies_site <-
 completeness <- 
   iNEXT(t(repliflies_site), 
         q=0, 
-        datatype = "abundance")
+        datatype = "abundance",
+        se = T,
+        conf = 0.95)
 ##View values
 DataInfo(t(repliflies_site), 
          datatype = "abundance")
@@ -409,7 +411,7 @@ plot_richness <-
   ggtitle("") +
   scale_y_continuous(trans="log",
                      breaks = c(0,10,70)) +
-  xlab("Minimum T of coldest quarter (°C)") +
+  xlab("Mean T of coldest quarter (°C)") +
   ylab("Observed species richness") + 
   scale_color_manual(labels = c(42, 46.3, 50, 53.1), 
                      values = c("deepskyblue4", "gold4",
@@ -479,7 +481,7 @@ plot_chao1 <-
   ggtitle("") +
   scale_y_continuous(trans="log",
                      breaks = c(0,10,150)) +
-  xlab("Minimum T of coldest quarter (°C)") +
+  xlab("Mean T of coldest quarter (°C)") +
   ylab("Estimated species richness") + 
   scale_color_manual(labels = c(42, 46.3, 50, 53.1), 
                      values = c("deepskyblue4", "gold4",
@@ -549,7 +551,7 @@ plot_abundance <-
   ggtitle("") +
   scale_y_continuous(trans="log",
                      breaks = c(0,10,350)) +
-  xlab("Minimum T of coldest quarter (°C)") +
+  xlab("Mean T of coldest quarter (°C)") +
   ylab("Abundance") + 
   scale_color_manual(labels = c(42, 46.3, 50, 53.1), 
                      values = c("deepskyblue4", "gold4",

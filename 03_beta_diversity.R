@@ -40,34 +40,6 @@ stressplot(chao_nmds)
 
 
 #Plotting NMDS, and saving in tiff format -------------------------------------------------------------
-#With sites as hulls
-tiff("NMDS_sites.tiff",
-     width = 4800,
-     height = 3200, 
-     units = "px", 
-     res = 800)
-##Create plot
-plot(NULL, 
-     type ="n", 
-     xlim =c(-0.15,0.15), 
-     ylim =c(-0.1,0.1),
-     xlab ="NMDS1",
-     ylab ="NMDS2")
-##Add site for hull names
-sites <- 
-  replicadonis$LOC
-##Add hulls
-ordihull(chao_nmds,
-         groups=sites,
-         draw="polygon",
-         lty = 1,
-         col="grey60",
-         label=T,
-         cex=0.5,
-         xlim =c(-0.15,0.15), 
-         ylim =c(-0.1,0.1))
-dev.off()
-
 #With replicates as dots and environmental vectors
 tiff("NMDS_replicates.tiff",
      width = 4800,
@@ -90,11 +62,11 @@ datascores$Ecoclimatic_zone <-
 ##Plot points
 plot(datascores$NMDS2 ~ 
        datascores$NMDS1, 
-     pch = 16, 
+     pch = c(15,16,17)[datascores$Ecoclimatic_zone], 
      col = c("grey30", "grey80")[datascores$moisture],
      cex =1, 
-     xlim =c(-0.15,0.15), 
-     ylim =c(-0.1,0.1),
+     xlim =c(-0.2,0.2), 
+     ylim =c(-0.12,0.12),
      xlab = "NMDS1", 
      ylab = "NMDS2")
 legend("topright", 
@@ -102,6 +74,13 @@ legend("topright",
        pch = 16,
        col = c("grey30", "grey80"),
        cex =0.7)
+legend("topleft",
+       pch = c(16,17,15),
+       col = "grey34",
+       legend = c("Northern Boreal", "Subarctic", "High Arctic"),
+       cex = 0.7)
+title("(a)",
+      adj = 0)
 ##Add climate arrows
 ###Compute arrow values
 climarrows <- 
@@ -112,9 +91,41 @@ climarrows <-
 ###Add to ordination plot
 plot(climarrows, 
      col ="black",
-     labels = c("Min. T of coldest quarter", 
-                "T annual range"),
-     cex = 0.4)
+     labels = c("", ""))
+text(c(-0.16, -0.19),
+     c(-0.04, -0.06), 
+     c("Mean T ", "T range"),
+     cex=0.8)
+dev.off()
+
+#With sites as hulls
+tiff("NMDS_sites.tiff",
+     width = 4800,
+     height = 3200, 
+     units = "px", 
+     res = 800)
+##Create plot
+plot(NULL, 
+     type ="n", 
+     xlim =c(-0.2,0.2), 
+     ylim =c(-0.12,0.12),
+     xlab ="NMDS1",
+     ylab ="NMDS2")
+title("(b)",
+      adj = 0)
+##Add site for hull names
+sites <- 
+  replicadonis$LOC
+##Add hulls
+ordihull(chao_nmds,
+         groups=sites,
+         draw="polygon",
+         lty = 1,
+         col="grey60",
+         label=T,
+         cex=0.45,
+         xlim =c(-0.15,0.15), 
+         ylim =c(-0.1,0.1))
 dev.off()
 
 #Turnover analysis ----------------------------------------
@@ -156,13 +167,14 @@ plot(turnosite,
      hull = F,
      sub = "",
      main = "",
-     col = c("grey70", "black", "grey50"),
+     col= "grey34",
+     pch =c(15,16,17),
      xlim = c(-0.6, 0.6))
 legend("topleft",
+       pch = c(16,17,15),
+       col = "grey34",
        legend = c("Northern Boreal", "Subarctic", "High Arctic"),
-       col= c("black", "grey50", "grey70"),
-       pch = 16,
-       cex = 0.6)
+       cex = 0.7)
 
 dev.off()
 
